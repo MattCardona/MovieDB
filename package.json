@@ -1,0 +1,11 @@
+{
+  "name": "moviedb",
+  "version": "1.0.0",
+  "description": "Search and view information on new/old movies",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Matt C",
+  "license": "ISC"
+}
