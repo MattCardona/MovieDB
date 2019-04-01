@@ -12,6 +12,11 @@ app.get("/homepage", (req, res) => {
   res.send("This will be the home route");
 });
 
+// will search for a specific movie/show title
+app.post("/movies", (req, res) => {
+  res.send("This will send back movie searched for");
+})
+
 app.listen(port, () => {
   console.log(`Listening on port ${port}`);
 });
