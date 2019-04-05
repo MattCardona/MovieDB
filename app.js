@@ -23,7 +23,7 @@ app.get("/homepage", (req, res) => {
   .catch(e => {
     console.log(JSON.stringify(e, undefined, 2));
     res.send('Oops something went wrong');
-  })
+  });
   
 });
 
@@ -36,7 +36,12 @@ app.post("/movies", (req, res) => {
     console.log(JSON.stringify(e, undefined, 2));
     res.send('Oops something went wrong');
   });
-})
+});
+
+// will get more info on specific movie/show
+app.get("/movies/:id", (req, res) => {
+  res.send("this will be more info section")
+});
 
 app.listen(port, () => {
   console.log(`Listening on port ${port}`);
