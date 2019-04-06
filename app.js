@@ -21,7 +21,7 @@ app.get("/homepage", (req, res) => {
     res.json(data);
   })
   .catch(e => {
-    console.log(JSON.stringify(e, undefined, 2));
+    // console.log(JSON.stringify(e, undefined, 2));
     res.send('Oops something went wrong');
   });
   
@@ -29,18 +29,29 @@ app.get("/homepage", (req, res) => {
 
 // will search for a specific movie/show title
 app.post("/movies", (req, res) => {
-  axios.get(`https://api.themoviedb.org/3/search/movie?api_key=${process.env.MOVIE_DB}&language=en-US&page=1&include_adult=true&query=${req.body.movie}`)
+  const { movie } = req.body;
+
+  axios.get(`https://api.themoviedb.org/3/search/movie?api_key=${process.env.MOVIE_DB}&language=en-US&page=1&include_adult=true&query=${movie}`)
   .then( res => res.data)
   .then(data => res.json(data))
   .catch(e => {
-    console.log(JSON.stringify(e, undefined, 2));
-    res.send('Oops something went wrong');
+    // console.log(JSON.stringify(e, undefined, 2));
+    res.redirect("/");
   });
 });
 
 // will get more info on specific movie/show
 app.get("/movies/:id", (req, res) => {
-  res.send("this will be more info section")
+  const { id } = req.params;
+
+  axios.get(`https://api.themoviedb.org/3/movie/${id}?api_key=${process.env.MOVIE_DB}&language=en-US&external_source=imdb_id`)
+  .then(res => res.data)
+  .then(data => res.json(data))
+  .catch(e => {
+    // console.log(e);
+    res.redirect("/");
+  });
+
 });
 
 app.listen(port, () => {
