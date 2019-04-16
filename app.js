@@ -9,7 +9,7 @@ let port = process.env.PORT || process.env.DEV_PORT;
 
 app.use(bodyParser.urlencoded({extended: false}));
 
-app.get("/", (req, res) => res.redirect("/homepage"))
+// app.get("/", (req, res) => res.redirect("/homepage"))
 
 // will show movies now playing
 app.get("/homepage", (req, res) => {
@@ -18,10 +18,12 @@ app.get("/homepage", (req, res) => {
     return res.data;
   })
   .then(data => {
-    res.json(data);
+    let {results} = data;
+    // console.log(data.results);
+    res.json(results);
   })
   .catch(e => {
-    // console.log(JSON.stringify(e, undefined, 2));
+    console.log(JSON.stringify(e, undefined, 2));
     res.send('Oops something went wrong');
   });
   
