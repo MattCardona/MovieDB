@@ -19,8 +19,7 @@ class Home extends Component {
     return (
       <div>
         <h1>This will be the home Component</h1>
-        <MovieInfo />
-        <SearchMovie />
+        
       </div>
     )
   }
