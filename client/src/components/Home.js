@@ -4,6 +4,7 @@ import Slider from 'react-slick';
 class Home extends Component {
   constructor(props){
     super(props);
+    this.handleSubmit = this.handleSubmit.bind(this);
     this.state = {
       movies: [],
       sliderMovies: []
@@ -22,6 +23,12 @@ class Home extends Component {
       }))
     })
     .catch(err => console.log(JSON.stringify(err, undefined, 2)))
+  }
+  handleSubmit(e){
+    e.preventDefault();
+    let value = e.target.elements.movie.value;
+    console.log(value);
+    e.target.elements.movie.value = "";
   }
   render() {
     const { sliderMovies } = this.state;
@@ -50,6 +57,22 @@ class Home extends Component {
             )
           }) }
         </Slider>
+
+        <div className="container-fluid" style={{textAlign: "center"}}>
+          <form onSubmit={this.handleSubmit}>
+            <input type="text" placeholder="This will be movie/tv show search" style={{
+              width: "50%"
+            }} name="movie"/>
+            <button className="btn btn-primary"
+              style={{
+                padding: "3px",
+                margin: "10px",
+                height: "auto"
+              }}
+            >Search</button>
+          </form>
+        </div>
+
       </div>
     )
   }
