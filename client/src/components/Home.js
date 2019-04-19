@@ -58,17 +58,10 @@ class Home extends Component {
           }) }
         </Slider>
 
-        <div className="container-fluid" style={{textAlign: "center"}}>
+        <div className="container-fluid" id="search-container">
           <form onSubmit={this.handleSubmit}>
-            <input type="text" placeholder="This will be movie/tv show search" style={{
-              width: "50%"
-            }} name="movie"/>
-            <button className="btn btn-primary"
-              style={{
-                padding: "3px",
-                margin: "10px",
-                height: "auto"
-              }}
+            <input id="search-input" type="text" placeholder="This will be movie/tv show search" name="movie"/>
+            <button className="btn btn-primary" id="search-button"
             >Search</button>
           </form>
         </div>
