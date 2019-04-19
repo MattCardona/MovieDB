@@ -1,9 +1,17 @@
+#home {
+  background-color: black;
+  overflow: hidden;
+}
+
+
+/* Search bar */
 #search-container{
   text-align: center;
 }
 
 #search-input {
   width: 50%;
+  text-align: center
 }
 
 #search-button {

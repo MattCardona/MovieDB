@@ -18,7 +18,8 @@ class Home extends Component {
     .then(data => {
       // console.log(data);
       this.setState(() => ({
-        sliderMovies: data.slice(0, 6),
+        //change back to 6 instead of 1 
+        sliderMovies: data.slice(0, 1),
         movies: [...data]
       }))
     })
@@ -36,10 +37,10 @@ class Home extends Component {
       dots: false,
       infinite: true,
       autoplay: true,
-      speed: 2500
+      speed: 3000
     }
     return (
-      <div>
+      <div id="home">
         <Slider {...settings} >
           { sliderMovies.map(movie => {
             return (
