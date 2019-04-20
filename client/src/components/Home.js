@@ -66,8 +66,27 @@ class Home extends Component {
             >Search</button>
           </form>
         </div>
-
-      </div>
+         
+        <div className="container">
+            <div className="row">
+          {this.state.movies.map(movie => {
+            const movieBackdrop = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
+            return (
+              <div className="col-xs-12 col-sm-6 col-md-4" key={movie.title} >
+                <div className="card">
+                  <img src={movieBackdrop} alt=""/>
+                  <h4 className="card-title">
+                    {movie.title}
+                  </h4>
+                  {/* need to make to Link */}
+                  <a href="#">see more</a>
+                </div>
+              </div>
+            )
+          })}
+          </div>
+        </div>
+    </div>
     )
   }
 };
