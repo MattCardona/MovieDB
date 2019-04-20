@@ -19,3 +19,13 @@
   margin: 10px;
   height: auto;
 }
+
+
+/* featured Movie Section */
+
+.card {
+  margin-top: 15px;
+  background-color: black;
+  border: 1px solid #a9c1a7;
+  text-align: center;
+}
