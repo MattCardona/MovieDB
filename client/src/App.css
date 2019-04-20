@@ -29,3 +29,9 @@
   border: 1px solid #a9c1a7;
   text-align: center;
 }
+
+.card-image {
+  height: 340px;
+  width: 200px;
+  margin: 10px auto;
+}

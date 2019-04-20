@@ -74,7 +74,7 @@ class Home extends Component {
             return (
               <div className="col-xs-12 col-sm-6 col-md-4" key={movie.title} >
                 <div className="card">
-                  <img src={movieBackdrop} alt=""/>
+                  <img className="card-image" src={movieBackdrop} alt=""/>
                   <h4 className="card-title">
                     {movie.title}
                   </h4>
