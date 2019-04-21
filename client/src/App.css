@@ -35,3 +35,8 @@
   width: 200px;
   margin: 10px auto;
 }
+
+.card-title {
+  text-align: center;
+  color: #fff;
+}
