@@ -1,14 +1,16 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import './App.css';
 
-import Home from './components/Home'
+import Home from './components/Home';
+import SearchMovie from './components/SearchMovie';
 
-const AppRouter = () => {
+const AppRouter = (props) => {
     return (
       <BrowserRouter>
         <Switch>
-          <Route to="/" component={Home} exact />
+          <Route path="/" component={ Home } exact />
+          <Route path="/search/:movie" component={ SearchMovie } />
         </Switch>
       </BrowserRouter>
     );
