@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Slider from 'react-slick';
+import { Link } from 'react-router-dom';
 
 class Home extends Component {
   constructor(props){
@@ -78,8 +79,7 @@ class Home extends Component {
                   <h4 className="card-title">
                     {movie.title}
                   </h4>
-                  {/* need to make to Link */}
-                  <a href="#">see more</a>
+                  <Link to="/movie/123">see more</Link>
                 </div>
               </div>
             )
