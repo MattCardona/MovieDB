@@ -78,7 +78,7 @@ class Home extends Component {
                   <h4 className="card-title">
                     {movie.title}
                   </h4>
-                  <Link to="/movie/123">see more</Link>
+                  <Link to={`/movie/${movie.id}`}>see more</Link>
                 </div>
               </div>
             )
