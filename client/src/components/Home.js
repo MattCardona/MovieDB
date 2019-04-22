@@ -17,7 +17,6 @@ class Home extends Component {
       return res.json();
     })
     .then(data => {
-      // console.log(data);
       this.setState(() => ({
         //change back to 6 instead of 1 
         sliderMovies: data.slice(0, 1),
@@ -29,8 +28,8 @@ class Home extends Component {
   handleSubmit(e){
     e.preventDefault();
     let value = e.target.elements.movie.value;
-    console.log(value);
-    e.target.elements.movie.value = "";
+    // console.log(value);
+    this.props.history.push(`/search/${value}`);
   }
   render() {
     const { sliderMovies } = this.state;
