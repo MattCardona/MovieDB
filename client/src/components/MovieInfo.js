@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 class MovieInfo extends Component {
   constructor(props){
@@ -9,6 +10,7 @@ class MovieInfo extends Component {
       <div>
         <h1>This will be the MovieInfo Component!</h1>
         <p>{this.props.match.params.id}</p>
+        <Link to="/" >Go home</Link>
       </div>
     )
   }
