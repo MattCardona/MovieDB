@@ -4,6 +4,9 @@ import { Link } from 'react-router-dom';
 class MovieInfo extends Component {
   constructor(props){
     super(props);
+    this.state = {
+      movie: {}
+    }
   }
   componentWillMount(){
     fetch(`/movies/${this.props.match.params.id}`)
@@ -11,7 +14,10 @@ class MovieInfo extends Component {
       return res.json();
     })
     .then(data => {
-      console.log(data);
+      // console.log(data);
+      this.setState(() => ({
+        movie: data
+      }));
     })
     .catch(err => console.log(JSON.stringify(err, undefined, 2)))
   }
