@@ -5,6 +5,16 @@ class MovieInfo extends Component {
   constructor(props){
     super(props);
   }
+  componentWillMount(){
+    fetch(`/movies/${this.props.match.params.id}`)
+    .then((res) => {
+      return res.json();
+    })
+    .then(data => {
+      console.log(data);
+    })
+    .catch(err => console.log(JSON.stringify(err, undefined, 2)))
+  }
   render() {
     return (
       <div>

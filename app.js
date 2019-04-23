@@ -38,7 +38,7 @@ app.post("/movies", (req, res) => {
   .then(data => res.json(data))
   .catch(e => {
     // console.log(JSON.stringify(e, undefined, 2));
-    res.redirect("/");
+    res.send('Oops something went wrong');
   });
 });
 
