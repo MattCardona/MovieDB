@@ -22,11 +22,16 @@ class MovieInfo extends Component {
     .catch(err => console.log(JSON.stringify(err, undefined, 2)))
   }
   render() {
+    const { movie } = this.state;
     return (
       <div>
-        <h1>This will be the MovieInfo Component!</h1>
-        <p>{this.props.match.params.id}</p>
-        <Link to="/" >Go home</Link>
+        <div className="container-fluid">
+          <h1 id="movie-title" >{movie.original_title}</h1>
+          <div className="container" id="overview">
+            <p>{movie.overview}</p>
+            <Link to="/" >Home</Link>
+          </div>
+        </div>
       </div>
     )
   }
