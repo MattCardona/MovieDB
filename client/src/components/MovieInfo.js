@@ -25,7 +25,7 @@ class MovieInfo extends Component {
     const { movie } = this.state;
     return (
       <div>
-        <div className="container-fluid">
+        <div className="container-fluid" style={{backgroundColor: "black"}}>
           <h1 id="movie-title" >{movie.original_title}</h1>
           <div className="container" id="overview">
             <p>{movie.overview}</p>

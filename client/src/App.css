@@ -39,4 +39,27 @@
 .card-title {
   text-align: center;
   color: #fff;
+  font-family: 'Cinzel', serif;
+}
+
+
+/* ========================== */
+  /* Movie Info Component */
+/* ========================== */
+
+#movie-title {
+  text-align: center;
+  padding-top: 450px;
+  font-size: 100px;
+  color: #fff;
+  font-family: 'Cinzel', serif;
+}
+
+#overview {
+  text-align: center;
+  font-size: 30px;
+}
+
+#overview p {
+  color: #fff;
 }
