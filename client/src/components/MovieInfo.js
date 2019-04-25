@@ -24,15 +24,18 @@ class MovieInfo extends Component {
   render() {
     const { movie } = this.state;
     return (
-      <div>
-        <div className="container-fluid" style={{backgroundColor: "black"}}>
+        <div className="container-fluid" style={{
+          backgroundImage: `linear-gradient(to right, rgba(0, 0, 14,0.9), rgba(67, 67, 67,0.9)), url(https://image.tmdb.org/t/p/original${this.state.movie.backdrop_path})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center center",
+          height: "100vh"
+        }}>
           <h1 id="movie-title" >{movie.original_title}</h1>
           <div className="container" id="overview">
             <p>{movie.overview}</p>
             <Link to="/" >Home</Link>
           </div>
         </div>
-      </div>
     )
   }
 };
