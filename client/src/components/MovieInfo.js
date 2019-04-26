@@ -5,8 +5,14 @@ class MovieInfo extends Component {
   constructor(props){
     super(props);
     this.state = {
-      movie: {}
+      movie: {},
+      height: ""
     }
+  }
+  componentDidMount() {
+    this.setState(() => ({
+      height: window.innerHeight + 'px'
+    }))
   }
   componentWillMount(){
     fetch(`/movies/${this.props.match.params.id}`)
@@ -24,18 +30,21 @@ class MovieInfo extends Component {
   render() {
     const { movie } = this.state;
     return (
+      <div>
         <div className="container-fluid" style={{
-          backgroundImage: `linear-gradient(to right, rgba(0, 0, 14,0.9), rgba(67, 67, 67,0.9)), url(https://image.tmdb.org/t/p/original${this.state.movie.backdrop_path})`,
+          backgroundImage: `linear-gradient(to right, rgba(0, 0, 14,0.7), rgba(67, 67, 67,0.7)), url(https://image.tmdb.org/t/p/original${this.state.movie.backdrop_path})`,
           backgroundSize: "cover",
           backgroundPosition: "center center",
-          height: "100vh"
+          height: `${this.state.height}`    
         }}>
-          <h1 id="movie-title" >{movie.original_title}</h1>
+          
           <div className="container" id="overview">
+            <h1 id="movie-title" >{movie.original_title}</h1>  
             <p>{movie.overview}</p>
             <Link to="/" >Home</Link>
           </div>
         </div>
+      </div>
     )
   }
 };
