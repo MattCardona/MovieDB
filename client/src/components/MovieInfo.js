@@ -41,7 +41,7 @@ class MovieInfo extends Component {
           <div className="container" id="overview">
             <h1 id="movie-title" >{movie.original_title}</h1>  
             <p>{movie.overview}</p>
-            <Link to="/" >Home</Link>
+            <Link to="/" >Home <i className="fas fa-home"></i></Link>
           </div>
         </div>
       </div>
