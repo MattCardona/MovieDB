@@ -68,7 +68,30 @@
   color: #fff
 }
 
-
+#overview a {
+  position: relative;
+  display: inline-block;
+  transition: .3s;
+  text-decoration: none;
+  }
+  #overview a::after {
+  position: absolute;
+  bottom: .3em;
+  left: 0;
+  content: '';
+  width: 100%;
+  height: 1px;
+  background-color: #a9c1a7;
+  opacity: 0;
+  transition: .3s;
+  }
+  #overview   a:hover::after {
+  bottom: 0;
+  opacity: 1;
+  }
+  #overview   a:hover {
+  color: #a9c1a7;
+  }
 
 
 
