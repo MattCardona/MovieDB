@@ -64,7 +64,9 @@
   color: #fff;
 }
 
-
+#overview a {
+  color: #fff
+}
 
 
 
@@ -80,6 +82,10 @@
 
 /* small phones to small tablets: from 481 to 767 pixels */
 @media only screen and (max-width: 767px) {
+  #overview {
+    padding-top: 150px;
+    font-size: 23px;
+  }
 }
 
 /* small pnhones from 0 to 480px */
