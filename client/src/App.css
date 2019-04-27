@@ -85,6 +85,7 @@
 /* small pnhones from 0 to 480px */
 @media only screen and (max-width: 480px) {
   #overview {
+    padding-top: 100px;
     font-size: 20px;
   }
 }
