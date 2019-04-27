@@ -49,17 +49,42 @@
 
 #movie-title {
   text-align: center;
-  padding-top: 450px;
-  font-size: 100px;
+  font-size: 50px;
   color: #fff;
   font-family: 'Cinzel', serif;
 }
 
 #overview {
+  padding-top: 200px;
   text-align: center;
-  font-size: 30px;
+  font-size: 25px;
 }
 
 #overview p {
   color: #fff;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/* small tablet to big tablets in portrait/landscape mode: from 768px to 1023px */
+@media only screen and (max-width: 1023px) {}
+
+/* small phones to small tablets: from 481 to 767 pixels */
+@media only screen and (max-width: 767px) {
+}
+
+/* small pnhones from 0 to 480px */
+@media only screen and (max-width: 480px) {
+  #overview {
+    font-size: 20px;
+  }
 }
