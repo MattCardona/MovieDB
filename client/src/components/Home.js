@@ -86,6 +86,9 @@ class Home extends Component {
           })}
           </div>
         </div>
+        <footer style={{height: "50px", backgroundColor: "red"}}>
+          This will be the footer
+        </footer>
     </div>
     )
   }
