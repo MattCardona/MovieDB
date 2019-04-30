@@ -3,6 +3,22 @@
   overflow: hidden;
 }
 
+
+/* footer home */
+footer {
+  height: 200px;
+}
+
+footer .container-fluid {
+  text-align: center;
+}
+
+footer .box {
+  height: 200px;
+  border: 2px solid #a9c1a7;
+  color: #fff;
+}
+
 #movie-container {
   padding-bottom: 90px;
 }
@@ -111,6 +127,10 @@
   #overview {
     padding-top: 150px;
     font-size: 23px;
+  }
+
+  footer .box {
+    height: 100px;
   }
 }
 
