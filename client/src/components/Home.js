@@ -86,11 +86,11 @@ class Home extends Component {
           })}
           </div>
         </div>
-        <footer style={{height: "200px", backgroundColor: "red"}}>
-          <div className="container-fluid" style={{textAlign: "center"}}>
+        <footer>
+          <div className="container-fluid">
             <div className="row">
-              <div className="col-sm-12 col-md-6" style={{border: "2px solid white", height: "200px"}}>This will be info</div>
-              <div className="col-sm-12 col-md-6" style={{border: "2px solid white",height: "200px"}}>This will be logo</div>
+              <div className="col-sm-12 col-md-6 box">This will be info</div>
+              <div className="col-sm-12 col-md-6 box">This will be logo</div>
             </div>
           </div>
         </footer>
