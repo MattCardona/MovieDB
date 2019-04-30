@@ -67,7 +67,7 @@ class Home extends Component {
           </form>
         </div>
          
-        <div className="container">
+        <div className="container" id="movie-container">
             <div className="row">
           {this.state.movies.map(movie => {
             const movieBackdrop = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
@@ -86,8 +86,13 @@ class Home extends Component {
           })}
           </div>
         </div>
-        <footer style={{height: "50px", backgroundColor: "red"}}>
-          This will be the footer
+        <footer style={{height: "200px", backgroundColor: "red"}}>
+          <div className="container-fluid" style={{textAlign: "center"}}>
+            <div className="row">
+              <div className="col-sm-12 col-md-6" style={{border: "2px solid white", height: "200px"}}>This will be info</div>
+              <div className="col-sm-12 col-md-6" style={{border: "2px solid white",height: "200px"}}>This will be logo</div>
+            </div>
+          </div>
         </footer>
     </div>
     )

@@ -3,6 +3,9 @@
   overflow: hidden;
 }
 
+#movie-container {
+  padding-bottom: 90px;
+}
 
 /* Search bar */
 #search-container{
