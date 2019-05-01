@@ -89,7 +89,10 @@ class Home extends Component {
         <footer>
           <div className="container-fluid">
             <div className="row">
-              <div className="col-sm-12 col-md-6 box">This will be info</div>
+              <div className="col-sm-12 col-md-6 box">
+                <p>Small little IMDB like app where you can find and search for movie and tv series. Just type in search what you are looking for,
+                and let us do the rest. </p>
+              </div>
               <div className="col-sm-12 col-md-6 box">This will be logo</div>
             </div>
           </div>
