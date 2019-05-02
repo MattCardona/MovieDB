@@ -53,6 +53,7 @@ class Home extends Component {
                   height: "100vh"
                 }}
                 >
+                <h1 style={{fontSize: "60px"}}>MovieDB.</h1>
                 </div>
               </div>
             )
@@ -61,7 +62,7 @@ class Home extends Component {
 
         <div className="container-fluid" id="search-container">
           <form onSubmit={this.handleSubmit}>
-            <input id="search-input" type="text" placeholder="This will be movie/tv show search" name="movie"/>
+            <input id="search-input" type="text" placeholder="Search Movie/Tv shows" name="movie"/>
             <button className="btn btn-primary" id="search-button"
             >Search</button>
           </form>
