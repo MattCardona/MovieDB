@@ -24,9 +24,42 @@ footer .box p {
   font-size: 22px;
 }
 
+#movie-container a {
+  text-decoration: none;
+}
+
 #movie-container {
   padding-bottom: 90px;
 }
+
+#movie-container h4 {
+  position: relative;
+  display: inline-block;
+  transition: .3s;
+  text-decoration: none;
+}
+
+#movie-container h4::after {
+  position: absolute;
+  bottom: .3em;
+  left: 0;
+  content: '';
+  width: 100%;
+  height: 1px;
+  background-color: #a9c1a7;
+  opacity: 0;
+  transition: .3s;
+}
+
+#movie-container h4:hover::after {
+  bottom: 0;
+  opacity: 1;
+  }
+
+#movie-container h4:hover {
+  color: #a9c1a7
+}
+
 
 /* Search bar */
 #search-container{
