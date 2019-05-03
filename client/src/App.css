@@ -3,6 +3,10 @@
   overflow: hidden;
 }
 
+#home h1 {
+  font-size: 60px;
+  color: aquamarine
+}
 
 /* footer home */
 footer {
@@ -64,6 +68,7 @@ footer .box p {
 /* Search bar */
 #search-container{
   text-align: center;
+  padding-top: 30px;
 }
 
 #search-input {

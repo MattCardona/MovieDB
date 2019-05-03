@@ -37,7 +37,7 @@ class Home extends Component {
       dots: false,
       infinite: true,
       autoplay: true,
-      speed: 3000
+      speed: 5000
     }
     return (
       <div id="home">
@@ -53,7 +53,7 @@ class Home extends Component {
                   height: "100vh"
                 }}
                 >
-                <h1 style={{fontSize: "60px"}}>MovieDB.</h1>
+                <h1>MovieDB.</h1>
                 </div>
               </div>
             )
