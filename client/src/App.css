@@ -5,7 +5,9 @@
 
 #home h1 {
   font-size: 60px;
-  color: aquamarine
+  color: #ffe000;
+  font-family: 'Cinzel', serif;
+  font-weight: 900;
 }
 
 /* footer home */
