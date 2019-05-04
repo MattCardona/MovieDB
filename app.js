@@ -32,10 +32,12 @@ app.get("/homepage", (req, res) => {
 // will search for a specific movie/show title
 app.post("/movies", (req, res) => {
   const { movie } = req.body;
-
   axios.get(`https://api.themoviedb.org/3/search/movie?api_key=${process.env.MOVIE_DB}&language=en-US&page=1&include_adult=true&query=${movie}`)
   .then( res => res.data)
-  .then(data => res.json(data))
+  .then(data => {
+    let { results } = data;
+    res.json(results)
+  })
   .catch(e => {
     // console.log(JSON.stringify(e, undefined, 2));
     res.send('Oops something went wrong');
