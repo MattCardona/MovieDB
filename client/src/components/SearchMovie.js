@@ -12,7 +12,6 @@ class SearchMovie extends Component {
   }
   componentDidMount(){
     let { movie } = this.props.match.params;
-    let reqbody = { movie };
     let headers = {
       'Content-Type': 'application/x-www-form-urlencoded'
     }
@@ -30,10 +29,20 @@ class SearchMovie extends Component {
   }
   render() {
     return (
-      <div>
+      <div style={{
+        backgroundColor: "black",
+        textAlign: "center",
+        paddingBottom: "70px"
+      }}>
+        <h1
+          style={{
+            paddingTop: "30px",
+            color: "#fff",
+            textAlign: "center",
+            fontSize: "60px"
+          }}
+        >{this.props.match.params.movie.toUpperCase()}</h1>
         <Link to="/" >Go home</Link>
-        <h1>This will be the Search Movie Component!</h1>
-        <p>Searched Movie {this.props.match.params.movie}</p>
       </div>
     )
   }
