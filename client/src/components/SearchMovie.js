@@ -6,6 +6,9 @@ import querystring from 'querystring';
 class SearchMovie extends Component {
   constructor(props){
     super(props);
+    this.state = {
+      movies: []
+    }
   }
   componentDidMount(){
     let { movie } = this.props.match.params;
@@ -16,8 +19,10 @@ class SearchMovie extends Component {
     // console.log(data);
     axios.post("/movies", querystring.stringify({ movie }), {headers})
     .then(res => {
-      console.log(res);
-      console.log(res.data);
+      // console.log(res.data);
+      this.setState(() => ({
+        movies: [...res.data]
+      }))
     })
     .catch(e => {
       console.log(e);
