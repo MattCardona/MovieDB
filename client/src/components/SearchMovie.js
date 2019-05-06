@@ -28,6 +28,7 @@ class SearchMovie extends Component {
     })
   }
   render() {
+    const { movies } = this.state;
     return (
       <div style={{
         backgroundColor: "black",
@@ -43,6 +44,25 @@ class SearchMovie extends Component {
           }}
         >{this.props.match.params.movie.toUpperCase()}</h1>
         <Link to="/" >Go home</Link>
+
+        <div className="container">
+          <div className="row">
+            { movies.map(movie => {
+              const movieBackdrop = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
+              return (
+                <div className="col-xs-12 col-sm-6 col-md-4" key={movie.title} >
+                    <div className="card">
+                      <img className="card-image" src={movieBackdrop} alt=""/>
+                      <h4 className="card-title">
+                        {movie.title}
+                      </h4>
+                    </div>
+                </div>
+              )
+            }) }
+          </div>
+        </div>
+
       </div>
     )
   }
