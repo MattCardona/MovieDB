@@ -7,15 +7,15 @@ class MovieInfo extends Component {
     this.handleClick = this.handleClick.bind(this);
     this.state = {
       movie: {},
-      height: ""
+      height: "",
+      prevLocation: ""
     }
   }
   componentDidMount() {
     this.setState(() => ({
-      height: window.innerHeight + 'px'
-    }))
-  }
-  componentWillMount(){
+      height: window.innerHeight + 'px',
+      prevLocation: this.props.location.state.prev
+    }));
     fetch(`/movies/${this.props.match.params.id}`)
     .then((res) => {
       return res.json();
@@ -32,7 +32,7 @@ class MovieInfo extends Component {
     this.props.history.goBack()
   }
   render() {
-    const { movie } = this.state;
+    const { movie, prevLocation } = this.state;
     return (
       <div>
         <div className="container-fluid" style={{
@@ -45,7 +45,11 @@ class MovieInfo extends Component {
           <div className="container" id="overview">
             <h1 id="movie-title" >{movie.original_title}</h1>  
             <p>{movie.overview}</p>
-            <i onClick={this.handleClick} className="fas fa-home">Home</i>
+            {prevLocation === "search" ? 
+             <i onClick={this.handleClick} className="fas fa-search"> Search</i>
+            :<i onClick={this.handleClick} className="fas fa-home"> Home</i>
+            }
+            
           </div>
         </div>
       </div>
