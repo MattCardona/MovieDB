@@ -52,7 +52,12 @@ class SearchMovie extends Component {
               const movieBackdrop = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
               return (
                 <div className="col-xs-12 col-sm-6 col-md-4" key={movie.id} >
-                  <Link to={`/movie/${movie.id}`}>
+                  <Link 
+                    to={{
+                      pathname: `/movie/${movie.id}`,
+                      state: { prev: 'search' }
+                    }}
+                  >
                     <div className="card">
                       <img className="card-image" src={movieBackdrop} alt=""/>
                       <h4 className="card-title">
