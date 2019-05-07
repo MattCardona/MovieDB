@@ -128,17 +128,17 @@ footer .box p {
   color: #fff;
 }
 
-#overview a {
+#overview i {
   color: #fff
 }
 
-#overview a {
+#overview i {
   position: relative;
   display: inline-block;
   transition: .3s;
   text-decoration: none;
   }
-  #overview a::after {
+  #overview i::after {
   position: absolute;
   bottom: .3em;
   left: 0;
@@ -149,11 +149,11 @@ footer .box p {
   opacity: 0;
   transition: .3s;
   }
-  #overview   a:hover::after {
+  #overview   i:hover::after {
   bottom: 0;
   opacity: 1;
   }
-  #overview   a:hover {
+  #overview   i:hover {
   color: #a9c1a7;
   }
 
