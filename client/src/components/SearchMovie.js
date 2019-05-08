@@ -31,21 +31,9 @@ class SearchMovie extends Component {
     const { movies } = this.state;
     
     return (
-      <div style={{
-        backgroundColor: "black",
-        textAlign: "center",
-        paddingBottom: "70px",
-      }} id="search-movie-container">
-        <h1
-          style={{
-            paddingTop: "30px",
-            color: "#fff",
-            textAlign: "center",
-            fontSize: "60px"
-          }}
-        >{this.props.match.params.movie.toUpperCase()}</h1>
+      <div id="search-movie-container">
+        <h1>{this.props.match.params.movie.toUpperCase()}</h1>
         <Link to="/" ><i className="fas fa-home"> Home</i></Link>
-
         <div className="container">
           <div className="row">
             { movies.map(movie => {

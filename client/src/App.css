@@ -160,6 +160,19 @@ footer .box p {
 /* ========================  */ 
 /*      Movie Search        */
 /* ======================= */
+#search-movie-container {
+ background-color: black;
+ text-align: center;
+ padding-bottom: 70px;
+}
+
+#search-movie-container h1 {
+  padding-top: 30px;
+  color: #fff;
+  text-align: center;
+  font-size: 60px;
+}
+
 
 #search-movie-container i {
   color: #fff
