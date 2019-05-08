@@ -34,8 +34,8 @@ class SearchMovie extends Component {
       <div style={{
         backgroundColor: "black",
         textAlign: "center",
-        paddingBottom: "70px"
-      }}>
+        paddingBottom: "70px",
+      }} id="search-movie-container">
         <h1
           style={{
             paddingTop: "30px",
@@ -44,7 +44,7 @@ class SearchMovie extends Component {
             fontSize: "60px"
           }}
         >{this.props.match.params.movie.toUpperCase()}</h1>
-        <Link to="/" >Go home</Link>
+        <Link to="/" ><i className="fas fa-home"> Home</i></Link>
 
         <div className="container">
           <div className="row">
