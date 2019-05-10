@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import Card from './Card';
 import axios from 'axios';
 import querystring from 'querystring';
 
@@ -39,21 +40,7 @@ class SearchMovie extends Component {
             { movies.map(movie => {
               const movieBackdrop = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
               return (
-                <div className="col-xs-12 col-sm-6 col-md-4" key={movie.id} >
-                  <Link 
-                    to={{
-                      pathname: `/movie/${movie.id}`,
-                      state: { prev: 'search' }
-                    }}
-                  >
-                    <div className="card">
-                      <img className="card-image" src={movieBackdrop} alt=""/>
-                      <h4 className="card-title">
-                        {movie.title}
-                      </h4>
-                    </div>
-                  </Link>
-                </div>
+                <Card movie={movie} prev="search" movieBackdrop={movieBackdrop} key={movie.id}/>
               )
             }) }
           </div>
