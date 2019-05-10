@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Slider from 'react-slick';
-import { Link } from 'react-router-dom';
+import Card from './Card';
 
 class Home extends Component {
   constructor(props){
@@ -73,21 +73,7 @@ class Home extends Component {
           {this.state.movies.map(movie => {
             const movieBackdrop = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
             return (
-              <div className="col-xs-12 col-sm-6 col-md-4" key={movie.title} >
-                <Link 
-                  to={{
-                    pathname: `/movie/${movie.id}`,
-                    state: { prev: 'home' }
-                  }}
-                >
-                  <div className="card">
-                    <img className="card-image" src={movieBackdrop} alt=""/>
-                    <h4 className="card-title">
-                      {movie.title}
-                    </h4>
-                  </div>
-                </Link>
-              </div>
+              <Card movie={movie} movieBackdrop={movieBackdrop} prev="home" key={movie.id}/>
             )
           })}
           </div>
