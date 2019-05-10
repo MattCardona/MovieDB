@@ -175,7 +175,9 @@ footer .box p {
 
 
 #search-movie-container i {
-  color: #fff
+  color: #fff;
+  font-size: 25px
+  
 }
 
 #search-movie-container i {
