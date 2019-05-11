@@ -36,11 +36,17 @@ app.post("/movies", (req, res) => {
   .then( res => res.data)
   .then(data => {
     let { results } = data;
-    res.json(results)
+    // console.log(data);
+    if(results.length > 0){
+      return res.json(results);
+    }else{
+      return res.status(404).json({error: "No movie found"});
+    }
+    
   })
   .catch(e => {
     // console.log(JSON.stringify(e, undefined, 2));
-    res.send('Oops something went wrong');
+    return res.status(404).json({error: "No movie found"});
   });
 });
 

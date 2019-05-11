@@ -8,7 +8,8 @@ class SearchMovie extends Component {
   constructor(props){
     super(props);
     this.state = {
-      movies: []
+      movies: [],
+      error: ""
     }
   }
   componentDidMount(){
@@ -25,27 +26,40 @@ class SearchMovie extends Component {
       }))
     })
     .catch(e => {
-      console.log(e);
+      this.setState(() => ({
+        error: e.response.data.error
+      }))
     })
   }
+
   render() {
-    const { movies } = this.state;
-    
+    const { movies, error } = this.state;
+
     return (
       <div id="search-movie-container">
         <h1>{this.props.match.params.movie.toUpperCase()}</h1>
         <Link to="/" ><i className="fas fa-home"> Home</i></Link>
-        <div className="container">
-          <div className="row">
-            { movies.map(movie => {
-              const movieBackdrop = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
-              return (
-                <Card movie={movie} prev="search" movieBackdrop={movieBackdrop} key={movie.id}/>
-              )
-            }) }
+        {movies.length > 0 ?
+          <div className="container">
+            <div className="row">
+              { movies.map(movie => {
+                const movieBackdrop = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
+                return (
+                  <Card movie={movie} prev="search" movieBackdrop={movieBackdrop} key={movie.id}/>
+                )
+              }) }
+            </div>
+          </div> 
+          : 
+          null
+        }
+        {error ?
+          <div className="container">
+            <h1>{error}</h1>
           </div>
-        </div>
-
+          :
+          null
+        }
       </div>
     )
   }
