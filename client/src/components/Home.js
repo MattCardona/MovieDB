@@ -18,8 +18,7 @@ class Home extends Component {
     })
     .then(data => {
       this.setState(() => ({
-        //change back to 6 instead of 1 
-        sliderMovies: data.slice(0, 1),
+        sliderMovies: data.slice(0, 6),
         movies: [...data]
       }))
     })
