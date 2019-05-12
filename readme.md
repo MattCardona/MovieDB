@@ -5,7 +5,7 @@ MovieDB is a small project made with the MERN stack.Built without MongoDB. Searc
 
 Motivation
 =================
-Wanted to learn more on how to build a MERN stack app, best way to learn is to build something. No need for me to use MongoDB.
+Wanted to learn more on how to build a MERN stack app, best way to learn is to build something. No need for me to use MongoDB in this project.
 
 Tech/Frameworks used
 ==================
