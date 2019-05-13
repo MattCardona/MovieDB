@@ -18,7 +18,7 @@ class Home extends Component {
     })
     .then(data => {
       this.setState(() => ({
-        sliderMovies: data.slice(0, 6),
+        sliderMovies: data.slice(0, 1),
         movies: [...data]
       }))
     })
@@ -84,7 +84,9 @@ class Home extends Component {
                 <p>Small little IMDB like app where you can find and search for movie and tv series. Just type in search what you are looking for,
                 and let us do the rest. </p>
               </div>
-              <div className="col-sm-12 col-md-6 box" id="logo" >This will be logo</div>
+              <div className="col-sm-12 col-md-6 box" >
+                <img id="logo" src="https://www.themoviedb.org/assets/2/v4/logos/408x161-powered-by-rectangle-green-bb4301c10ddc749b4e79463811a68afebeae66ef43d17bcfd8ff0e60ded7ce99.png" alt="logo" />
+              </div>
             </div>
           </div>
         </footer>
