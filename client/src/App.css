@@ -35,6 +35,11 @@ footer .box p {
   font-size: 22px;
 }
 
+footer img {
+  padding-top: 18px;
+}
+
+
 #movie-container a {
   text-decoration: none;
 }
@@ -275,6 +280,11 @@ color: #a9c1a7;
     margin-top: 10px;
     font-size: 20px;
   }
+
+  footer img {
+    width: 230px;
+    padding-top: 9px;
+  }
 }
 
 /* small pnhones from 0 to 480px */
@@ -287,6 +297,10 @@ color: #a9c1a7;
   footer .box p {
     margin-top: 10px;
     font-size: 15px;
+  }
+
+  footer img {
+    width: 230px
   }
 
 }
