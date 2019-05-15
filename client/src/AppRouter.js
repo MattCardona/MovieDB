@@ -5,6 +5,7 @@ import './App.css';
 import Home from './components/Home';
 import SearchMovie from './components/SearchMovie';
 import MovieInfo from './components/MovieInfo';
+import NotFound from './components/NotFound';
 
 const AppRouter = (props) => {
     return (
@@ -13,6 +14,7 @@ const AppRouter = (props) => {
           <Route path="/" component={ Home } exact />
           <Route path="/search/:movie" component={ SearchMovie } />
           <Route path="/movie/:id" component={ MovieInfo } />
+          <Route component={ NotFound } />
         </Switch>
       </BrowserRouter>
     );
