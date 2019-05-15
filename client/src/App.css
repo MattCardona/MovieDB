@@ -2,6 +2,17 @@ html {
   background-color: black;
 }
 
+#not-found {
+  margin-top: 250px;
+  text-align: center;
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+#not-found i {
+  margin-right: 7px;
+}
+
 
 #home {
   background-color: black;
