@@ -24,7 +24,7 @@ app.get("/homepage", (req, res) => {
   })
   .catch(e => {
     // console.log(JSON.stringify(e, undefined, 2));
-    res.status(503).json({msg: "There is nothing to show at this moment"});
+    res.status(404).json({msg: "There is nothing to show at this moment"});
   });
   
 });
@@ -40,13 +40,13 @@ app.post("/movies", (req, res) => {
     if(results.length > 0){
       return res.status(200).json(results);
     }else{
-      return res.status(400).json({error: "No movie/tv show found"});
+      return res.status(404).json({error: "No movie/tv show found"});
     }
     
   })
   .catch(e => {
     // console.log(JSON.stringify(e, undefined, 2));
-    return res.status(400).json({error: "No movie/tv show found"});
+    return res.status(404).json({error: "No movie/tv show found"});
   });
 });
 
@@ -62,6 +62,28 @@ app.get("/movies/:id", (req, res) => {
     res.status(404).redirect("/");
   });
 
+});
+
+// search for actor/actress
+app.post("/search/person", (req, res) => {
+  const { actor } = req.body;
+  let encoded = encodeURIComponent(actor);
+  axios.get(`https://api.themoviedb.org/3/search/person?api_key=${process.env.MOVIE_DB}&language=en-US&page=1&include_adult=false&query=${encoded}`)
+  .then(res => res.data)
+  .then(data => {
+    let { results } = data;
+    console.log(data);
+    if(results.length > 0){
+      return res.status(200).json(results);
+    }else{
+      return res.status(400).json({error: "No person found"});
+    }
+    
+  })
+  .catch(e => {
+    // console.log(JSON.stringify(e, undefined, 2));
+    return res.status(404).json({error: "No person found"});
+  });
 });
 
 // serve static assets in production
