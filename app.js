@@ -20,11 +20,11 @@ app.get("/homepage", (req, res) => {
   .then(data => {
     let {results} = data;
     // console.log(data.results);
-    res.json(results);
+    res.status(200).json(results);
   })
   .catch(e => {
-    console.log(JSON.stringify(e, undefined, 2));
-    res.send('Oops something went wrong');
+    // console.log(JSON.stringify(e, undefined, 2));
+    res.status(503).json({msg: "There is nothing to show at this moment"});
   });
   
 });
@@ -38,15 +38,15 @@ app.post("/movies", (req, res) => {
     let { results } = data;
     // console.log(data);
     if(results.length > 0){
-      return res.json(results);
+      return res.status(200).json(results);
     }else{
-      return res.status(404).json({error: "No movie found"});
+      return res.status(400).json({error: "No movie/tv show found"});
     }
     
   })
   .catch(e => {
     // console.log(JSON.stringify(e, undefined, 2));
-    return res.status(404).json({error: "No movie found"});
+    return res.status(400).json({error: "No movie/tv show found"});
   });
 });
 
@@ -56,10 +56,10 @@ app.get("/movies/:id", (req, res) => {
 
   axios.get(`https://api.themoviedb.org/3/movie/${id}?api_key=${process.env.MOVIE_DB}&language=en-US&external_source=imdb_id`)
   .then(res => res.data)
-  .then(data => res.json(data))
+  .then(data => res.status(200).json(data))
   .catch(e => {
     // console.log(e);
-    res.redirect("/");
+    res.status(404).redirect("/");
   });
 
 });
