@@ -72,10 +72,10 @@ class Home extends Component {
         </div>
          
         <div className="container" id="movie-container">
-            <div className="row" style={{textAlign: "center"}}>
+            <div className="row" id="section">
             
               <div className="col-md-4 col-sm-4">
-                <p style={{color: "#a8c1a7"}} onClick={this.handleNowPlaying}>Now playing</p>
+                <h4 onClick={this.handleNowPlaying}>Now playing</h4>
               </div>
 
             </div>

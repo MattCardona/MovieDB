@@ -59,6 +59,14 @@ footer img {
   padding-bottom: 90px;
 }
 
+#movie-container #section {
+  text-align: center;
+}
+
+#movie-container h4 {
+ color: #fff;
+}
+
 #movie-container h4 {
   position: relative;
   display: inline-block;
