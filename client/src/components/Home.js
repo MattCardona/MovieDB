@@ -6,12 +6,22 @@ class Home extends Component {
   constructor(props){
     super(props);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleNowPlaying = this.handleNowPlaying.bind(this);
     this.state = {
       movies: [],
       sliderMovies: []
     }
   }
   componentDidMount(){
+    this.handleNowPlaying();
+  }
+  handleSubmit(e){
+    e.preventDefault();
+    let value = e.target.elements.movie.value;
+    // console.log(value);
+    this.props.history.push(`/search/${value}`);
+  }
+  handleNowPlaying(){
     fetch("/homepage")
     .then((res) => {
       return res.json();
@@ -23,12 +33,6 @@ class Home extends Component {
       }))
     })
     .catch(err => console.log(JSON.stringify(err, undefined, 2)))
-  }
-  handleSubmit(e){
-    e.preventDefault();
-    let value = e.target.elements.movie.value;
-    // console.log(value);
-    this.props.history.push(`/search/${value}`);
   }
   render() {
     const { sliderMovies } = this.state;
@@ -71,7 +75,7 @@ class Home extends Component {
             <div className="row" style={{textAlign: "center"}}>
             
               <div className="col-md-4 col-sm-4">
-                <p style={{color: "#a8c1a7"}}>Now playing</p>
+                <p style={{color: "#a8c1a7"}} onClick={this.handleNowPlaying}>Now playing</p>
               </div>
 
             </div>
