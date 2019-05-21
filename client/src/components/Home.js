@@ -68,6 +68,13 @@ class Home extends Component {
         </div>
          
         <div className="container" id="movie-container">
+            <div className="row" style={{textAlign: "center"}}>
+            
+              <div className="col-md-4 col-sm-4">
+                <p style={{color: "#a8c1a7"}}>Now playing</p>
+              </div>
+
+            </div>
             <div className="row">
           {this.state.movies.map(movie => {
             const movieBackdrop = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
