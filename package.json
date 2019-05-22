@@ -8,6 +8,7 @@
     "start": "node app.js",
     "nodemon": "nodemon app.js",
     "client": "npm start --prefix client",
+    "nodemon-dev": "concurrently \"npm run nodemon\" \"npm run client\"",
     "dev": "concurrently \"npm run start\" \"npm run client\"",
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
