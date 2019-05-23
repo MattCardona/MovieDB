@@ -47,6 +47,23 @@ app.get("/popular", (req, res) => {
   
 });
 
+// will show top rated movies
+app.get("/toprated", (req, res) => {
+  axios.get(`https://api.themoviedb.org/3/movie/top_rated?api_key=${process.env.MOVIE_DB}&language=en-US&page=1`)
+  .then(res => {
+    return res.data;
+  })
+  .then(data => {
+    let {results} = data;
+    // console.log(data.results);
+    res.status(200).json(results);
+  })
+  .catch(e => {
+    // console.log(JSON.stringify(e, undefined, 2));
+    res.status(404).json({msg: "There is nothing to show at this moment"});
+  });
+  
+});
 
 // will search for a specific movie/show title
 app.post("/movies", (req, res) => {
