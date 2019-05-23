@@ -94,6 +94,9 @@ class Home extends Component {
               <div className="col-md-4 col-sm-4">
                 <h4 onClick={this.handlePopular} >Popular</h4>
               </div>
+              <div className="col-md-4 col-sm-4">
+                <h4>Top Rated</h4>
+              </div>
 
             </div>
             <div className="row">
