@@ -8,6 +8,7 @@ class Home extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleNowPlaying = this.handleNowPlaying.bind(this);
     this.handlePopular = this.handlePopular.bind(this);
+    this.handleTopRated = this.handleTopRated.bind(this);
     this.state = {
       movies: [],
       sliderMovies: []
@@ -37,6 +38,19 @@ class Home extends Component {
   }
   handlePopular(){
     fetch("/popular")
+    .then((res) => {
+      return res.json();
+    })
+    .then(data => {
+      this.setState(() => ({
+        sliderMovies: data.slice(0, 6),
+        movies: [...data]
+      }))
+    })
+    .catch(err => console.log(JSON.stringify(err, undefined, 2)))
+  }
+  handleTopRated(){
+    fetch("/toprated")
     .then((res) => {
       return res.json();
     })
@@ -95,7 +109,7 @@ class Home extends Component {
                 <h4 onClick={this.handlePopular} >Popular</h4>
               </div>
               <div className="col-md-4 col-sm-4">
-                <h4>Top Rated</h4>
+                <h4 onClick={this.handleTopRated} >Top Rated</h4>
               </div>
 
             </div>
