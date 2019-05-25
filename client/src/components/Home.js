@@ -100,33 +100,37 @@ class Home extends Component {
         </div>
          
         <div className="container" id="movie-container">
-            <div className="row" id="section">
-            
-              <div className="col-md-4 col-sm-4">
-                <h4 onClick={this.handleNowPlaying}>Now playing</h4>
-              </div>
-              <div className="col-md-4 col-sm-4">
-                <h4 onClick={this.handlePopular} >Popular</h4>
-              </div>
-              <div className="col-md-4 col-sm-4">
-                <h4 onClick={this.handleTopRated} >Top Rated</h4>
+
+            <nav className="navbar  navbar-expand-lg navbar-dark">
+                {/* <a class="navbar-brand" href="#"></a> */}
+              <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-burger" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span className="navbar-toggler-icon"></span>
+              </button>
+
+              <div className="collapse navbar-collapse" id="navbar-burger">
+                <ul className="navbar-nav mr-auto">
+                  <li className="nav-item active">
+                    <p className="nav-link" onClick={this.handleNowPlaying}>Now Playing<span className="sr-only">(current)</span></p>
+                  </li>
+                </ul>
               </div>
 
-            </div>
+            </nav>
+
             <div className="row">
-          {this.state.movies.map(movie => {
-            const movieBackdrop = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
-            return (
-              <Card movie={movie} movieBackdrop={movieBackdrop} prev="home" key={movie.id}/>
-            )
-          })}
+              {this.state.movies.map(movie => {
+                const movieBackdrop = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
+                return (
+                  <Card movie={movie} movieBackdrop={movieBackdrop} prev="home" key={movie.id}/>
+                )
+              })}
           </div>
         </div>
         <footer>
           <div className="container-fluid">
             <div className="row">
               <div className="col-sm-12 col-md-6 box" id="about">
-                <p>Small little IMDB like app where you can find and search for movie and tv series. Just type in search what you are looking for,
+                <p>Small little IMDB like app where you can find and search for movie and tv series. Just type in search bar what you are looking for,
                 and let us do the rest. </p>
               </div>
               <div className="col-sm-12 col-md-6 box" >
