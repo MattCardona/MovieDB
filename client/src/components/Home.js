@@ -112,6 +112,12 @@ class Home extends Component {
                   <li className="nav-item active">
                     <p className="nav-link" onClick={this.handleNowPlaying}>Now Playing<span className="sr-only">(current)</span></p>
                   </li>
+                  <li className="nav-item">
+                    <p className="nav-link"  onClick={this.handlePopular}>Popular</p>
+                  </li>
+                  <li className="nav-item">
+                    <p className="nav-link" onClick={this.handleTopRated}>Top rated</p>
+                  </li>
                 </ul>
               </div>
 
