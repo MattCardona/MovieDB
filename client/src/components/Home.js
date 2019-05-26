@@ -24,6 +24,7 @@ class Home extends Component {
     this.props.history.push(`/search/${value}`);
   }
   handleNowPlaying(){
+    document.getElementById("now-playing").classList.add("active");
     fetch("/homepage")
     .then((res) => {
       return res.json();
@@ -110,13 +111,13 @@ class Home extends Component {
               <div className="collapse navbar-collapse" id="navbar-burger">
                 <ul className="navbar-nav mr-auto">
                   <li className="nav-item">
-                    <p className="nav-link" onClick={this.handleNowPlaying}>Now Playing<span className="sr-only">(current)</span></p>
+                    <p className="nav-link" id="now-playing" onClick={this.handleNowPlaying}>Now Playing<span className="sr-only">(current)</span></p>
                   </li>
                   <li className="nav-item">
-                    <p className="nav-link"  onClick={this.handlePopular}>Popular</p>
+                    <p className="nav-link" id="popular"  onClick={this.handlePopular}>Popular</p>
                   </li>
                   <li className="nav-item">
-                    <p className="nav-link" onClick={this.handleTopRated}>Top rated</p>
+                    <p className="nav-link" id="top-rated" onClick={this.handleTopRated}>Top rated</p>
                   </li>
                 </ul>
               </div>
