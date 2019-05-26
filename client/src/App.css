@@ -63,6 +63,34 @@ footer img {
   text-align: center;
 }
 
+.nav-link {
+  position: relative;
+  display: inline-block;
+  transition: .3s;
+  text-decoration: none;
+}
+
+.nav-link::after {
+  position: absolute;
+  bottom: .3em;
+  left: 0;
+  content: '';
+  width: 100%;
+  height: 1px;
+  background-color: #a9c1a7;
+  opacity: 0;
+  transition: .3s;
+}
+
+.nav-link:hover::after {
+  bottom: 0;
+  opacity: 1;
+  }
+
+  .nav-link:hover {
+  color: #a9c1a7 !important;
+}
+
 #movie-container h4 {
  color: #fff;
 }

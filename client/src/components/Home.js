@@ -109,7 +109,7 @@ class Home extends Component {
 
               <div className="collapse navbar-collapse" id="navbar-burger">
                 <ul className="navbar-nav mr-auto">
-                  <li className="nav-item active">
+                  <li className="nav-item">
                     <p className="nav-link" onClick={this.handleNowPlaying}>Now Playing<span className="sr-only">(current)</span></p>
                   </li>
                   <li className="nav-item">
