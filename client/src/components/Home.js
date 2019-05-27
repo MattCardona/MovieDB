@@ -3,7 +3,7 @@ import Slider from 'react-slick';
 import Card from './Card';
 
 class Home extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleNowPlaying = this.handleNowPlaying.bind(this);
@@ -14,54 +14,62 @@ class Home extends Component {
       sliderMovies: []
     }
   }
-  componentDidMount(){
+  componentDidMount() {
     this.handleNowPlaying();
   }
-  handleSubmit(e){
+  handleSubmit(e) {
     e.preventDefault();
     let value = e.target.elements.movie.value;
     // console.log(value);
     this.props.history.push(`/search/${value}`);
   }
-  handleNowPlaying(){
+  handleNowPlaying() {
     document.getElementById("now-playing").classList.add("active");
+    document.getElementById("popular").classList.remove("active");
+    document.getElementById("top-rated").classList.remove("active");
     fetch("/homepage")
-    .then((res) => {
-      return res.json();
-    })
-    .then(data => {
-      this.setState(() => ({
-        sliderMovies: data.slice(0, 6),
-        movies: [...data]
-      }))
-    })
-    .catch(err => console.log(JSON.stringify(err, undefined, 2)))
+      .then((res) => {
+        return res.json();
+      })
+      .then(data => {
+        this.setState(() => ({
+          sliderMovies: data.slice(0, 6),
+          movies: [...data]
+        }))
+      })
+      .catch(err => console.log(JSON.stringify(err, undefined, 2)))
   }
-  handlePopular(){
+  handlePopular() {
+    document.getElementById("popular").classList.add("active");
+    document.getElementById("now-playing").classList.remove("active");
+    document.getElementById("top-rated").classList.remove("active");
     fetch("/popular")
-    .then((res) => {
-      return res.json();
-    })
-    .then(data => {
-      this.setState(() => ({
-        sliderMovies: data.slice(0, 6),
-        movies: [...data]
-      }))
-    })
-    .catch(err => console.log(JSON.stringify(err, undefined, 2)))
+      .then((res) => {
+        return res.json();
+      })
+      .then(data => {
+        this.setState(() => ({
+          sliderMovies: data.slice(0, 6),
+          movies: [...data]
+        }))
+      })
+      .catch(err => console.log(JSON.stringify(err, undefined, 2)))
   }
-  handleTopRated(){
+  handleTopRated() {
+    document.getElementById("top-rated").classList.add("active");
+    document.getElementById("now-playing").classList.remove("active");
+    document.getElementById("popular").classList.remove("active");
     fetch("/toprated")
-    .then((res) => {
-      return res.json();
-    })
-    .then(data => {
-      this.setState(() => ({
-        sliderMovies: data.slice(0, 6),
-        movies: [...data]
-      }))
-    })
-    .catch(err => console.log(JSON.stringify(err, undefined, 2)))
+      .then((res) => {
+        return res.json();
+      })
+      .then(data => {
+        this.setState(() => ({
+          sliderMovies: data.slice(0, 6),
+          movies: [...data]
+        }))
+      })
+      .catch(err => console.log(JSON.stringify(err, undefined, 2)))
   }
   render() {
     const { sliderMovies } = this.state;
@@ -74,63 +82,63 @@ class Home extends Component {
     return (
       <div id="home">
         <Slider {...settings} >
-          { sliderMovies.map(movie => {
+          {sliderMovies.map(movie => {
             return (
               <div key={movie.id}>
                 <div className="container-fluid"
                   style={{
-                  backgroundImage: `url(https://image.tmdb.org/t/p/original${movie.backdrop_path})`,
-                  backgroundSize: "cover",
-                  backgroundPosition: "center center",
-                  height: "100vh"
-                }}
+                    backgroundImage: `url(https://image.tmdb.org/t/p/original${movie.backdrop_path})`,
+                    backgroundSize: "cover",
+                    backgroundPosition: "center center",
+                    height: "100vh"
+                  }}
                 >
-                <h1>MovieDB.</h1>
+                  <h1>MovieDB.</h1>
                 </div>
               </div>
             )
-          }) }
+          })}
         </Slider>
 
         <div className="container-fluid" id="search-container">
           <form onSubmit={this.handleSubmit}>
-            <input id="search-input" type="text" placeholder="Search Movie/Tv shows" name="movie"/>
+            <input id="search-input" type="text" placeholder="Search Movie/Tv shows" name="movie" />
             <button className="btn btn-primary" id="search-button"
             >Search</button>
           </form>
         </div>
-         
+
         <div className="container" id="movie-container">
 
-            <nav className="navbar  navbar-expand-lg navbar-dark">
-                {/* <a class="navbar-brand" href="#"></a> */}
-              <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-burger" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span className="navbar-toggler-icon"></span>
-              </button>
+          <nav className="navbar  navbar-expand-lg navbar-dark">
+            {/* <a class="navbar-brand" href="#"></a> */}
+            <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-burger" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span className="navbar-toggler-icon"></span>
+            </button>
 
-              <div className="collapse navbar-collapse" id="navbar-burger">
-                <ul className="navbar-nav mr-auto">
-                  <li className="nav-item">
-                    <p className="nav-link" id="now-playing" onClick={this.handleNowPlaying}>Now Playing<span className="sr-only">(current)</span></p>
-                  </li>
-                  <li className="nav-item">
-                    <p className="nav-link" id="popular"  onClick={this.handlePopular}>Popular</p>
-                  </li>
-                  <li className="nav-item">
-                    <p className="nav-link" id="top-rated" onClick={this.handleTopRated}>Top rated</p>
-                  </li>
-                </ul>
-              </div>
+            <div className="collapse navbar-collapse" id="navbar-burger">
+              <ul className="navbar-nav mr-auto">
+                <li className="nav-item">
+                  <p className="nav-link" id="now-playing" onClick={this.handleNowPlaying}>Now Playing<span className="sr-only">(current)</span></p>
+                </li>
+                <li className="nav-item">
+                  <p className="nav-link" id="popular" onClick={this.handlePopular}>Popular</p>
+                </li>
+                <li className="nav-item">
+                  <p className="nav-link" id="top-rated" onClick={this.handleTopRated}>Top rated</p>
+                </li>
+              </ul>
+            </div>
 
-            </nav>
+          </nav>
 
-            <div className="row">
-              {this.state.movies.map(movie => {
-                const movieBackdrop = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
-                return (
-                  <Card movie={movie} movieBackdrop={movieBackdrop} prev="home" key={movie.id}/>
-                )
-              })}
+          <div className="row">
+            {this.state.movies.map(movie => {
+              const movieBackdrop = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
+              return (
+                <Card movie={movie} movieBackdrop={movieBackdrop} prev="home" key={movie.id} />
+              )
+            })}
           </div>
         </div>
         <footer>
@@ -146,7 +154,7 @@ class Home extends Component {
             </div>
           </div>
         </footer>
-    </div>
+      </div>
     )
   }
 };
