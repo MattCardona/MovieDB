@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Slider from 'react-slick';
 import Card from './Card';
+import { Link } from 'react-router-dom';
 
 class Home extends Component {
   constructor(props) {
@@ -126,6 +127,9 @@ class Home extends Component {
                 </li>
                 <li className="nav-item">
                   <p className="nav-link" id="top-rated" onClick={this.handleTopRated}>Top rated</p>
+                </li>
+                <li className="nav-item">
+                  <Link to="/actors">Actors/Actresses</Link>
                 </li>
               </ul>
             </div>
