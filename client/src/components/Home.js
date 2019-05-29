@@ -7,22 +7,29 @@ class Home extends Component {
   constructor(props) {
     super(props);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleChange = this.handleChange.bind(this);
     this.handleNowPlaying = this.handleNowPlaying.bind(this);
     this.handlePopular = this.handlePopular.bind(this);
     this.handleTopRated = this.handleTopRated.bind(this);
     this.state = {
       movies: [],
-      sliderMovies: []
+      sliderMovies: [],
+      search: ""
     }
   }
   componentDidMount() {
     this.handleNowPlaying();
   }
+  handleChange(e) {
+    let val = e.target.value;
+    this.setState(() => ({
+      search: val
+    }))
+  }
   handleSubmit(e) {
     e.preventDefault();
-    let value = e.target.elements.movie.value;
-    // console.log(value);
-    this.props.history.push(`/search/${value}`);
+    let { search } = this.state;
+    this.props.history.push(`/search/${search}`);
   }
   handleNowPlaying() {
     document.getElementById("now-playing").classList.add("active");
@@ -73,7 +80,7 @@ class Home extends Component {
       .catch(err => console.log(JSON.stringify(err, undefined, 2)))
   }
   render() {
-    const { sliderMovies } = this.state;
+    const { sliderMovies, search } = this.state;
     const settings = {
       dots: false,
       infinite: true,
@@ -103,7 +110,14 @@ class Home extends Component {
 
         <div className="container-fluid" id="search-container">
           <form onSubmit={this.handleSubmit}>
-            <input id="search-input" type="text" placeholder="Search Movie/Tv shows" name="movie" />
+            <input
+              id="search-input"
+              type="text"
+              placeholder="Search Movie/Tv shows"
+              name="movie"
+              value={search}
+              onChange={this.handleChange}
+            />
             <button className="btn btn-primary" id="search-button"
             >Search</button>
           </form>
@@ -120,16 +134,16 @@ class Home extends Component {
             <div className="collapse navbar-collapse" id="navbar-burger">
               <ul className="navbar-nav mr-auto">
                 <li className="nav-item">
-                  <p className="nav-link" id="now-playing" onClick={this.handleNowPlaying}>Now Playing<span className="sr-only">(current)</span></p>
+                  <p className="nav-link hover-effect" id="now-playing" onClick={this.handleNowPlaying}>Now Playing<span className="sr-only">(current)</span></p>
                 </li>
                 <li className="nav-item">
-                  <p className="nav-link" id="popular" onClick={this.handlePopular}>Popular</p>
+                  <p className="nav-link  hover-effect" id="popular" onClick={this.handlePopular}>Popular</p>
                 </li>
                 <li className="nav-item">
-                  <p className="nav-link" id="top-rated" onClick={this.handleTopRated}>Top rated</p>
+                  <p className="nav-link  hover-effect" id="top-rated" onClick={this.handleTopRated}>Top rated</p>
                 </li>
                 <li className="nav-item">
-                  <Link to="/actors">Actors/Actresses</Link>
+                  <Link to="/actors" className="hover-effect" >Actors/Actresses</Link>
                 </li>
               </ul>
             </div>
