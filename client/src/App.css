@@ -278,6 +278,12 @@ color: #a9c1a7;
   color: #a9c1a7
 }
 
+/* ========================= */
+/*         Actors            */
+/* ========================= */
+.popular-actors a {
+  text-decoration: none;
+}
 
 
 

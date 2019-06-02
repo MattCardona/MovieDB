@@ -14,7 +14,7 @@ class Actors extends Component {
         return res.json();
       })
       .then(data => {
-        console.log(data);
+        // console.log(data);
         this.setState(() => ({
           actors: data
         }))
@@ -24,11 +24,11 @@ class Actors extends Component {
   render() {
     const { actors } = this.state;
     return (
-      <div>
+      <div className="popular-actors">
         <h1>This will be the popular actors/actresses component</h1>
         <div className="row">
           {actors.map(actor => {
-            return <ActorCards {...actor} />
+            return <ActorCards {...actor} prev="actors" key={actor.id} />
           })}
         </div>
       </div>
