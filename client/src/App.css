@@ -285,6 +285,10 @@ color: #a9c1a7;
   background-color: black;
 }
 
+.popular-actors h1 {
+  text-align: center;
+  color: #fff;
+}
 
 .popular-actors a {
   text-decoration: none;

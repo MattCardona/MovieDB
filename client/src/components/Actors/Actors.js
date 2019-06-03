@@ -25,7 +25,7 @@ class Actors extends Component {
     const { actors } = this.state;
     return (
       <div className="popular-actors">
-        <h1>This will be the popular actors/actresses component</h1>
+        <h1>Popular Actors/Actresses</h1>
         <div className="row">
           {actors.map(actor => {
             return <ActorCards {...actor} prev="actors" key={actor.id} />
