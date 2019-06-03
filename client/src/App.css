@@ -281,6 +281,11 @@ color: #a9c1a7;
 /* ========================= */
 /*         Actors            */
 /* ========================= */
+.popular-actors {
+  background-color: black;
+}
+
+
 .popular-actors a {
   text-decoration: none;
 }
