@@ -7,6 +7,7 @@ import SearchMovie from './components/SearchMovie';
 import MovieInfo from './components/MovieInfo';
 import NotFound from './components/NotFound';
 import Actors from './components/Actors/Actors'
+import MoreInfo from './components/Actors/MoreInfo';
 
 const AppRouter = (props) => {
   return (
@@ -16,6 +17,7 @@ const AppRouter = (props) => {
         <Route path="/search/:movie" component={SearchMovie} />
         <Route path="/movie/:id" component={MovieInfo} />
         <Route path="/actors" component={Actors} exact />
+        <Route path="/actors/:id" component={MoreInfo} exact />
         <Route component={NotFound} />
       </Switch>
     </BrowserRouter>
