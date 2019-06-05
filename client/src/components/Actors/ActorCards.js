@@ -7,7 +7,7 @@ const ActorCards = (props) => {
     <div className="col-xs-12 col-sm-6 col-md-4">
       <Link
         to={{
-          pathname: `/actor/${props.id}`,
+          pathname: `/actors/${props.id}`,
           state: { prev: props.prev }
         }}
       >
