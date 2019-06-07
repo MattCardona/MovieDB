@@ -145,6 +145,19 @@ app.get("/popularactors", (req, res) => {
 });
 
 
+app.get("/actor/:id", (req, res) => {
+  let person_id = req.params.id;
+  axios.get(`https://api.themoviedb.org/3/person/${person_id}?api_key=${process.env.MOVIE_DB}&language=en-US&append_to_response=credits,images`)
+    .then(res => res.data)
+    .then(data => {
+      return res.status(200).json(data);
+    })
+    .catch(e => {
+      // console.log(JSON.stringify(e, undefined, 2));
+      return res.status(404).json({ error: "No person found" });
+    });
+});
+
 // serve static assets in production
 if (process.env.NODE_ENV === "production") {
   // set my static folder
