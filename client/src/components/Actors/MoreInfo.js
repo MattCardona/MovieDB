@@ -27,7 +27,7 @@ class MoreInfo extends Component {
     const { actor } = this.state;
     const actorImage = `https://image.tmdb.org/t/p/w500${actor.profile_path}`;
     return (
-      <div className="container-fluid">
+      <div className="container-fluid" style={{ backgroundColor: "black" }}>
         <div className="row">
           <div className="col-md-6">
             <div className="card">
@@ -38,8 +38,8 @@ class MoreInfo extends Component {
             </div>
           </div>
 
-          <div className="col-md-6">
-            <p >
+          <div className="col-md-6" style={{ textAlign: "center" }}>
+            <p style={{ color: "#fff", paddingTop: "40px" }}>
               {actor.biography}
             </p>
           </div>
