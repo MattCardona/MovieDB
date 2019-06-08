@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import ActorCards from './ActorCards';
 
 class MoreInfo extends Component {
   constructor(props) {
@@ -23,9 +24,26 @@ class MoreInfo extends Component {
       .catch(err => console.log(JSON.stringify(err, undefined, 2)))
   }
   render() {
+    const { actor } = this.state;
+    const actorImage = `https://image.tmdb.org/t/p/w500${actor.profile_path}`;
     return (
-      <div>
-        This will be the more info page for actor/actress
+      <div className="container-fluid">
+        <div className="row">
+          <div className="col-md-6">
+            <div className="card">
+              <img className="card-image" src={actorImage} alt="" />
+              <h4 className="card-title">
+                {actor.name}
+              </h4>
+            </div>
+          </div>
+
+          <div className="col-md-6">
+            <p >
+              {actor.biography}
+            </p>
+          </div>
+        </div>
       </div>
     )
   }
