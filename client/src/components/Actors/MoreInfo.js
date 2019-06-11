@@ -28,6 +28,7 @@ class MoreInfo extends Component {
     const actorImage = `https://image.tmdb.org/t/p/w500${actor.profile_path}`;
     return (
       <div className="container-fluid" id="actor-more-info">
+
         <div className="row">
           <div className="col-md-6">
             <div className="card">
@@ -37,12 +38,16 @@ class MoreInfo extends Component {
               </h4>
             </div>
           </div>
-
           <div className="col-md-6" id="actor-bio">
             <p>
               {actor.biography}
             </p>
           </div>
+        </div>
+
+        <div className="container" style={{ paddingTop: "50px" }}>
+          <h1 style={{ textAlign: "center", color: "#fff" }}>Featured Movies</h1>
+          <hr style={{ backgroundColor: "#fff", color: "#fff" }} />
         </div>
       </div >
     )
