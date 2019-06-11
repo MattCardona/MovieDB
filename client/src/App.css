@@ -296,6 +296,18 @@ color: #a9c1a7;
 
 
 
+/* ========================= */
+/*    Actors MoreInfo           */
+/* ========================= */
+#actor-more-info {
+  background-color: black;
+}
+
+#actor-bio {
+  color: #fff;
+  padding-top: 40px;
+}
+
 /* small tablet to big tablets in portrait/landscape mode: from 768px to 1023px */
 @media only screen and (max-width: 1023px) {
 
