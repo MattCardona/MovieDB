@@ -308,6 +308,19 @@ color: #a9c1a7;
   padding-top: 40px;
 }
 
+#featured-movies {
+  padding-top: 50px;
+}
+
+#featured-movies h1{
+  text-align: center;
+  color: #fff;
+}
+
+#featured-movies hr{
+  background-color: #fff;
+}
+
 /* small tablet to big tablets in portrait/landscape mode: from 768px to 1023px */
 @media only screen and (max-width: 1023px) {
 
@@ -337,6 +350,7 @@ color: #a9c1a7;
     width: 230px;
     padding-top: 9px;
   }
+
 }
 
 /* small pnhones from 0 to 480px */

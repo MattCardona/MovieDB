@@ -45,9 +45,9 @@ class MoreInfo extends Component {
           </div>
         </div>
 
-        <div className="container" style={{ paddingTop: "50px" }}>
-          <h1 style={{ textAlign: "center", color: "#fff" }}>Featured Movies</h1>
-          <hr style={{ backgroundColor: "#fff", color: "#fff" }} />
+        <div className="container" id="featured-movies" >
+          <h1>Featured Movies</h1>
+          <hr />
         </div>
       </div >
     )
