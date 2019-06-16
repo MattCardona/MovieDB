@@ -40,6 +40,7 @@ class MoreInfo extends Component {
           </div>
           <div className="col-md-6" id="actor-bio">
             <p>Birthday: {actor.birthday}</p>
+            <p>Birth place: {actor.place_of_birth}</p>
             <p>
               {actor.biography}
             </p>
