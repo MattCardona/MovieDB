@@ -39,6 +39,7 @@ class MoreInfo extends Component {
             </div>
           </div>
           <div className="col-md-6" id="actor-bio">
+            <p>Birthday: {actor.birthday}</p>
             <p>
               {actor.biography}
             </p>
@@ -48,6 +49,7 @@ class MoreInfo extends Component {
         <div className="container" id="featured-movies" >
           <h1>Featured Movies</h1>
           <hr />
+
         </div>
       </div >
     )
