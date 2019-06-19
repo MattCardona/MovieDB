@@ -363,7 +363,9 @@ color: #a9c1a7;
     padding-top: 20px;
   }
   
-
+  #actor-bio {
+    font-size: 20px;
+  }
 }
 
 /* small pnhones from 0 to 480px */
