@@ -304,6 +304,10 @@ color: #a9c1a7;
   background-color: black;
 }
 
+#actor-more-info .card{
+  margin-top: 50px
+}
+
 #actor-bio {
   color: #fff;
   padding-top: 40px;
