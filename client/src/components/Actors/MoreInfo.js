@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
-import ActorCards from './ActorCards';
+import Card from '../Card';
 
 class MoreInfo extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      actor: {}
+      actor: {},
+      cast: []
     }
   }
   componentDidMount() {
@@ -18,13 +19,14 @@ class MoreInfo extends Component {
       .then(data => {
         // console.log(data);
         this.setState(() => ({
-          actor: data
+          actor: data,
+          cast: data.credits.cast
         }));
       })
       .catch(err => console.log(JSON.stringify(err, undefined, 2)))
   }
   render() {
-    const { actor } = this.state;
+    const { actor, cast } = this.state;
     const actorImage = `https://image.tmdb.org/t/p/w500${actor.profile_path}`;
     return (
       <div className="container-fluid" id="actor-more-info">
@@ -50,7 +52,6 @@ class MoreInfo extends Component {
         <div className="container" id="featured-movies" >
           <h1>Featured Movies</h1>
           <hr />
-
         </div>
       </div >
     )
