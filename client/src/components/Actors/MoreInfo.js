@@ -52,6 +52,14 @@ class MoreInfo extends Component {
         <div className="container" id="featured-movies" >
           <h1>Featured Movies</h1>
           <hr />
+          <div className="row">
+            {cast.map(movie => {
+              const movieBackdrop = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
+              return (
+                <Card movie={movie} movieBackdrop={movieBackdrop} prev="actor" key={movie.id} />
+              );
+            })}
+          </div>
         </div>
       </div >
     )
