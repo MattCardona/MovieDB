@@ -30,6 +30,17 @@ class MovieInfo extends Component {
   handleClick() {
     this.props.history.goBack()
   }
+  prevLocation(location) {
+    switch (location) {
+      case "search":
+        return <i onClick={this.handleClick} className="fas fa-search hover-effect"> Search</i>;
+      case "actor":
+        return <i onClick={this.handleClick} className="fas fa-user hover-effect"> Actor/Actress</i>;
+      default:
+        return <i onClick={this.handleClick} className="fas fa-home hover-effect"> Home</i>;
+
+    }
+  }
   render() {
     const { movie, prevLocation } = this.state;
     return (
@@ -44,11 +55,7 @@ class MovieInfo extends Component {
           <div className="container" id="overview">
             <h1 id="movie-title" >{movie.original_title}</h1>
             <p>{movie.overview}</p>
-            {prevLocation === "search" ?
-              <i onClick={this.handleClick} className="fas fa-search hover-effect"> Search</i>
-              : <i onClick={this.handleClick} className="fas fa-home hover-effect"> Home</i>
-            }
-
+            {this.prevLocation(prevLocation)}
           </div>
         </div>
       </div>
