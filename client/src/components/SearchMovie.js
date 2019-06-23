@@ -5,52 +5,106 @@ import axios from 'axios';
 import querystring from 'querystring';
 
 class SearchMovie extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.getNewResults = this.getNewResults.bind(this);
     this.state = {
       movies: [],
-      error: ""
+      error: "",
+      search: "",
+      searchTerm: ""
     }
   }
-  componentDidMount(){
+  componentDidMount() {
     let { movie } = this.props.match.params;
     let headers = {
       'Content-Type': 'application/x-www-form-urlencoded'
     }
-    // console.log(data);
-    axios.post("/movies", querystring.stringify({ movie }), {headers})
-    .then(res => {
-      // console.log(res.data);
-      this.setState(() => ({
-        movies: [...res.data]
-      }))
-    })
-    .catch(e => {
-      this.setState(() => ({
-        error: e.response.data.error
-      }))
-    })
-  }
 
+    axios.post("/movies", querystring.stringify({ movie }), { headers })
+      .then(res => {
+        // console.log(res.data);
+        this.setState(() => ({
+          movies: [...res.data],
+          searchTerm: movie
+        }))
+      })
+      .catch(e => {
+        this.setState(() => ({
+          error: e.response.data.error
+        }))
+      })
+  }
+  handleChange(e) {
+    let val = e.target.value;
+    this.setState(() => ({
+      search: val
+    }))
+  }
+  handleSubmit(e) {
+    e.preventDefault();
+    this.getNewResults();
+    this.setState(() => ({
+      search: ""
+    }))
+  }
+  getNewResults() {
+    let { search } = this.state;
+    this.props.history.push(`/search/${search}`);
+    let headers = {
+      'Content-Type': 'application/x-www-form-urlencoded'
+    }
+
+    axios.post("/movies", querystring.stringify({ movie: search }), { headers })
+      .then(res => {
+        this.setState(() => ({
+          movies: [...res.data],
+          searchTerm: search
+        }))
+      })
+      .catch(e => {
+        this.setState(() => ({
+          error: e.response.data.error
+        }))
+      })
+  }
   render() {
-    const { movies, error } = this.state;
+    const { movies, error, search, searchTerm } = this.state;
 
     return (
       <div id="search-movie-container">
-        <h1>{this.props.match.params.movie.toUpperCase()}</h1>
+        <h1>{searchTerm.toUpperCase()}</h1>
         <Link to="/" ><i className="fas fa-home"> Home</i></Link>
+
+        <div className="container-fluid" id="search-container">
+          <form onSubmit={this.handleSubmit}>
+            <input
+              id="search-input"
+              type="text"
+              placeholder="Search Movie/Tv shows"
+              name="movie"
+              value={search}
+              onChange={this.handleChange}
+            />
+            <button className="btn btn-primary" id="search-button"
+            >Search</button>
+          </form>
+        </div>
+
         {movies.length > 0 ?
           <div className="container">
             <div className="row">
-              { movies.map(movie => {
+              {movies.map(movie => {
                 const movieBackdrop = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
                 return (
-                  <Card movie={movie} prev="search" movieBackdrop={movieBackdrop} key={movie.id}/>
+                  <Card movie={movie} prev="search" movieBackdrop={movieBackdrop} key={movie.id} />
                 )
-              }) }
+              })}
             </div>
-          </div> 
-          : 
+          </div>
+          :
           null
         }
         {error ?
