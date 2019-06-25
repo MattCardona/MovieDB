@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import Card from './Card';
 import axios from 'axios';
 import querystring from 'querystring';
+import MovieSearchBar from './MovieSearchBar';
 
 class SearchMovie extends Component {
   constructor(props) {
@@ -78,20 +79,7 @@ class SearchMovie extends Component {
         <h1>{searchTerm.toUpperCase()}</h1>
         <Link to="/" ><i className="fas fa-home"> Home</i></Link>
 
-        <div className="container-fluid" id="search-container">
-          <form onSubmit={this.handleSubmit}>
-            <input
-              id="search-input"
-              type="text"
-              placeholder="Search Movie/Tv shows"
-              name="movie"
-              value={search}
-              onChange={this.handleChange}
-            />
-            <button className="btn btn-primary" id="search-button"
-            >Search</button>
-          </form>
-        </div>
+        <MovieSearchBar handleSubmit={this.handleSubmit} handleChange={this.handleChange} search={search} />
 
         {movies.length > 0 ?
           <div className="container">
