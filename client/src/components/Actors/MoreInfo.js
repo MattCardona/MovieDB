@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Card from '../Card';
+import Navbar from '../Navbar';
 
 class MoreInfo extends Component {
   constructor(props) {
@@ -30,7 +31,7 @@ class MoreInfo extends Component {
     const actorImage = `https://image.tmdb.org/t/p/w500${actor.profile_path}`;
     return (
       <div className="container-fluid" id="actor-more-info">
-
+        <Navbar />
         <div className="row">
           <div className="col-md-6">
             <div className="card">

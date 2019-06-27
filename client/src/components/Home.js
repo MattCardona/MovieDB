@@ -3,6 +3,7 @@ import Slider from 'react-slick';
 import Card from './Card';
 import { Link } from 'react-router-dom';
 
+
 class Home extends Component {
   constructor(props) {
     super(props);
