@@ -14,10 +14,10 @@ class Navbar extends Component {
           <div className="collapse navbar-collapse" id="navbar-burger">
             <ul className="navbar-nav mr-auto">
               <li className="nav-item">
-                <Link to="/" className="nav-link hover-effect">Home</Link>
+                <Link to="/" className="nav-link hover-effect">Home <i className="fas fa-home"></i></Link>
               </li>
               <li className="nav-item">
-                <Link to="/actors" className="nav-link hover-effect" >Actors/Actresses</Link>
+                <Link to="/actors" className="nav-link hover-effect" >Actors/Actresses <i className="fas fa-user hover-effect"></i> </Link>
               </li>
             </ul>
           </div>
