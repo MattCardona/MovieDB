@@ -5,8 +5,8 @@ class Navbar extends Component {
   render() {
     return (
       <div>
-        <nav className="navbar  navbar-expand-lg navbar-dark">
-          <Link className="navbar-brand" to="/" style={{ fontFamily: 'Cinzel serif', color: "#ffe000", fontSize: "30px" }}>MovieDB</Link>
+        <nav className="navbar  navbar-expand-lg navbar-dark my-navbar">
+          <Link className="navbar-brand" to="/" >MovieDB</Link>
           <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-burger" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
           </button>

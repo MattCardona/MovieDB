@@ -295,7 +295,11 @@ color: #a9c1a7;
   text-decoration: none;
 }
 
-
+.my-navbar .navbar-brand {
+  font-family: Cinzel serif;
+  color: #ffe000;
+  font-size: 30px;
+}
 
 /* ========================= */
 /*    Actors MoreInfo           */
