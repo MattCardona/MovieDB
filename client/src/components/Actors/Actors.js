@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ActorCards from './ActorCards';
+import Navbar from '../Navbar';
 
 class Actors extends Component {
   constructor(props) {
@@ -23,8 +24,10 @@ class Actors extends Component {
   }
   render() {
     const { actors } = this.state;
+
     return (
       <div className="popular-actors">
+        <Navbar />
         <h1>Popular Actors/Actresses</h1>
         <div className="row">
           {actors.map(actor => {
