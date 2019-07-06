@@ -4,6 +4,7 @@ import Card from './Card';
 import axios from 'axios';
 import querystring from 'querystring';
 import MovieSearchBar from './MovieSearchBar';
+import Navbar from './Navbar';
 
 class SearchMovie extends Component {
   constructor(props) {
@@ -76,6 +77,7 @@ class SearchMovie extends Component {
 
     return (
       <div id="search-movie-container">
+        <Navbar />
         <h1>{searchTerm.toUpperCase()}</h1>
         <Link to="/" ><i className="fas fa-home"> Home</i></Link>
 
