@@ -79,7 +79,6 @@ class SearchMovie extends Component {
       <div id="search-movie-container">
         <Navbar />
         <h1>{searchTerm.toUpperCase()}</h1>
-        <Link to="/" ><i className="fas fa-home"> Home</i></Link>
 
         <MovieSearchBar handleSubmit={this.handleSubmit} handleChange={this.handleChange} search={search} />
 
