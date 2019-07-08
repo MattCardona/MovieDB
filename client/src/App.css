@@ -198,7 +198,7 @@ footer img {
 /* ======================= */
 #search-movie-container {
  background-color: black;
- text-align: center;
+ /* text-align: center; */
  padding-bottom: 70px;
 }
 
@@ -211,7 +211,7 @@ footer img {
 }
 
 
-#search-movie-container i {
+/* #search-movie-container i {
   color: #fff;
   font-size: 25px
   
@@ -241,7 +241,7 @@ opacity: 1;
 }
 #search-movie-container   i:hover {
 color: #a9c1a7;
-}
+}*/
 
 #search-movie-container a {
   text-decoration: none;
