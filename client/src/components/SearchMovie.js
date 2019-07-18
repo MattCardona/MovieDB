@@ -68,7 +68,9 @@ class SearchMovie extends Component {
       })
       .catch(e => {
         this.setState(() => ({
-          error: e.response.data.error
+          error: e.response.data.error,
+          searchTerm: search,
+          movies: []
         }))
       })
   }
