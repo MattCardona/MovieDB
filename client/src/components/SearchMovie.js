@@ -63,7 +63,8 @@ class SearchMovie extends Component {
       .then(res => {
         this.setState(() => ({
           movies: [...res.data],
-          searchTerm: search
+          searchTerm: search,
+          error: ""
         }))
       })
       .catch(e => {
