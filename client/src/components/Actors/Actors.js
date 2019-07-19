@@ -22,6 +22,7 @@ class Actors extends Component {
       })
       .catch(err => console.log(JSON.stringify(err, undefined, 2)))
   }
+
   render() {
     const { actors } = this.state;
 
@@ -29,11 +30,15 @@ class Actors extends Component {
       <div className="popular-actors">
         <Navbar />
         <h1>Popular Actors/Actresses</h1>
-        <div className="row">
-          {actors.map(actor => {
-            return <ActorCards {...actor} prev="actors" key={actor.id} />
-          })}
+
+        <div className="container-fluid">
+          <div className="row">
+            {actors.map(actor => {
+              return <ActorCards {...actor} prev="actors" key={actor.id} />
+            })}
+          </div>
         </div>
+
       </div>
     )
   }
