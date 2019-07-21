@@ -27,7 +27,6 @@ class Actors extends Component {
   }
   handleChange(e) {
     let searchTerm = e.target.value;
-    console.log(searchTerm);
     this.setState(() => ({
       search: searchTerm
     }))
@@ -44,14 +43,21 @@ class Actors extends Component {
         <Navbar />
         <h1>Popular Actors/Actresses</h1>
 
-        <div className="container">
+        <div
+          className="container"
+          style={{ textAlign: "center" }}
+        >
           <form onSubmit={this.handleSubmit}>
             <input
               type="text"
               value={this.state.search}
               onChange={this.handleChange}
+              style={{ width: "50%" }}
             />
-            <button>Submit</button>
+            <button
+              className="btn btn-primary"
+              id="search-button"
+            >Submit</button>
           </form>
         </div>
 
