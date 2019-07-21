@@ -8,6 +8,7 @@ const path = require("path");
 let port = process.env.PORT || process.env.DEV_PORT;
 
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 // app.get("/", (req, res) => res.redirect("/homepage"))
 
@@ -112,7 +113,7 @@ app.post("/search/person", (req, res) => {
     .then(res => res.data)
     .then(data => {
       let { results } = data;
-      console.log(data);
+      // console.log(data);
       if (results.length > 0) {
         return res.status(200).json(results);
       } else {
