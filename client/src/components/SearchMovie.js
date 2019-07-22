@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import Card from './Card';
 import axios from 'axios';
-import querystring from 'querystring';
 import MovieSearchBar from './MovieSearchBar';
 import Navbar from './Navbar';
 
@@ -21,11 +19,8 @@ class SearchMovie extends Component {
   }
   componentDidMount() {
     let { movie } = this.props.match.params;
-    let headers = {
-      'Content-Type': 'application/x-www-form-urlencoded'
-    }
 
-    axios.post("/movies", querystring.stringify({ movie }), { headers })
+    axios.post("/movies", { movie })
       .then(res => {
         // console.log(res.data);
         this.setState(() => ({
@@ -55,11 +50,8 @@ class SearchMovie extends Component {
   getNewResults() {
     let { search } = this.state;
     this.props.history.push(`/search/${search}`);
-    let headers = {
-      'Content-Type': 'application/x-www-form-urlencoded'
-    }
 
-    axios.post("/movies", querystring.stringify({ movie: search }), { headers })
+    axios.post("/movies", { movie: search })
       .then(res => {
         this.setState(() => ({
           movies: [...res.data],
