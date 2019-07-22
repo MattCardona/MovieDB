@@ -33,7 +33,7 @@ class Actors extends Component {
   }
   handleSubmit(e) {
     e.preventDefault();
-    console.log(this.state.search);
+
   }
   render() {
     const { actors } = this.state;
@@ -44,15 +44,13 @@ class Actors extends Component {
         <h1>Popular Actors/Actresses</h1>
 
         <div
-          className="container"
-          style={{ textAlign: "center" }}
-        >
+          className="container popular-actors-form" >
           <form onSubmit={this.handleSubmit}>
             <input
               type="text"
+              placeholder="actress/actor name"
               value={this.state.search}
               onChange={this.handleChange}
-              style={{ width: "50%" }}
             />
             <button
               className="btn btn-primary"
