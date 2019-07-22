@@ -285,6 +285,14 @@ color: #a9c1a7;
 .popular-actors {
   background-color: black;
 }
+.popular-actors-form {
+  text-align: center;
+}
+
+.popular-actors-form input{
+  width: 50%;
+  text-align: center;
+}
 
 .popular-actors h1 {
   font-family: 'Cinzel', serif;
