@@ -33,7 +33,8 @@ class Actors extends Component {
   }
   handleSubmit(e) {
     e.preventDefault();
-
+    let { search: name } = this.state;
+    this.props.history.push(`/actors/search/${name}`)
   }
   render() {
     const { actors } = this.state;
