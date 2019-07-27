@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios';
+import ActorCards from './ActorCards';
 
 class SearchActor extends Component {
   constructor(props) {
@@ -26,15 +27,13 @@ class SearchActor extends Component {
     let { actors } = this.state;
     return (
       <div>
-        {actors.map(actor => {
-          let actorImage = `https://image.tmdb.org/t/p/w500${actor.profile_path}`;
-          return (
-            <div key={actor.id}>
-              <h1>{actor.name}</h1>
-              <img src={actorImage} alt="" />
-            </div>
-          )
-        })}
+        <div className="row">
+          {actors.map(actor => {
+            return (
+              <ActorCards {...actor} />
+            )
+          })}
+        </div>
       </div>
     )
   }
