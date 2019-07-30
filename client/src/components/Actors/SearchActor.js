@@ -26,7 +26,13 @@ class SearchActor extends Component {
   render() {
     let { actors } = this.state;
     return (
-      <div>
+      <div style={{ backgroundColor: "black" }}>
+        <div className="container"
+          style={{ textAlign: "center", color: "#fff" }}
+        >
+          <h1>Searched Actor/Actress {this.props.match.params.name.toUpperCase()}</h1>
+          {/* here put in a search bar */}
+        </div>
         <div className="row">
           {actors.map(actor => {
             return (
