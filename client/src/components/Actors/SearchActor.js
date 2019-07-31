@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios';
 import ActorCards from './ActorCards';
+import Navbar from '../Navbar';
 
 class SearchActor extends Component {
   constructor(props) {
@@ -30,6 +31,7 @@ class SearchActor extends Component {
         <div className="container"
           style={{ textAlign: "center", color: "#fff" }}
         >
+          <Navbar />
           <h1>Searched Actor/Actress {this.props.match.params.name.toUpperCase()}</h1>
           {/* here put in a search bar */}
         </div>
