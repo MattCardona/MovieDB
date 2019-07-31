@@ -7,7 +7,8 @@ class SearchActor extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      actors: []
+      actors: [],
+      error: ""
     };
   }
   componentDidMount() {
@@ -15,19 +16,23 @@ class SearchActor extends Component {
     const { name: actor } = this.props.match.params;
     axios.post("/search/person", { actor })
       .then(res => {
-        console.log(res.data, "res");
+        // console.log(res.data, "res");
         this.setState(() => ({
           actors: res.data
         }))
       })
       .catch(e => {
-        console.log(e, "error");
+        // console.log(e, "error");
+        // no person found response
+        this.setState(() => ({
+          error: e.response.data.error
+        }))
       })
   }
   render() {
-    let { actors } = this.state;
+    let { actors, error } = this.state;
     return (
-      <div style={{ backgroundColor: "black" }}>
+      <div className="search-actor-container" style={{ backgroundColor: "black" }}>
         <div className="container"
           style={{ textAlign: "center", color: "#fff" }}
         >
@@ -35,13 +40,29 @@ class SearchActor extends Component {
           <h1>Searched Actor/Actress {this.props.match.params.name.toUpperCase()}</h1>
           {/* here put in a search bar */}
         </div>
-        <div className="row">
-          {actors.map(actor => {
-            return (
-              <ActorCards {...actor} />
-            )
-          })}
-        </div>
+        {actors.length < 0 ?
+          null
+          :
+          <div className="row">
+            {actors.map(actor => {
+              return (
+                <ActorCards {...actor} />
+              )
+            })}
+          </div>
+        }
+
+
+        {error ?
+          <div className="container"
+            style={{
+              color: "#fff",
+              textAlign: "center"
+            }}
+          >
+            <h1>{error}</h1>
+          </div>
+          : null}
       </div>
     )
   }
