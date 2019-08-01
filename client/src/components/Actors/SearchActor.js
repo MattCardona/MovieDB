@@ -33,10 +33,10 @@ class SearchActor extends Component {
     let { actors, error } = this.state;
     return (
       <div className="search-actor-container" style={{ backgroundColor: "black" }}>
+        <Navbar />
         <div className="container"
           style={{ textAlign: "center", color: "#fff" }}
         >
-          <Navbar />
           <h1>Searched Actor/Actress {this.props.match.params.name.toUpperCase()}</h1>
           {/* here put in a search bar */}
         </div>
