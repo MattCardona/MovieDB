@@ -32,11 +32,9 @@ class SearchActor extends Component {
   render() {
     let { actors, error } = this.state;
     return (
-      <div className="search-actor-container" style={{ backgroundColor: "black" }}>
+      <div className="search-actor-container">
         <Navbar />
-        <div className="container"
-          style={{ textAlign: "center", color: "#fff" }}
-        >
+        <div className="container">
           <h1>Searched Actor/Actress {this.props.match.params.name.toUpperCase()}</h1>
           {/* here put in a search bar */}
         </div>
@@ -54,12 +52,7 @@ class SearchActor extends Component {
 
 
         {error ?
-          <div className="container"
-            style={{
-              color: "#fff",
-              textAlign: "center"
-            }}
-          >
+          <div className="container">
             <h1>{error}</h1>
           </div>
           : null}
