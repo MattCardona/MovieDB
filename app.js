@@ -117,13 +117,13 @@ app.post("/search/person", (req, res) => {
       if (results.length > 0) {
         return res.status(200).json(results);
       } else {
-        return res.status(400).json({ error: "No person found" });
+        return res.status(400).json({ error: "No actor/actress found with that name" });
       }
 
     })
     .catch(e => {
       // console.log(JSON.stringify(e, undefined, 2));
-      return res.status(404).json({ error: "No person found" });
+      return res.status(404).json({ error: "No actor/actress found with that name" });
     });
 });
 
