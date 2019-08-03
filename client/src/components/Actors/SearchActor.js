@@ -35,18 +35,20 @@ class SearchActor extends Component {
       <div className="search-actor-container">
         <Navbar />
         <div className="container">
-          <h1>Searched Actor/Actress {this.props.match.params.name.toUpperCase()}</h1>
+          <h1>{this.props.match.params.name.toUpperCase()}</h1>
           {/* here put in a search bar */}
         </div>
         {actors.length < 0 ?
           null
           :
-          <div className="row">
-            {actors.map(actor => {
-              return (
-                <ActorCards {...actor} />
-              )
-            })}
+          <div className="container">
+            <div className="row">
+              {actors.map(actor => {
+                return (
+                  <ActorCards {...actor} />
+                )
+              })}
+            </div>
           </div>
         }
 
