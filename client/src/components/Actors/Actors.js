@@ -60,7 +60,7 @@ class Actors extends Component {
           </form>
         </div>
 
-        <div className="container-fluid">
+        <div className="container">
           <div className="row">
             {actors.map(actor => {
               return <ActorCards {...actor} prev="actors" key={actor.id} />
