@@ -10,6 +10,6 @@ Wanted to learn more on how to build a MERN stack app, best way to learn is to b
 Tech/Frameworks used
 ==================
 MERN stack. Without the MongoDB at this time.
-Frontend created in React. The backend api created in Express, Node.js.
+Frontend created in HTML, CSS, JavaScript, Reactjs. The backend api created in Express, Node.js.
 
 Project can be found at: [MovieDB](https://moviedbase.herokuapp.com)
