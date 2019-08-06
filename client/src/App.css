@@ -354,6 +354,14 @@ color: #a9c1a7;
   color: #fff
 }
 
+.search-actor-container h1{
+  padding-top: 30px;
+  color: #fff;
+  text-align: center;
+  font-size: 60px;
+  font-family: 'Cinzel', serif;
+}
+
 
 
 /* big tablets to 1200px: widths smaller than the 1140px row */
