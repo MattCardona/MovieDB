@@ -6,8 +6,11 @@ import Navbar from '../Navbar';
 class SearchActor extends Component {
   constructor(props) {
     super(props);
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
     this.state = {
       actors: [],
+      search: "",
       error: ""
     };
   }
@@ -29,6 +32,16 @@ class SearchActor extends Component {
         }))
       })
   }
+  handleChange(e) {
+    let val = e.target.value;
+    this.setState(() => ({
+      search: val
+    }));
+  }
+  handleSubmit(e) {
+    e.preventDefault();
+    console.log(this.state.search);
+  }
   render() {
     let { actors, error } = this.state;
     return (
@@ -36,7 +49,25 @@ class SearchActor extends Component {
         <Navbar />
         <div className="container">
           <h1>{this.props.match.params.name.toUpperCase()}</h1>
-          {/* here put in a search bar */}
+
+          {/* need to make into its own component */}
+          <div
+            className="container popular-actors-form" >
+            <form onSubmit={this.handleSubmit}>
+              <input
+                type="text"
+                placeholder="actress/actor name"
+                value={this.state.search}
+                onChange={this.handleChange}
+              />
+              <button
+                className="btn btn-primary"
+                id="search-button"
+              >Submit</button>
+            </form>
+          </div>
+          {/* ======================= */}
+
         </div>
         {actors.length < 0 ?
           null
@@ -45,7 +76,7 @@ class SearchActor extends Component {
             <div className="row">
               {actors.map(actor => {
                 return (
-                  <ActorCards {...actor} />
+                  <ActorCards {...actor} key={actor.id} />
                 )
               })}
             </div>
