@@ -11,22 +11,28 @@ class SearchActor extends Component {
     this.state = {
       actors: [],
       search: "",
+      searchedName: "",
       error: ""
     };
   }
   componentDidMount() {
     // console.log(this.props.match.params.name);
     const { name: actor } = this.props.match.params;
+    this.getActor(actor);
+  }
+  getActor(actor) {
     axios.post("/search/person", { actor })
       .then(res => {
         // console.log(res.data, "res");
+        this.props.history.push(actor)
         this.setState(() => ({
-          actors: res.data
+          actors: res.data,
+          search: "",
+          searchedName: actor
         }))
       })
       .catch(e => {
         // console.log(e, "error");
-        // no person found response
         this.setState(() => ({
           error: e.response.data.error
         }))
@@ -40,15 +46,17 @@ class SearchActor extends Component {
   }
   handleSubmit(e) {
     e.preventDefault();
-    console.log(this.state.search);
+    // console.log(this.state.search);
+    let { search: actor } = this.state;
+    this.getActor(actor);
   }
   render() {
-    let { actors, error } = this.state;
+    let { actors, error, searchedName } = this.state;
     return (
       <div className="search-actor-container">
         <Navbar />
         <div className="container">
-          <h1>{this.props.match.params.name.toUpperCase()}</h1>
+          <h1>{searchedName.toUpperCase()}</h1>
 
           {/* need to make into its own component */}
           <div
