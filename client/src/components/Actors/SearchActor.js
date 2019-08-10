@@ -34,7 +34,10 @@ class SearchActor extends Component {
       .catch(e => {
         // console.log(e, "error");
         this.setState(() => ({
-          error: e.response.data.error
+          error: e.response.data.error,
+          search: "",
+          searchedName: actor,
+          actors: []
         }))
       })
   }
