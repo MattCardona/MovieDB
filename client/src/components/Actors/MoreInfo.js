@@ -18,7 +18,7 @@ class MoreInfo extends Component {
         return res.json();
       })
       .then(data => {
-        // console.log(data);
+        // console.log(data, "cred");
         this.setState(() => ({
           actor: data,
           cast: data.credits.cast
@@ -28,6 +28,7 @@ class MoreInfo extends Component {
   }
   render() {
     const { actor, cast } = this.state;
+
     const actorImage = `https://image.tmdb.org/t/p/w500${actor.profile_path}`;
     return (
       <div className="container-fluid" id="actor-more-info">
@@ -54,12 +55,14 @@ class MoreInfo extends Component {
           <h1>Featured Movies</h1>
           <hr />
           <div className="row">
-            {cast.map(movie => {
+            {cast ? cast.map(movie => {
               const movieBackdrop = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
               return (
                 <Card movie={movie} movieBackdrop={movieBackdrop} prev="actor" key={movie.id} />
               );
-            })}
+            }) :
+              null
+            }
           </div>
         </div>
       </div >
