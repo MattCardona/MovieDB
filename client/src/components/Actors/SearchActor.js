@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import axios from 'axios';
 import ActorCards from './ActorCards';
 import Navbar from '../Navbar';
+import ActorSearchBar from './ActorSearchBar';
 
 class SearchActor extends Component {
   constructor(props) {
@@ -60,25 +61,7 @@ class SearchActor extends Component {
         <Navbar />
         <div className="container">
           <h1>{searchedName.toUpperCase()}</h1>
-
-          {/* need to make into its own component */}
-          <div
-            className="container popular-actors-form" >
-            <form onSubmit={this.handleSubmit}>
-              <input
-                type="text"
-                placeholder="actress/actor name"
-                value={this.state.search}
-                onChange={this.handleChange}
-              />
-              <button
-                className="btn btn-primary"
-                id="search-button"
-              >Submit</button>
-            </form>
-          </div>
-          {/* ======================= */}
-
+          <ActorSearchBar handleSubmit={this.handleSubmit} handleChange={this.handleChange} search={this.state.search} />
         </div>
         {actors.length < 0 ?
           null
