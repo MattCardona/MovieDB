@@ -113,7 +113,7 @@ app.post("/search/person", (req, res) => {
     .then(res => res.data)
     .then(data => {
       let { results } = data;
-      // console.log(data);
+      // console.log(data, "********");
       if (results.length > 0) {
         return res.status(200).json(results);
       } else {
@@ -127,6 +127,7 @@ app.post("/search/person", (req, res) => {
     });
 });
 
+// get popular actor/actresses as of now
 app.get("/popularactors", (req, res) => {
   axios.get(`https://api.themoviedb.org/3/person/popular?api_key=${process.env.MOVIE_DB}&language=en-US&page=1`)
     .then(res => res.data)
@@ -145,12 +146,13 @@ app.get("/popularactors", (req, res) => {
     });
 });
 
-
+// get specific actor/actress
 app.get("/actor/:id", (req, res) => {
   let person_id = req.params.id;
-  axios.get(`https://api.themoviedb.org/3/person/${person_id}?api_key=${process.env.MOVIE_DB}&language=en-US&append_to_response=credits,images`)
+  axios.get(`https://api.themoviedb.org/3/person/${person_id}?api_key=${process.env.MOVIE_DB}&language=en-US&append_to_response=combined_credits,images`)
     .then(res => res.data)
     .then(data => {
+      // console.log(JSON.stringify(data, undefined, 2));
       return res.status(200).json(data);
     })
     .catch(e => {
@@ -158,6 +160,7 @@ app.get("/actor/:id", (req, res) => {
       return res.status(404).json({ error: "No person found" });
     });
 });
+
 
 // serve static assets in production
 if (process.env.NODE_ENV === "production") {
