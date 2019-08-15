@@ -21,8 +21,9 @@ class MoreInfo extends Component {
         // console.log(data, "cred");
         this.setState(() => ({
           actor: data,
-          cast: data.credits.cast
+          cast: data.combined_credits.cast
         }));
+
       })
       .catch(err => console.log(JSON.stringify(err, undefined, 2)))
   }
