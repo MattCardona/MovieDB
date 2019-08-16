@@ -362,6 +362,9 @@ color: #a9c1a7;
   font-family: 'Cinzel', serif;
 }
 
+.search-actor-container a{
+  text-decoration: none;
+}
 
 
 /* big tablets to 1200px: widths smaller than the 1140px row */
