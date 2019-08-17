@@ -332,6 +332,10 @@ color: #a9c1a7;
   padding-top: 50px;
 }
 
+#featured-movies a{
+  text-decoration: none;
+}
+
 #featured-movies h1{
   text-align: center;
   color: #fff;
