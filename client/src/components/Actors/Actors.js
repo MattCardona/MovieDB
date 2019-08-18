@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ActorCards from './ActorCards';
 import Navbar from '../Navbar';
+import ActorSearchBar from './ActorSearchBar';
 
 class Actors extends Component {
   constructor(props) {
@@ -44,21 +45,7 @@ class Actors extends Component {
         <Navbar />
         <h1>Popular Actors/Actresses</h1>
 
-        <div
-          className="container popular-actors-form" >
-          <form onSubmit={this.handleSubmit}>
-            <input
-              type="text"
-              placeholder="actress/actor name"
-              value={this.state.search}
-              onChange={this.handleChange}
-            />
-            <button
-              className="btn btn-primary"
-              id="search-button"
-            >Submit</button>
-          </form>
-        </div>
+        <ActorSearchBar handleSubmit={this.handleSubmit} handleChange={this.handleChange} search={this.state.search} />
 
         <div className="container">
           <div className="row">
