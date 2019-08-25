@@ -19,6 +19,9 @@ class Navbar extends Component {
               <li className="nav-item">
                 <Link to="/actors" className="nav-link hover-effect" >Actors/Actresses <i className="fas fa-user hover-effect"></i></Link>
               </li>
+              <li className="nav-item">
+                <Link to="/search" className="nav-link hover-effect" >Movie Search <i className="fas fa-user hover-effect"></i></Link>
+              </li>
             </ul>
           </div>
 
