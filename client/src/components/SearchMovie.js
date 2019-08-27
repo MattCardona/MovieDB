@@ -19,20 +19,21 @@ class SearchMovie extends Component {
   }
   componentDidMount() {
     let { movie } = this.props.match.params;
-
-    axios.post("/movies", { movie })
-      .then(res => {
-        // console.log(res.data);
-        this.setState(() => ({
-          movies: [...res.data],
-          searchTerm: movie
-        }))
-      })
-      .catch(e => {
-        this.setState(() => ({
-          error: e.response.data.error
-        }))
-      })
+    if (movie) {
+      axios.post("/movies", { movie })
+        .then(res => {
+          // console.log(res.data);
+          this.setState(() => ({
+            movies: [...res.data],
+            searchTerm: movie
+          }))
+        })
+        .catch(e => {
+          this.setState(() => ({
+            error: e.response.data.error
+          }))
+        })
+    }
   }
   handleChange(e) {
     let val = e.target.value;
@@ -69,7 +70,7 @@ class SearchMovie extends Component {
   }
   render() {
     const { movies, error, search, searchTerm } = this.state;
-
+    let { movie } = this.props.match.params;
     return (
       <div id="search-movie-container">
         <Navbar />
@@ -94,6 +95,13 @@ class SearchMovie extends Component {
         {error ?
           <div className="container">
             <h1>{error}</h1>
+          </div>
+          :
+          null
+        }
+        {!movie && !error ?
+          <div>
+            <h1>Lets find a Movie or TV show</h1>
           </div>
           :
           null
