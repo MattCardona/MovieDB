@@ -17,10 +17,10 @@ class Navbar extends Component {
                 <Link to="/" className="nav-link hover-effect">Home <i className="fas fa-home"></i></Link>
               </li>
               <li className="nav-item">
-                <Link to="/actors" className="nav-link hover-effect" >Actors/Actresses <i className="fas fa-user hover-effect"></i></Link>
+                <Link to="/actors" className="nav-link hover-effect" >Actors/Actresses <i className="fas fa-user"></i></Link>
               </li>
               <li className="nav-item">
-                <Link to="/search" className="nav-link hover-effect" >Movie Search <i className="fas fa-film hover-effect"></i></Link>
+                <Link to="/search" className="nav-link hover-effect" >Movie Search <i className="fas fa-film"></i></Link>
               </li>
             </ul>
           </div>
