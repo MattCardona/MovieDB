@@ -15,7 +15,7 @@ const AppRouter = (props) => {
     <BrowserRouter>
       <Switch>
         <Route path="/" component={Home} exact />
-        <Route path="/search/" component={SearchMovie} />
+        <Route path="/search/" component={SearchMovie} exact />
         <Route path="/search/:movie" component={SearchMovie} exact />
         <Route path="/movie/:id" component={MovieInfo} />
         <Route path="/actors" component={Actors} exact />
