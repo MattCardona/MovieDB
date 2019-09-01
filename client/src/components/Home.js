@@ -5,34 +5,26 @@ import { Link } from 'react-router-dom';
 
 
 class Home extends Component {
-  constructor(props) {
-    super(props);
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleChange = this.handleChange.bind(this);
-    this.handleNowPlaying = this.handleNowPlaying.bind(this);
-    this.handlePopular = this.handlePopular.bind(this);
-    this.handleTopRated = this.handleTopRated.bind(this);
-    this.state = {
-      movies: [],
-      sliderMovies: [],
-      search: ""
-    }
+  state = {
+    movies: [],
+    sliderMovies: [],
+    search: ""
   }
   componentDidMount() {
     this.handleNowPlaying();
   }
-  handleChange(e) {
+  handleChange = (e) => {
     let val = e.target.value;
     this.setState(() => ({
       search: val
     }))
   }
-  handleSubmit(e) {
+  handleSubmit = (e) => {
     e.preventDefault();
     let { search } = this.state;
     this.props.history.push(`/search/${search}`);
   }
-  handleNowPlaying() {
+  handleNowPlaying = () => {
     document.getElementById("now-playing").classList.add("active");
     document.getElementById("popular").classList.remove("active");
     document.getElementById("top-rated").classList.remove("active");
@@ -48,7 +40,7 @@ class Home extends Component {
       })
       .catch(err => console.log(JSON.stringify(err, undefined, 2)))
   }
-  handlePopular() {
+  handlePopular = () => {
     document.getElementById("popular").classList.add("active");
     document.getElementById("now-playing").classList.remove("active");
     document.getElementById("top-rated").classList.remove("active");
@@ -64,7 +56,7 @@ class Home extends Component {
       })
       .catch(err => console.log(JSON.stringify(err, undefined, 2)))
   }
-  handleTopRated() {
+  handleTopRated = () => {
     document.getElementById("top-rated").classList.add("active");
     document.getElementById("now-playing").classList.remove("active");
     document.getElementById("popular").classList.remove("active");
