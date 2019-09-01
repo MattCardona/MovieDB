@@ -5,17 +5,11 @@ import MovieSearchBar from './MovieSearchBar';
 import Navbar from './Navbar';
 
 class SearchMovie extends Component {
-  constructor(props) {
-    super(props);
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleChange = this.handleChange.bind(this);
-    this.getNewResults = this.getNewResults.bind(this);
-    this.state = {
-      movies: [],
-      error: "",
-      search: "",
-      searchTerm: ""
-    }
+  state = {
+    movies: [],
+    error: "",
+    search: "",
+    searchTerm: ""
   }
   componentDidMount() {
     let { movie } = this.props.match.params;
@@ -35,20 +29,20 @@ class SearchMovie extends Component {
         })
     }
   }
-  handleChange(e) {
+  handleChange = (e) => {
     let val = e.target.value;
     this.setState(() => ({
       search: val
     }))
   }
-  handleSubmit(e) {
+  handleSubmit = (e) => {
     e.preventDefault();
     this.getNewResults();
     this.setState(() => ({
       search: ""
     }))
   }
-  getNewResults() {
+  getNewResults = () => {
     let { search } = this.state;
     this.props.history.push(`/search/${search}`);
 
