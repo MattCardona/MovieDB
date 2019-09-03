@@ -1,15 +1,20 @@
 import React, { Component } from 'react';
 
 class MovieInfo extends Component {
-  constructor(props) {
-    super(props);
-    this.handleClick = this.handleClick.bind(this);
-    this.state = {
-      movie: {},
-      height: "",
-      prevLocation: ""
-    }
+  state = {
+    movie: {},
+    height: "",
+    prevLocation: ""
   }
+  // constructor(props) {
+  //   super(props);
+  //   this.handleClick = this.handleClick.bind(this);
+  //   this.state = {
+  //     movie: {},
+  //     height: "",
+  //     prevLocation: ""
+  //   }
+  // }
   componentDidMount() {
     this.setState(() => ({
       height: window.innerHeight + 'px',
@@ -27,10 +32,10 @@ class MovieInfo extends Component {
       })
       .catch(err => console.log(JSON.stringify(err, undefined, 2)))
   }
-  handleClick() {
+  handleClick = () => {
     this.props.history.goBack()
   }
-  prevLocation(location) {
+  prevLocation = (location) => {
     switch (location) {
       case "search":
         return <i onClick={this.handleClick} className="fas fa-search hover-effect"> Search</i>;
