@@ -4,15 +4,10 @@ import Navbar from '../Navbar';
 import ActorSearchBar from './ActorSearchBar';
 
 class Actors extends Component {
-  constructor(props) {
-    super(props);
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleChange = this.handleChange.bind(this);
-    this.state = {
-      actors: [],
-      search: ""
-    };
-  }
+  state = {
+    actors: [],
+    search: ""
+  };
   componentDidMount() {
     fetch("/popularactors")
       .then((res) => {
@@ -26,13 +21,13 @@ class Actors extends Component {
       })
       .catch(err => console.log(JSON.stringify(err, undefined, 2)))
   }
-  handleChange(e) {
+  handleChange = (e) => {
     let searchTerm = e.target.value;
     this.setState(() => ({
       search: searchTerm
     }))
   }
-  handleSubmit(e) {
+  handleSubmit = (e) => {
     e.preventDefault();
     let { search: name } = this.state;
     this.props.history.push(`/actors/search/${name}`)
