@@ -3,22 +3,17 @@ import Card from '../Card';
 import Navbar from '../Navbar';
 
 class MoreInfo extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      actor: {},
-      cast: []
-    }
+  state = {
+    actor: {},
+    cast: []
   }
   componentDidMount() {
-    // console.log(this.props.match.params.id);
     const { id } = this.props.match.params;
     fetch(`/actor/${id}`)
       .then((res) => {
         return res.json();
       })
       .then(data => {
-        // console.log(data, "cred");
         this.setState(() => ({
           actor: data,
           cast: data.combined_credits.cast
