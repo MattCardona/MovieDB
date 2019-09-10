@@ -5,23 +5,18 @@ import Navbar from '../Navbar';
 import ActorSearchBar from './ActorSearchBar';
 
 class SearchActor extends Component {
-  constructor(props) {
-    super(props);
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.state = {
-      actors: [],
-      search: "",
-      searchedName: "",
-      error: ""
-    };
-  }
+  state = {
+    actors: [],
+    search: "",
+    searchedName: "",
+    error: ""
+  };
   componentDidMount() {
     // console.log(this.props.match.params.name);
     const { name: actor } = this.props.match.params;
     this.getActor(actor);
   }
-  getActor(actor) {
+  getActor = (actor) => {
     axios.post("/search/person", { actor })
       .then(res => {
         // console.log(res.data, "res");
@@ -42,13 +37,13 @@ class SearchActor extends Component {
         }))
       })
   }
-  handleChange(e) {
+  handleChange = (e) => {
     let val = e.target.value;
     this.setState(() => ({
       search: val
     }));
   }
-  handleSubmit(e) {
+  handleSubmit = (e) => {
     e.preventDefault();
     // console.log(this.state.search);
     let { search: actor } = this.state;
