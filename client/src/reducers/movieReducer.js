@@ -1,4 +1,8 @@
-let moviesInitialState = {};
+let moviesInitialState = {
+  movies: [],
+  movie: [],
+  sliderMovies: []
+};
 
 export default (state = moviesInitialState, action) => {
   switch (action.type) {
