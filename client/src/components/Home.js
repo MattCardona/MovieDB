@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 import Slider from 'react-slick';
 import Card from './Card';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux'
+import { nowPlaying } from '../actions/moviesActions';
 
 
 class Home extends Component {
   state = {
-    movies: [],
-    sliderMovies: [],
     search: ""
   }
   componentDidMount() {
@@ -28,17 +28,7 @@ class Home extends Component {
     document.getElementById("now-playing").classList.add("active");
     document.getElementById("popular").classList.remove("active");
     document.getElementById("top-rated").classList.remove("active");
-    fetch("/homepage")
-      .then((res) => {
-        return res.json();
-      })
-      .then(data => {
-        this.setState(() => ({
-          sliderMovies: data.slice(0, 6),
-          movies: [...data]
-        }))
-      })
-      .catch(err => console.log(JSON.stringify(err, undefined, 2)))
+    this.props.nowPlaying();
   }
   handlePopular = () => {
     document.getElementById("popular").classList.add("active");
@@ -73,7 +63,8 @@ class Home extends Component {
       .catch(err => console.log(JSON.stringify(err, undefined, 2)))
   }
   render() {
-    const { sliderMovies, search } = this.state;
+    const { search } = this.state;
+    const { sliderMovies, movies } = this.props;
     const settings = {
       dots: false,
       infinite: true,
@@ -144,7 +135,7 @@ class Home extends Component {
           </nav>
 
           <div className="row">
-            {this.state.movies.map(movie => {
+            {movies.map(movie => {
               const movieBackdrop = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
               return (
                 <Card movie={movie} movieBackdrop={movieBackdrop} prev="home" key={movie.id} />
@@ -170,4 +161,9 @@ class Home extends Component {
   }
 };
 
-export default Home;
+const mapStateToProps = ({ movies }) => ({
+  movies: movies.movies,
+  sliderMovies: movies.sliderMovies
+})
+
+export default connect(mapStateToProps, { nowPlaying })(Home);

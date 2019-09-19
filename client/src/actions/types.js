@@ -1,0 +1,1 @@
+export const NOW_PLAYING = "NOW_PLAYING";

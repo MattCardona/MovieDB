@@ -1,3 +1,5 @@
+import { NOW_PLAYING } from "../actions/types";
+
 let moviesInitialState = {
   movies: [],
   movie: [],
@@ -6,6 +8,12 @@ let moviesInitialState = {
 
 export default (state = moviesInitialState, action) => {
   switch (action.type) {
+    case NOW_PLAYING:
+      return {
+        ...state,
+        movies: [...action.movies],
+        sliderMovies: action.movies.slice(0, 6)
+      }
     default:
       return state;
   }
