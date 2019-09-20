@@ -3,7 +3,7 @@ import Slider from 'react-slick';
 import Card from './Card';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux'
-import { nowPlaying } from '../actions/moviesActions';
+import { nowPlaying, popular } from '../actions/moviesActions';
 
 
 class Home extends Component {
@@ -34,17 +34,7 @@ class Home extends Component {
     document.getElementById("popular").classList.add("active");
     document.getElementById("now-playing").classList.remove("active");
     document.getElementById("top-rated").classList.remove("active");
-    fetch("/popular")
-      .then((res) => {
-        return res.json();
-      })
-      .then(data => {
-        this.setState(() => ({
-          sliderMovies: data.slice(0, 6),
-          movies: [...data]
-        }))
-      })
-      .catch(err => console.log(JSON.stringify(err, undefined, 2)))
+    this.props.popular();
   }
   handleTopRated = () => {
     document.getElementById("top-rated").classList.add("active");
@@ -166,4 +156,4 @@ const mapStateToProps = ({ movies }) => ({
   sliderMovies: movies.sliderMovies
 })
 
-export default connect(mapStateToProps, { nowPlaying })(Home);
+export default connect(mapStateToProps, { nowPlaying, popular })(Home);
