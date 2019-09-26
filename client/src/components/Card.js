@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const Card = (props) => {
+const Card = props => {
   let { title, id } = props.movie;
   let { movieBackdrop, prev } = props;
   return (

@@ -1,6 +1,6 @@
 import React from 'react'
 
-const NotFound = (props) => {
+const NotFound = props => {
   return (
     <div className="container" id="not-found">
       <h1 className="x-large text-primary">

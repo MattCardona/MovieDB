@@ -1,6 +1,6 @@
 import React from 'react'
 
-const MovieSearchBar = (props) => {
+const MovieSearchBar = props => {
   return (
     <div className="container-fluid" id="search-container">
       <form onSubmit={props.handleSubmit}>

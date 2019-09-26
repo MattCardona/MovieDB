@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 
-const Navbar = (props) => {
+const Navbar = props => {
   return (
     <div>
       <nav className="navbar  navbar-expand-lg navbar-dark my-navbar">
