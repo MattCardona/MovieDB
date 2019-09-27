@@ -1,4 +1,4 @@
-import { NOW_PLAYING, POPULAR, TOP_RATED } from './types';
+import { NOW_PLAYING, POPULAR, TOP_RATED, SEARCHED_MOVIE } from './types';
 import Axios from 'axios';
 
 export const nowPlaying = () => dispatch => {
@@ -34,6 +34,19 @@ export const topRated = () => dispatch => {
       dispatch({
         type: TOP_RATED,
         movies: data
+      })
+    })
+    .catch(e => {
+      console.log(e);
+    })
+}
+
+export const searchedMovie = (movie) => dispatch => {
+  Axios.get(`/movies/${movie}`)
+    .then(({ data }) => {
+      dispatch({
+        type: SEARCHED_MOVIE,
+        movie: data
       })
     })
     .catch(e => {
