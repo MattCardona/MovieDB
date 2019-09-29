@@ -1,41 +1,24 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux'
+import { searchedMovie } from '../actions/moviesActions';
+
 
 class MovieInfo extends Component {
   state = {
-    movie: {},
     height: "",
     prevLocation: ""
   }
-  // constructor(props) {
-  //   super(props);
-  //   this.handleClick = this.handleClick.bind(this);
-  //   this.state = {
-  //     movie: {},
-  //     height: "",
-  //     prevLocation: ""
-  //   }
-  // }
   componentDidMount() {
     this.setState(() => ({
       height: window.innerHeight + 'px',
       prevLocation: this.props.location.state.prev
     }));
-    fetch(`/movies/${this.props.match.params.id}`)
-      .then((res) => {
-        return res.json();
-      })
-      .then(data => {
-        // console.log(data);
-        this.setState(() => ({
-          movie: data
-        }));
-      })
-      .catch(err => console.log(JSON.stringify(err, undefined, 2)))
+    this.props.searchedMovie(this.props.match.params.id);
   }
   handleClick = () => {
     this.props.history.goBack()
   }
-  prevLocation = (location) => {
+  prevLocation = location => {
     switch (location) {
       case "search":
         return <i onClick={this.handleClick} className="fas fa-search hover-effect"> Search</i>;
@@ -47,11 +30,12 @@ class MovieInfo extends Component {
     }
   }
   render() {
-    const { movie, prevLocation } = this.state;
+    const { prevLocation } = this.state;
+    const { movie } = this.props;
     return (
       <div>
         <div className="container-fluid" style={{
-          backgroundImage: `linear-gradient(to right, rgba(0, 0, 14,0.7), rgba(67, 67, 67,0.7)), url(https://image.tmdb.org/t/p/original${this.state.movie.backdrop_path})`,
+          backgroundImage: `linear-gradient(to right, rgba(0, 0, 14,0.7), rgba(67, 67, 67,0.7)), url(https://image.tmdb.org/t/p/original${movie.backdrop_path})`,
           backgroundSize: "cover",
           backgroundPosition: "center center",
           height: `${this.state.height}`
@@ -68,4 +52,8 @@ class MovieInfo extends Component {
   }
 };
 
-export default MovieInfo;
+const mapStateToProps = state => ({
+  movie: state.movies.movie
+})
+
+export default connect(mapStateToProps, { searchedMovie })(MovieInfo);
