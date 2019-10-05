@@ -3,39 +3,35 @@ import Card from './Card';
 import axios from 'axios';
 import MovieSearchBar from './MovieSearchBar';
 import Navbar from './Navbar';
+import { connect } from 'react-redux'
+import { searchMovie } from '../actions/moviesActions';
+
 
 class SearchMovie extends Component {
   state = {
-    movies: [],
     error: "",
     search: "",
     searchTerm: ""
   }
   componentDidMount() {
     let { movie } = this.props.match.params;
+
+    this.setState(() => ({
+      searchTerm: movie
+    }));
+
     if (movie) {
-      axios.post("/movies", { movie })
-        .then(res => {
-          // console.log(res.data);
-          this.setState(() => ({
-            movies: [...res.data],
-            searchTerm: movie
-          }))
-        })
-        .catch(e => {
-          this.setState(() => ({
-            error: e.response.data.error
-          }))
-        })
+      this.props.searchMovie(movie);
     }
+
   }
-  handleChange = (e) => {
+  handleChange = e => {
     let val = e.target.value;
     this.setState(() => ({
       search: val
     }))
   }
-  handleSubmit = (e) => {
+  handleSubmit = e => {
     e.preventDefault();
     this.getNewResults();
     this.setState(() => ({
@@ -46,25 +42,19 @@ class SearchMovie extends Component {
     let { search } = this.state;
     this.props.history.push(`/search/${search}`);
 
-    axios.post("/movies", { movie: search })
-      .then(res => {
-        this.setState(() => ({
-          movies: [...res.data],
-          searchTerm: search,
-          error: ""
-        }))
-      })
-      .catch(e => {
-        this.setState(() => ({
-          error: e.response.data.error,
-          searchTerm: search,
-          movies: []
-        }))
-      })
+    this.setState(() => ({
+      searchTerm: search,
+      error: ""
+    }));
+
+    this.props.searchMovie(search);
+
   }
   render() {
-    const { movies, error, search, searchTerm } = this.state;
+    const { error, search, searchTerm } = this.state;
     let { movie } = this.props.match.params;
+    const { movies } = this.props;
+
     return (
       <div id="search-movie-container">
         <Navbar />
@@ -105,5 +95,9 @@ class SearchMovie extends Component {
   }
 };
 
+const mapStateToProps = ({ movies }) => ({
+  movies: movies.movies
+});
 
-export default SearchMovie;
+
+export default connect(mapStateToProps, { searchMovie })(SearchMovie);
