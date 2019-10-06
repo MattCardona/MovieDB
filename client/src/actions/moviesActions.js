@@ -64,6 +64,9 @@ export const searchMovie = (searchMovie, cb) => dispatch => {
       })
     })
     .catch(e => {
+      dispatch({
+        type: SEARCH_MOVIE_ERROR
+      })
       cb(e.response.data.error);
     })
 }
