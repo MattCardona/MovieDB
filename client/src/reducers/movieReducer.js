@@ -38,6 +38,12 @@ export default (state = moviesInitialState, action) => {
         sliderMovies: [],
         movie: {}
       };
+    case SEARCH_MOVIE_ERROR:
+      return {
+        movies: [],
+        sliderMovies: [],
+        movie: {}
+      };
     default:
       return state;
   }
