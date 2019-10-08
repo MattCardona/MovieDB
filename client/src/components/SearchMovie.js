@@ -21,7 +21,11 @@ class SearchMovie extends Component {
     }));
 
     if (movie) {
-      this.props.searchMovie(movie);
+      this.props.searchMovie(movie, (error) => {
+        this.setState(() => ({
+          error
+        }))
+      });
     }
 
   }
@@ -47,7 +51,11 @@ class SearchMovie extends Component {
       error: ""
     }));
 
-    this.props.searchMovie(search);
+    this.props.searchMovie(search, (error) => {
+      this.setState(() => ({
+        error
+      }))
+    });
 
   }
   render() {
