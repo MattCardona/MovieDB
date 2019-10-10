@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 
-const ActorCards = (props) => {
+const ActorCards = props => {
   const actorImage = `https://image.tmdb.org/t/p/w500${props.profile_path}`;
   return (
     <div className="col-xs-12 col-sm-6 col-md-4">
