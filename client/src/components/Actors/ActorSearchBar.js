@@ -1,6 +1,6 @@
 import React from 'react'
 
-const ActorSearchBar = (props) => {
+const ActorSearchBar = props => {
   return (
     <div
       className="container popular-actors-form" >
