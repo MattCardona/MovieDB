@@ -16,7 +16,7 @@ class SearchActor extends Component {
     const { name: actor } = this.props.match.params;
     this.getActor(actor);
   }
-  getActor = (actor) => {
+  getActor = actor => {
     axios.post("/search/person", { actor })
       .then(res => {
         // console.log(res.data, "res");
@@ -37,13 +37,13 @@ class SearchActor extends Component {
         }))
       })
   }
-  handleChange = (e) => {
+  handleChange = e => {
     let val = e.target.value;
     this.setState(() => ({
       search: val
     }));
   }
-  handleSubmit = (e) => {
+  handleSubmit = e => {
     e.preventDefault();
     // console.log(this.state.search);
     let { search: actor } = this.state;
