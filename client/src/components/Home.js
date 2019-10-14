@@ -10,6 +10,9 @@ class Home extends Component {
   state = {
     search: ""
   }
+  now_playing = React.createRef();
+  get_popular = React.createRef();
+  top_rated = React.createRef();
   componentDidMount() {
     this.handleNowPlaying();
   }
@@ -25,21 +28,21 @@ class Home extends Component {
     this.props.history.push(`/search/${search}`);
   }
   handleNowPlaying = () => {
-    document.getElementById("now-playing").classList.add("active");
-    document.getElementById("popular").classList.remove("active");
-    document.getElementById("top-rated").classList.remove("active");
+    this.now_playing.current.classList.add("active");
+    this.get_popular.current.classList.remove("active");
+    this.top_rated.current.classList.remove("active");
     this.props.nowPlaying();
   }
   handlePopular = () => {
-    document.getElementById("popular").classList.add("active");
-    document.getElementById("now-playing").classList.remove("active");
-    document.getElementById("top-rated").classList.remove("active");
+    this.now_playing.current.classList.remove("active");
+    this.get_popular.current.classList.add("active");
+    this.top_rated.current.classList.remove("active");
     this.props.popular();
   }
   handleTopRated = () => {
-    document.getElementById("top-rated").classList.add("active");
-    document.getElementById("now-playing").classList.remove("active");
-    document.getElementById("popular").classList.remove("active");
+    this.now_playing.current.classList.remove("active");
+    this.get_popular.current.classList.remove("active");
+    this.top_rated.current.classList.add("active");
     this.props.topRated();
   }
   render() {
@@ -98,13 +101,13 @@ class Home extends Component {
             <div className="collapse navbar-collapse" id="navbar-burger">
               <ul className="navbar-nav mr-auto">
                 <li className="nav-item">
-                  <p className="nav-link hover-effect" id="now-playing" onClick={this.handleNowPlaying}>Now Playing<span className="sr-only">(current)</span></p>
+                  <p ref={this.now_playing} className="nav-link hover-effect" id="now-playing" onClick={this.handleNowPlaying}>Now Playing<span className="sr-only">(current)</span></p>
                 </li>
                 <li className="nav-item">
-                  <p className="nav-link  hover-effect" id="popular" onClick={this.handlePopular}>Popular</p>
+                  <p ref={this.get_popular} className="nav-link  hover-effect" id="popular" onClick={this.handlePopular}>Popular</p>
                 </li>
                 <li className="nav-item">
-                  <p className="nav-link  hover-effect" id="top-rated" onClick={this.handleTopRated}>Top rated</p>
+                  <p ref={this.top_rated} className="nav-link  hover-effect" id="top-rated" onClick={this.handleTopRated}>Top rated</p>
                 </li>
                 <li className="nav-item">
                   <Link to="/actors" className="hover-effect" >Actors/Actresses</Link>
