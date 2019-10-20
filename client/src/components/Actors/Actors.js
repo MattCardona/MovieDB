@@ -2,24 +2,15 @@ import React, { Component } from 'react';
 import ActorCards from './ActorCards';
 import Navbar from '../Navbar';
 import ActorSearchBar from './ActorSearchBar';
+import { popularActors } from '../../actions/actorsActions';
+import { connect } from 'react-redux'
 
 class Actors extends Component {
   state = {
-    actors: [],
     search: ""
   };
   componentDidMount() {
-    fetch("/popularactors")
-      .then((res) => {
-        return res.json();
-      })
-      .then(data => {
-        // console.log(data);
-        this.setState(() => ({
-          actors: data
-        }))
-      })
-      .catch(err => console.log(JSON.stringify(err, undefined, 2)))
+    this.props.popularActors();
   }
   handleChange = e => {
     let searchTerm = e.target.value;
@@ -33,7 +24,7 @@ class Actors extends Component {
     this.props.history.push(`/actors/search/${name}`)
   }
   render() {
-    const { actors } = this.state;
+    const { actors } = this.props;
 
     return (
       <div className="popular-actors">
@@ -55,4 +46,8 @@ class Actors extends Component {
   }
 }
 
-export default Actors;
+const mapStateToProps = ({ actors }) => ({
+  actors: actors.actors
+})
+
+export default connect(mapStateToProps, { popularActors })(Actors);
