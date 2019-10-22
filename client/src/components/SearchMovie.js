@@ -29,6 +29,22 @@ class SearchMovie extends Component {
     }
 
   }
+  componentDidUpdate(ownProps) {
+    let { movie } = this.props.match.params;
+    if (ownProps.match.params !== this.props.match.params) {
+      // this.getNewResults()
+      this.setState(() => ({
+        searchTerm: movie,
+        error: ""
+      }));
+
+      this.props.searchMovie(movie, (error) => {
+        this.setState(() => ({
+          error
+        }))
+      });
+    }
+  }
   handleChange = e => {
     let val = e.target.value;
     this.setState(() => ({
