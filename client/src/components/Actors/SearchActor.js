@@ -1,12 +1,15 @@
 import React, { Component } from 'react'
 import axios from 'axios';
+import { connect } from 'react-redux'
+
 import ActorCards from './ActorCards';
 import Navbar from '../Navbar';
 import ActorSearchBar from './ActorSearchBar';
+import { searchActor } from '../../actions/actorsActions';
+
 
 class SearchActor extends Component {
   state = {
-    actors: [],
     search: "",
     searchedName: "",
     error: ""
@@ -14,28 +17,10 @@ class SearchActor extends Component {
   componentDidMount() {
     // console.log(this.props.match.params.name);
     const { name: actor } = this.props.match.params;
-    this.getActor(actor);
-  }
-  getActor = actor => {
-    axios.post("/search/person", { actor })
-      .then(res => {
-        // console.log(res.data, "res");
-        this.props.history.push(actor)
-        this.setState(() => ({
-          actors: res.data,
-          search: "",
-          searchedName: actor
-        }))
-      })
-      .catch(e => {
-        // console.log(e, "error");
-        this.setState(() => ({
-          error: e.response.data.error,
-          search: "",
-          searchedName: actor,
-          actors: []
-        }))
-      })
+    this.setState(() => ({
+      searchedName: actor
+    }))
+    this.props.searchActor(actor);
   }
   handleChange = e => {
     let val = e.target.value;
@@ -45,12 +30,17 @@ class SearchActor extends Component {
   }
   handleSubmit = e => {
     e.preventDefault();
-    // console.log(this.state.search);
     let { search: actor } = this.state;
-    this.getActor(actor);
+    this.props.history.push(actor);
+    this.setState(() => ({
+      searchedName: actor,
+      search: ""
+    }))
+    this.props.searchActor(actor);
   }
   render() {
-    let { actors, error, searchedName } = this.state;
+    let { error, searchedName } = this.state;
+    let { actors } = this.props
     return (
       <div className="search-actor-container">
         <Navbar />
@@ -83,4 +73,8 @@ class SearchActor extends Component {
   }
 }
 
-export default SearchActor;
+const mapStateToProps = ({ actors }) => ({
+  actors: actors.actors
+})
+
+export default connect(mapStateToProps, { searchActor })(SearchActor);
