@@ -22,6 +22,15 @@ class SearchActor extends Component {
     }))
     this.props.searchActor(actor);
   }
+  componentDidUpdate(ownProps) {
+    if (this.props.match.params !== ownProps.match.params) {
+      const { name: actor } = this.props.match.params;
+      this.setState(() => ({
+        searchedName: actor
+      }))
+      this.props.searchActor(actor);
+    }
+  }
   handleChange = e => {
     let val = e.target.value;
     this.setState(() => ({
