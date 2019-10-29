@@ -7,3 +7,4 @@ export const SEARCH_MOVIE_ERROR = "SEARCH_MOVIE_ERROR";
 // actor types
 export const POPULAR_ACTORS = "POPULAR_ACTORS";
 export const SEARCH_ACTOR = "SEARCH_ACTOR";
+export const ACTOR_INFO = "ACTOR_INFO";
