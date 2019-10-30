@@ -1,5 +1,5 @@
 import Axios from "axios"
-import { POPULAR_ACTORS, SEARCH_ACTOR } from "./types";
+import { POPULAR_ACTORS, SEARCH_ACTOR, ACTOR_INFO } from "./types";
 
 export const popularActors = () => async dispatch => {
   try {
@@ -27,4 +27,19 @@ export const searchActor = name => async dispatch => {
     // need to handle error still
     console.log(error);
   }
+}
+
+export const actorInfo = actorId => async dispatch => {
+  try {
+    const { data } = await Axios.get(`/actor/${actorId}`);
+    dispatch({
+      type: ACTOR_INFO,
+      actor: data,
+      cast: data.combined_credits.cast
+    })
+  } catch (error) {
+    // need to handle error still
+    console.log(error);
+  }
+
 }
