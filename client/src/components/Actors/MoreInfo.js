@@ -1,29 +1,17 @@
 import React, { Component } from 'react'
 import Card from '../Card';
 import Navbar from '../Navbar';
+import { connect } from 'react-redux'
+import { actorInfo } from '../../actions/actorsActions';
+
 
 class MoreInfo extends Component {
-  state = {
-    actor: {},
-    cast: []
-  }
   componentDidMount() {
     const { id } = this.props.match.params;
-    fetch(`/actor/${id}`)
-      .then((res) => {
-        return res.json();
-      })
-      .then(data => {
-        this.setState(() => ({
-          actor: data,
-          cast: data.combined_credits.cast
-        }));
-
-      })
-      .catch(err => console.log(JSON.stringify(err, undefined, 2)))
+    this.props.actorInfo(id);
   }
   render() {
-    const { actor, cast } = this.state;
+    const { actor, cast } = this.props;
 
     const actorImage = `https://image.tmdb.org/t/p/w500${actor.profile_path}`;
     return (
@@ -66,4 +54,9 @@ class MoreInfo extends Component {
   }
 }
 
-export default MoreInfo;
+const mapStateToProps = ({ actors }) => ({
+  actor: actors.actor,
+  cast: actors.cast
+})
+
+export default connect(mapStateToProps, { actorInfo })(MoreInfo);
