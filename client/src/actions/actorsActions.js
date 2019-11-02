@@ -3,10 +3,10 @@ import { POPULAR_ACTORS, SEARCH_ACTOR, ACTOR_INFO } from "./types";
 
 export const popularActors = () => async dispatch => {
   try {
-    const response = await Axios.get("/popularactors");
+    const { data } = await Axios.get("/popularactors");
     dispatch({
       type: POPULAR_ACTORS,
-      actors: response.data
+      actors: data
     });
     // console.log(response.data);
   } catch (error) {
