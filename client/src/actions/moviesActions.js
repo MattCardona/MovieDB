@@ -1,17 +1,16 @@
 import { NOW_PLAYING, POPULAR, TOP_RATED, SEARCHED_MOVIE, SEARCH_MOVIE, SEARCH_MOVIE_ERROR } from './types';
 import Axios from 'axios';
 
-export const nowPlaying = () => dispatch => {
-  Axios.get("/homepage")
-    .then(({ data }) => {
-      dispatch({
-        type: NOW_PLAYING,
-        movies: data
-      })
+export const nowPlaying = () => async dispatch => {
+  try {
+    const { data } = await Axios.get("/homepage")
+    dispatch({
+      type: NOW_PLAYING,
+      movies: data
     })
-    .catch(e => {
-      console.log(e);
-    })
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 export const popular = () => dispatch => {
