@@ -13,17 +13,16 @@ export const nowPlaying = () => async dispatch => {
   }
 }
 
-export const popular = () => dispatch => {
-  Axios.get("/popular")
-    .then(({ data }) => {
-      dispatch({
-        type: POPULAR,
-        movies: data
-      })
+export const popular = () => async dispatch => {
+  try {
+    const { data } = await Axios.get("/popular");
+    dispatch({
+      type: POPULAR,
+      movies: data
     })
-    .catch(e => {
-      console.log(e);
-    })
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 export const topRated = () => dispatch => {
