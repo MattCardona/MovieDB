@@ -25,18 +25,16 @@ export const popular = () => async dispatch => {
   }
 }
 
-export const topRated = () => dispatch => {
-  Axios.get("/toprated")
-    .then(({ data }) => {
-      console.log(data);
-      dispatch({
-        type: TOP_RATED,
-        movies: data
-      })
+export const topRated = () => async dispatch => {
+  try {
+    const { data } = await Axios.get("/toprated");
+    dispatch({
+      type: TOP_RATED,
+      movies: data
     })
-    .catch(e => {
-      console.log(e);
-    })
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 export const searchedMovie = movie => dispatch => {
