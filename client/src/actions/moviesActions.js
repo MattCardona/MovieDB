@@ -37,17 +37,16 @@ export const topRated = () => async dispatch => {
   }
 }
 
-export const searchedMovie = movie => dispatch => {
-  Axios.get(`/movies/${movie}`)
-    .then(({ data }) => {
-      dispatch({
-        type: SEARCHED_MOVIE,
-        movie: data
-      })
+export const searchedMovie = movie => async dispatch => {
+  try {
+    const { data } = await Axios.get(`/movies/${movie}`);
+    dispatch({
+      type: SEARCHED_MOVIE,
+      movie: data
     })
-    .catch(e => {
-      console.log(e);
-    })
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 export const searchMovie = (searchMovie, cb) => dispatch => {
