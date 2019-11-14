@@ -49,19 +49,17 @@ export const searchedMovie = movie => async dispatch => {
   }
 }
 
-export const searchMovie = (searchMovie, cb) => dispatch => {
-  Axios.post("/movies", { movie: searchMovie })
-    .then(({ data }) => {
-      // console.log(data, "movies");
-      dispatch({
-        type: SEARCH_MOVIE,
-        searchMovie: data
-      })
+export const searchMovie = (searchMovie, cb) => async dispatch => {
+  try {
+    const { data } = await Axios.post("/movies", { movie: searchMovie });
+    dispatch({
+      type: SEARCH_MOVIE,
+      searchMovie: data
+    });
+  } catch (e) {
+    dispatch({
+      type: SEARCH_MOVIE_ERROR
     })
-    .catch(e => {
-      dispatch({
-        type: SEARCH_MOVIE_ERROR
-      })
-      cb(e.response.data.error);
-    })
+    cb(e.response.data.error);
+  }
 }
