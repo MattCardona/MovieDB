@@ -130,8 +130,9 @@ footer img {
 }
 
 .card-image {
-  height: 340px;
-  width: 200px;
+  /* height: 340px;
+  width: 200px; */
+  width: 65%;
   margin: 10px auto;
 }
 
