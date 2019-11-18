@@ -119,7 +119,7 @@ class Home extends Component {
 
           <div className="row">
             {movies.map(movie => {
-              const movieBackdrop = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
+              const movieBackdrop = `https://image.tmdb.org/t/p/w300${movie.poster_path}`;
               return (
                 <Card movie={movie} movieBackdrop={movieBackdrop} prev="home" key={movie.id} />
               )
