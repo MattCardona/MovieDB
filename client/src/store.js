@@ -9,7 +9,7 @@ export default () => {
   const store = createStore(reducers, compose(
     applyMiddleware(...middleware),
     // remove after re-deploy 
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+    // window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
   ));
   return store;
 }
