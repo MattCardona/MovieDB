@@ -1,4 +1,4 @@
-import { NOW_PLAYING, POPULAR, TOP_RATED, SEARCHED_MOVIE, SEARCH_MOVIE, SEARCH_MOVIE_ERROR } from './types';
+import { NOW_PLAYING, POPULAR, TOP_RATED, SEARCHED_MOVIE, SEARCH_MOVIE, SEARCH_MOVIE_ERROR, SEARCHED_MOVIE_NAV } from './types';
 import Axios from 'axios';
 
 export const nowPlaying = () => async dispatch => {
@@ -63,3 +63,5 @@ export const searchMovie = (searchMovie, cb) => async dispatch => {
     cb(e.response.data.error);
   }
 }
+
+export const searchedMovieNav = () => ({ type: SEARCHED_MOVIE_NAV });
