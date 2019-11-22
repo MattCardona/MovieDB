@@ -1,4 +1,4 @@
-import { NOW_PLAYING, POPULAR, TOP_RATED, SEARCHED_MOVIE, SEARCH_MOVIE, SEARCH_MOVIE_ERROR } from "../actions/types";
+import { NOW_PLAYING, POPULAR, TOP_RATED, SEARCHED_MOVIE, SEARCH_MOVIE, SEARCH_MOVIE_ERROR, SEARCHED_MOVIE_NAV } from "../actions/types";
 
 let moviesInitialState = {
   movies: [],
@@ -39,6 +39,12 @@ export default (state = moviesInitialState, action) => {
         movie: {}
       };
     case SEARCH_MOVIE_ERROR:
+      return {
+        movies: [],
+        sliderMovies: [],
+        movie: {}
+      };
+    case SEARCHED_MOVIE_NAV:
       return {
         movies: [],
         sliderMovies: [],
