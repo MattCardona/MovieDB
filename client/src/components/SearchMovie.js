@@ -4,7 +4,7 @@ import axios from 'axios';
 import MovieSearchBar from './MovieSearchBar';
 import Navbar from './Navbar';
 import { connect } from 'react-redux'
-import { searchMovie } from '../actions/moviesActions';
+import { searchMovie, searchedMovieNav } from '../actions/moviesActions';
 
 
 class SearchMovie extends Component {
@@ -19,6 +19,10 @@ class SearchMovie extends Component {
     this.setState(() => ({
       searchTerm: movie
     }));
+
+    if (!movie) {
+      this.props.searchedMovieNav();
+    }
 
     if (movie) {
       this.props.searchMovie(movie, (error) => {
@@ -82,7 +86,7 @@ class SearchMovie extends Component {
     return (
       <div id="search-movie-container">
         <Navbar />
-        <h1>{searchTerm.toUpperCase()}</h1>
+        <h1>{movie ? searchTerm.toUpperCase() : null}</h1>
 
         <MovieSearchBar handleSubmit={this.handleSubmit} handleChange={this.handleChange} search={search} />
 
@@ -124,4 +128,4 @@ const mapStateToProps = ({ movies }) => ({
 });
 
 
-export default connect(mapStateToProps, { searchMovie })(SearchMovie);
+export default connect(mapStateToProps, { searchMovie, searchedMovieNav })(SearchMovie);
