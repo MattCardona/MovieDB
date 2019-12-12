@@ -3,7 +3,7 @@ import Axios from 'axios';
 
 export const nowPlaying = () => async dispatch => {
   try {
-    const { data } = await Axios.get("/homepage")
+    const { data } = await Axios.get("/movies/homepage")
     dispatch({
       type: NOW_PLAYING,
       movies: data
@@ -15,7 +15,7 @@ export const nowPlaying = () => async dispatch => {
 
 export const popular = () => async dispatch => {
   try {
-    const { data } = await Axios.get("/popular");
+    const { data } = await Axios.get("/movies/popular");
     dispatch({
       type: POPULAR,
       movies: data
@@ -27,13 +27,29 @@ export const popular = () => async dispatch => {
 
 export const topRated = () => async dispatch => {
   try {
-    const { data } = await Axios.get("/toprated");
+    const { data } = await Axios.get("/movies/toprated");
     dispatch({
       type: TOP_RATED,
       movies: data
     })
   } catch (error) {
     console.log(error);
+  }
+}
+
+
+export const searchMovie = (searchMovie, cb) => async dispatch => {
+  try {
+    const { data } = await Axios.post("/movies/search", { movie: searchMovie });
+    dispatch({
+      type: SEARCH_MOVIE,
+      searchMovie: data
+    });
+  } catch (e) {
+    dispatch({
+      type: SEARCH_MOVIE_ERROR
+    })
+    cb(e.response.data.error);
   }
 }
 
@@ -46,21 +62,6 @@ export const searchedMovie = movie => async dispatch => {
     })
   } catch (error) {
     console.log(error);
-  }
-}
-
-export const searchMovie = (searchMovie, cb) => async dispatch => {
-  try {
-    const { data } = await Axios.post("/movies", { movie: searchMovie });
-    dispatch({
-      type: SEARCH_MOVIE,
-      searchMovie: data
-    });
-  } catch (e) {
-    dispatch({
-      type: SEARCH_MOVIE_ERROR
-    })
-    cb(e.response.data.error);
   }
 }
 
