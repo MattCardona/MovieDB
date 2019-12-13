@@ -11,25 +11,28 @@ export default (state = moviesInitialState, action) => {
     case NOW_PLAYING:
       return {
         ...state,
+        movie: {},
         movies: [...action.movies],
         sliderMovies: action.movies.slice(0, 6)
       };
     case POPULAR:
       return {
         ...state,
+        movie: {},
         movies: [...action.movies],
         sliderMovies: action.movies.slice(0, 6)
       };
     case TOP_RATED:
       return {
         ...state,
+        movie: {},
         movies: [...action.movies],
         sliderMovies: action.movies.slice(0, 6)
       };
     case SEARCHED_MOVIE:
       return {
+        ...state,
         movies: [],
-        sliderMovies: [],
         movie: { ...action.movie }
       };
     case SEARCH_MOVIE:
