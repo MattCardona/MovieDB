@@ -3,7 +3,7 @@ import { POPULAR_ACTORS, SEARCH_ACTOR, ACTOR_INFO } from "./types";
 
 export const popularActors = () => async dispatch => {
   try {
-    const { data } = await Axios.get("/popularactors");
+    const { data } = await Axios.get("/actors/popularactors");
     dispatch({
       type: POPULAR_ACTORS,
       actors: data
@@ -17,7 +17,7 @@ export const popularActors = () => async dispatch => {
 
 export const searchActor = name => async dispatch => {
   try {
-    const { data } = await Axios.post("/search/person", { actor: name });
+    const { data } = await Axios.post("/actors/search/person", { actor: name });
     // console.log(response.data);
     dispatch({
       type: SEARCH_ACTOR,
@@ -31,7 +31,7 @@ export const searchActor = name => async dispatch => {
 
 export const actorInfo = actorId => async dispatch => {
   try {
-    const { data } = await Axios.get(`/actor/${actorId}`);
+    const { data } = await Axios.get(`/actors/${actorId}`);
     dispatch({
       type: ACTOR_INFO,
       actor: data,
