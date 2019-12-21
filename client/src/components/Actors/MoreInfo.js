@@ -3,12 +3,15 @@ import Card from '../Card';
 import Navbar from '../Navbar';
 import { connect } from 'react-redux'
 import { actorInfo } from '../../actions/actorsActions';
+import { searchedMovieNav } from '../../actions/moviesActions';
+
 
 
 class MoreInfo extends Component {
   componentDidMount() {
     const { id } = this.props.match.params;
     this.props.actorInfo(id);
+    this.props.searchedMovieNav();
   }
   render() {
     const { actor, cast } = this.props;
@@ -59,4 +62,4 @@ const mapStateToProps = ({ actors }) => ({
   cast: actors.cast
 })
 
-export default connect(mapStateToProps, { actorInfo })(MoreInfo);
+export default connect(mapStateToProps, { actorInfo, searchedMovieNav })(MoreInfo);
