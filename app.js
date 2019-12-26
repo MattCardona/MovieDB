@@ -19,6 +19,17 @@ app.use(bodyParser.json());
 app.use("/movies", movies);
 app.use("/actors", actors);
 
+app.post("/signup", (req, res) => {
+  const { username, password } = req.body;
+  console.log(username, password);
+  res.json({ msg: "This is the signup page" })
+})
+app.post("/signin", (req, res) => {
+  const { username, password } = req.body;
+  console.log(username, password);
+  res.json({ msg: "This is the signin page" })
+})
+
 // serve static assets in production
 if (process.env.NODE_ENV === "production") {
   // set my static folder
