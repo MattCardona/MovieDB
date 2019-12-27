@@ -6,8 +6,10 @@ const axios = require("axios");
 const path = require("path");
 const mongoose = require("mongoose");
 
-mongoose.connect(process.env.DB_URI, { useNewUrlParser: true });
+mongoose.connect(process.env.DB_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 
+
+const { signup } = require("./middleware/authroutesMiddleware");
 const movies = require("./routes/movies");
 const actors = require("./routes/actors");
 
@@ -19,11 +21,10 @@ app.use(bodyParser.json());
 app.use("/movies", movies);
 app.use("/actors", actors);
 
-app.post("/signup", (req, res) => {
-  const { username, password } = req.body;
-  console.log(username, password);
-  res.json({ msg: "This is the signup page" })
+app.post("/signup", signup, (req, res) => {
+  res.json({ msg: "hello" })
 })
+
 app.post("/signin", (req, res) => {
   const { username, password } = req.body;
   console.log(username, password);
