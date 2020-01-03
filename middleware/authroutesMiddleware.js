@@ -8,11 +8,21 @@ const signup = (req, res, next) => {
   Users.findOne({ username })
     .then(found => {
       if (found) return res.status(400).json({ error: "Username is already taken" });
-      new Users({ username, password }).save()
-        .then(newUser => {
-          return res.status(200).json({ msg: newUser });
+
+      const user = new Users({ username });
+      bcrypt.genSalt(10, (err, salt) => {
+        if (err) return res.status(400).json({ error: err });
+        bcrypt.hash(password, salt, (err, hashedPassword) => {
+          if (err) return res.status(400).json({ error: err });
+          user.password = hashedPassword;
+          user.save()
+            .then(newUser => {
+              // here need to make a token to send back after user is created in the db
+              res.status(200).json({ newUser });
+            })
+            .catch(err => res.status(400).json({ error: err }));
         })
-        .catch(e => res.status(400).json({ error: "Could not save new user" }));
+      })
     })
     .catch(e => res.status(400).json({ error: e }));
 }
