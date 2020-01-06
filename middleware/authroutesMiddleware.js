@@ -34,8 +34,11 @@ const signin = (req, res, next) => {
   Users.findOne({ username })
     .then(found => {
       if (!found) return res.status(400).json({ error: "No one exists with that username" });
-      if (found.password !== password) return res.status(400).json({ error: "Password is incorrect" });
-      return res.status(200).json({ msg: "Successfull signin" })
+      bcrypt.compare(password, found.password, (err, response) => {
+        if (err || !response) return res.status(400).json({ error: "Password is incorrect" });
+        // need to return user a token on successful login
+        return res.status(200).json({ msg: "Successfull signin" })
+      })
     })
     .catch(e => res.status(400).json({ error: e }));
 }
