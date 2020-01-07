@@ -1,5 +1,11 @@
 const Users = require("../models/Users");
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
+
+const createToken = ({ _id, username }) => {
+  const token = jwt.sign({ _id, username }, process.env.SECRETKEY, { expiresIn: "1 day" });
+  return token;
+};
 
 const signup = (req, res, next) => {
   const { username, password } = req.body;
@@ -17,8 +23,8 @@ const signup = (req, res, next) => {
           user.password = hashedPassword;
           user.save()
             .then(newUser => {
-              // here need to make a token to send back after user is created in the db
-              res.status(200).json({ newUser });
+              const token = createToken(newUser);
+              res.status(200).json({ token });
             })
             .catch(err => res.status(400).json({ error: err }));
         })
@@ -36,7 +42,7 @@ const signin = (req, res, next) => {
       if (!found) return res.status(400).json({ error: "No one exists with that username" });
       bcrypt.compare(password, found.password, (err, response) => {
         if (err || !response) return res.status(400).json({ error: "Password is incorrect" });
-        // need to return user a token on successful login
+        //need to return user a token on successful login
         return res.status(200).json({ msg: "Successfull signin" })
       })
     })
