@@ -42,8 +42,8 @@ const signin = (req, res, next) => {
       if (!found) return res.status(400).json({ error: "No one exists with that username" });
       bcrypt.compare(password, found.password, (err, response) => {
         if (err || !response) return res.status(400).json({ error: "Password is incorrect" });
-        //need to return user a token on successful login
-        return res.status(200).json({ msg: "Successfull signin" })
+        const token = createToken(found);
+        return res.status(200).json({ token })
       })
     })
     .catch(e => res.status(400).json({ error: e }));
