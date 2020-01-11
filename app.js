@@ -5,7 +5,10 @@ const bodyParser = require("body-parser");
 const axios = require("axios");
 const path = require("path");
 const mongoose = require("mongoose");
+const passport = require("passport");
+const passportServices = require("./services/passport");
 
+const requireAuth = passport.authenticate("jwt", { session: false });
 mongoose.connect(process.env.DB_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 
 
