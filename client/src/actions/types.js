@@ -10,3 +10,6 @@ export const SEARCHED_MOVIE_NAV = "SEARCHED_MOVIE_NAV";
 export const POPULAR_ACTORS = "POPULAR_ACTORS";
 export const SEARCH_ACTOR = "SEARCH_ACTOR";
 export const ACTOR_INFO = "ACTOR_INFO";
+
+// user types
+export const SIGNUP_USER = "SIGNUP_USER";
