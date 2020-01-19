@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
 import Navbar from '../Navbar';
-import Axios from 'axios';
+import { connect } from 'react-redux'
+import { signup } from '../../actions/userActions';
 
 
-export default class Signup extends Component {
+class Signup extends Component {
   state = {
     username: "",
     password: ""
@@ -19,12 +20,13 @@ export default class Signup extends Component {
   onSubmit = (e) => {
     // here call action to signup user to the backend
     e.preventDefault();
-    console.log(this.state);
-    Axios.post("/signup", this.state)
-      .then(({ data }) => {
-        console.log(data.token);
-      })
-      .catch(err => console.log(err))
+    this.props.signup(this.state);
+    // console.log(this.state);
+    // Axios.post("/signup", this.state)
+    //   .then(({ data }) => {
+    //     console.log(data.token);
+    //   })
+    //   .catch(err => console.log(err))
   }
   render() {
     return (
@@ -67,3 +69,5 @@ export default class Signup extends Component {
     )
   }
 }
+
+export default connect(undefined, { signup })(Signup);
