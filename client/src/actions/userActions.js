@@ -1,12 +1,14 @@
 import Axios from "axios";
+import { SIGNUP_USER } from "./types";
 
-// add callback if creating account goes well
-// if not return user a error
-export const signup = user => async dispatch => {
+export const signup = (user, cb) => async dispatch => {
   try {
     const { data } = await Axios.post("/signup", user);
-    // dispatch to store signup
-    console.log(data);
+    dispatch({
+      type: SIGNUP_USER,
+      token: data.token
+    });
+    cb();
   } catch (error) {
     console.log(error);
   }
