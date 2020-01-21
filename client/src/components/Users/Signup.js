@@ -18,15 +18,10 @@ class Signup extends Component {
     }))
   }
   onSubmit = (e) => {
-    // here call action to signup user to the backend
     e.preventDefault();
-    this.props.signup(this.state);
-    // console.log(this.state);
-    // Axios.post("/signup", this.state)
-    //   .then(({ data }) => {
-    //     console.log(data.token);
-    //   })
-    //   .catch(err => console.log(err))
+    this.props.signup(this.state, () => {
+      this.props.history.push("/");
+    });
   }
   render() {
     return (
