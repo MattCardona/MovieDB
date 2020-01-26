@@ -1,5 +1,6 @@
 import Axios from "axios";
 import { SIGNUP_USER } from "./types";
+import setAuthToken from "../utils/setAuthToken";
 
 // if not return user a error
 export const signup = (user, cb) => async dispatch => {
@@ -7,6 +8,7 @@ export const signup = (user, cb) => async dispatch => {
     const { data } = await Axios.post("/signup", user);
     // need to save token to localstorage 
     localStorage.setItem("token", data.token);
+    setAuthToken(token);
     dispatch({
       type: SIGNUP_USER,
       token: data.token
