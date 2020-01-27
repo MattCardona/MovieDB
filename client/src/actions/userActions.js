@@ -8,13 +8,13 @@ export const signup = (user, cb) => async dispatch => {
     const { data } = await Axios.post("/signup", user);
     // need to save token to localstorage 
     localStorage.setItem("token", data.token);
-    setAuthToken(token);
+    setAuthToken(data.token);
     dispatch({
       type: SIGNUP_USER,
       token: data.token
     });
     cb();
   } catch (error) {
-    console.log(error);
+    console.log(error.response);
   }
 }
