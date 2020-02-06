@@ -1,6 +1,9 @@
 html {
   background-color: black;
 }
+body {
+  font-family: Cinzel serif;
+}
 
 #not-found {
   margin-top: 250px;
