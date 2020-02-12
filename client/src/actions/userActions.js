@@ -13,10 +13,11 @@ export const signup = (user, cb) => async dispatch => {
     setAuthToken(data.token);
     // get user from token and set the usersId to the redux state with JWT-decode
     let { _id } = decode(data.token);
-    console.log(_id);
+    // console.log(_id);
     dispatch({
       type: SIGNUP_USER,
-      token: data.token
+      token: data.token,
+      userId: _id
     });
     cb();
   } catch (error) {
