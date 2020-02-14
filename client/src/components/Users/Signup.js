@@ -30,36 +30,38 @@ class Signup extends Component {
         style={{ backgroundColor: "black", textAlign: "center", color: "#fff" }}
       >
         <Navbar />
-        <h1>Sign up</h1>
-        <form onSubmit={this.onSubmit}
-          style={{ textAlign: "center" }}
-        >
-          <div className="form-group">
-            <label htmlFor="username"></label>
-            <input
-              id="username"
-              style={{ textAlign: "center", width: "50%" }}
-              type="text"
-              name="username"
-              onChange={this.onChange}
-              value={this.state.username}
-              placeholder="username"
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="password"></label>
-            <input
-              style={{ textAlign: "center", width: "50%" }}
-              type="password"
-              id="password"
-              name="password"
-              onChange={this.onChange}
-              value={this.state.password}
-              placeholder="password"
-            />
-          </div>
-          <button className="btn btn-primary">Submit</button>
-        </form>
+        <div style={{ paddingTop: "100px" }}>
+          <h1>Sign up</h1>
+          <form onSubmit={this.onSubmit}
+            style={{ textAlign: "center" }}
+          >
+            <div className="form-group">
+              <label htmlFor="username"></label>
+              <input
+                id="username"
+                style={{ textAlign: "center", width: "50%" }}
+                type="text"
+                name="username"
+                onChange={this.onChange}
+                value={this.state.username}
+                placeholder="username"
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="password"></label>
+              <input
+                style={{ textAlign: "center", width: "50%" }}
+                type="password"
+                id="password"
+                name="password"
+                onChange={this.onChange}
+                value={this.state.password}
+                placeholder="password"
+              />
+            </div>
+            <button className="btn btn-primary">Submit</button>
+          </form>
+        </div>
       </div>
     )
   }
