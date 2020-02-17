@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux'
 
 const Navbar = props => {
   return (
@@ -21,6 +22,20 @@ const Navbar = props => {
             <li className="nav-item">
               <Link to="/search" className="nav-link hover-effect" >Movie Search <i className="fas fa-film"></i></Link>
             </li>
+            {/* auth routes */}
+            {!props.auth.isAuthenticated ?
+              <React.Fragment>
+                <li className="nav-item">
+                  <Link to="/signup" className="nav-link hover-effect" >Signup</Link>
+                </li>
+                <li className="nav-item">
+                  <Link to="/signin" className="nav-link hover-effect" >Signin</Link>
+                </li>
+              </React.Fragment>
+              :
+              // make a signout that will delete the users token
+              null
+            }
           </ul>
         </div>
 
@@ -28,4 +43,8 @@ const Navbar = props => {
     </div>
   )
 };
-export default Navbar;
+
+const mapStateToProps = ({ auth }) => ({
+  auth
+})
+export default connect(mapStateToProps)(Navbar);
