@@ -110,8 +110,24 @@ class Home extends Component {
                   <p ref={this.top_rated} className="nav-link  hover-effect" id="top-rated" onClick={this.handleTopRated}>Top rated</p>
                 </li>
                 <li className="nav-item">
-                  <Link to="/actors" className="hover-effect" >Actors/Actresses</Link>
+                  <Link to="/actors" className="nav-link hover-effect" >Actors/Actresses</Link>
                 </li>
+                {/* auth routes */}
+                {!this.props.auth.isAuthenticated ?
+                  <React.Fragment>
+                    <li className="nav-item">
+                      <Link to="/signup" className="nav-link hover-effect" >Signup</Link>
+                    </li>
+                    <li className="nav-item">
+                      <Link to="/signin" className="nav-link hover-effect" >Signin</Link>
+                    </li>
+                  </React.Fragment>
+                  :
+                  // make a signout that will delete the users token
+                  null
+                }
+
+
               </ul>
             </div>
 
@@ -144,9 +160,10 @@ class Home extends Component {
   }
 };
 
-const mapStateToProps = ({ movies }) => ({
+const mapStateToProps = ({ movies, auth }) => ({
   movies: movies.movies,
-  sliderMovies: movies.sliderMovies
+  sliderMovies: movies.sliderMovies,
+  auth
 })
 
 export default connect(mapStateToProps, { nowPlaying, popular, topRated })(Home);
