@@ -1,5 +1,5 @@
 import Axios from "axios";
-import { SIGNUP_USER } from "./types";
+import { SIGNUP_USER, SIGNIN_USER } from "./types";
 import setAuthToken from "../utils/setAuthToken";
 import decode from 'jwt-decode'
 
@@ -23,4 +23,8 @@ export const signup = (user, cb) => async dispatch => {
   } catch (error) {
     console.log(error.response);
   }
+}
+
+export const signin = (user, cb) => async dispatch => {
+  console.log(user);
 }

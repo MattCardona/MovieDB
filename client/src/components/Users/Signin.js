@@ -1,5 +1,8 @@
 import React, { Component } from 'react'
 import Navbar from '../Navbar';
+import { connect } from 'react-redux'
+import { signin } from '../../actions/userActions';
+
 
 class Signin extends Component {
   state = {
@@ -16,10 +19,10 @@ class Signin extends Component {
   }
   onSubmit = (e) => {
     e.preventDefault();
-    console.log(this.state);
-    // this.props.signup(this.state, () => {
-    //   this.props.history.push("/");
-    // });
+    // console.log(this.state);
+    this.props.signin(this.state, () => {
+      this.props.history.push("/");
+    });
   }
   render() {
     return (
@@ -65,4 +68,4 @@ class Signin extends Component {
   }
 }
 
-export default Signin;
+export default connect(undefined, { signin })(Signin);
