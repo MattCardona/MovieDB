@@ -26,5 +26,18 @@ export const signup = (user, cb) => async dispatch => {
 }
 
 export const signin = (user, cb) => async dispatch => {
-  console.log(user);
+  try {
+    const { data } = await Axios.post("/signin", user);
+    localStorage.setItem("token", data.token);
+    setAuthToken(data.token);
+    let { _id } = decode(data.token);
+    dispatch({
+      type: SIGNIN_USER,
+      token: data.token,
+      userId: _id
+    });
+    cb();
+  } catch (error) {
+    console.log(error.response);
+  }
 }
