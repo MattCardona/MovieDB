@@ -1,4 +1,4 @@
-import { SIGNUP_USER } from "../actions/types";
+import { SIGNUP_USER, SIGNIN_USER } from "../actions/types";
 import setAuthToken from "../utils/setAuthToken";
 import decode from 'jwt-decode'
 
@@ -18,6 +18,11 @@ const initialState = {
 const authReducer = (state = initialState, action) => {
   switch (action.type) {
     case SIGNUP_USER:
+      return {
+        isAuthenticated: action.token,
+        userId: action.userId
+      }
+    case SIGNIN_USER:
       return {
         isAuthenticated: action.token,
         userId: action.userId
