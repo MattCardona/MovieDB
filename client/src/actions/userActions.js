@@ -41,3 +41,9 @@ export const signin = (user, cb) => async dispatch => {
     console.log(error.response);
   }
 }
+
+export const signout = () => dispatch => {
+  localStorage.removeItem("token");
+  setAuthToken(null);
+  // make a dispatch to signout user in store
+}
