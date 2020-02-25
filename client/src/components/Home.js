@@ -4,6 +4,7 @@ import Card from './Card';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux'
 import { nowPlaying, popular, topRated } from '../actions/moviesActions';
+import { signout } from '../actions/userActions';
 
 
 class Home extends Component {
@@ -123,8 +124,11 @@ class Home extends Component {
                     </li>
                   </React.Fragment>
                   :
-                  // make a signout that will delete the users token
-                  null
+                  <li className="nav-item">
+                    <p onClick={() => this.props.signout()}
+                      className="nav-link hover-effect"
+                    >Signout</p>
+                  </li>
                 }
 
 
@@ -166,4 +170,4 @@ const mapStateToProps = ({ movies, auth }) => ({
   auth
 })
 
-export default connect(mapStateToProps, { nowPlaying, popular, topRated })(Home);
+export default connect(mapStateToProps, { nowPlaying, popular, topRated, signout })(Home);
