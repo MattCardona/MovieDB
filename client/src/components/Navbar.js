@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux'
+import { signout } from '../actions/userActions';
 
 const Navbar = props => {
   return (
@@ -33,8 +34,11 @@ const Navbar = props => {
                 </li>
               </React.Fragment>
               :
-              // make a signout that will delete the users token
-              null
+              <li className="nav-item">
+                <p onClick={() => props.signout()}
+                  className="nav-link hover-effect"
+                >Signout</p>
+              </li>
             }
           </ul>
         </div>
@@ -47,4 +51,4 @@ const Navbar = props => {
 const mapStateToProps = ({ auth }) => ({
   auth
 })
-export default connect(mapStateToProps)(Navbar);
+export default connect(mapStateToProps, { signout })(Navbar);
