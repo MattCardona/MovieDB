@@ -1,5 +1,5 @@
 import Axios from "axios";
-import { SIGNUP_USER, SIGNIN_USER } from "./types";
+import { SIGNUP_USER, SIGNIN_USER, SIGNOUT_USER } from "./types";
 import setAuthToken from "../utils/setAuthToken";
 import decode from 'jwt-decode'
 
@@ -45,5 +45,7 @@ export const signin = (user, cb) => async dispatch => {
 export const signout = () => dispatch => {
   localStorage.removeItem("token");
   setAuthToken(null);
-  // make a dispatch to signout user in store
+  dispatch({
+    type: SIGNOUT_USER
+  });
 }
