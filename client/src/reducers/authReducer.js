@@ -1,7 +1,6 @@
-import { SIGNUP_USER, SIGNIN_USER } from "../actions/types";
+import { SIGNUP_USER, SIGNIN_USER, SIGNOUT_USER } from "../actions/types";
 import setAuthToken from "../utils/setAuthToken";
 import decode from 'jwt-decode'
-
 
 let token = localStorage.getItem("token");
 let userId = "";
@@ -26,6 +25,11 @@ const authReducer = (state = initialState, action) => {
       return {
         isAuthenticated: action.token,
         userId: action.userId
+      }
+    case SIGNOUT_USER:
+      return {
+        isAuthenticated: null,
+        userId: ""
       }
     default:
       return state;
