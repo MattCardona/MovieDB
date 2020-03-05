@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux'
 import { nowPlaying, popular, topRated } from '../actions/moviesActions';
 import { signout } from '../actions/userActions';
+import checkExpToken from '../utils/checkToken';
 
 
 class Home extends Component {
@@ -16,6 +17,10 @@ class Home extends Component {
   top_rated = React.createRef();
   componentDidMount() {
     this.handleNowPlaying();
+    const token = localStorage.getItem("token");
+    if (token) {
+      checkExpToken(token, this.props.signout)
+    }
   }
   handleChange = (e) => {
     let val = e.target.value;
