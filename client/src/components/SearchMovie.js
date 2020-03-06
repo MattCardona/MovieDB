@@ -5,6 +5,8 @@ import MovieSearchBar from './MovieSearchBar';
 import Navbar from './Navbar';
 import { connect } from 'react-redux'
 import { searchMovie, searchedMovieNav } from '../actions/moviesActions';
+import { signout } from '../actions/userActions';
+import checkExpToken from '../utils/checkToken';
 
 
 class SearchMovie extends Component {
@@ -15,7 +17,10 @@ class SearchMovie extends Component {
   }
   componentDidMount() {
     let { movie } = this.props.match.params;
-
+    const token = localStorage.getItem("token");
+    if (token) {
+      checkExpToken(token, this.props.signout)
+    }
     this.setState(() => ({
       searchTerm: movie
     }));
@@ -128,4 +133,4 @@ const mapStateToProps = ({ movies }) => ({
 });
 
 
-export default connect(mapStateToProps, { searchMovie, searchedMovieNav })(SearchMovie);
+export default connect(mapStateToProps, { searchMovie, searchedMovieNav, signout })(SearchMovie);
