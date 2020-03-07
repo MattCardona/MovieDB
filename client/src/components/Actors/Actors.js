@@ -4,6 +4,8 @@ import Navbar from '../Navbar';
 import ActorSearchBar from './ActorSearchBar';
 import { popularActors } from '../../actions/actorsActions';
 import { connect } from 'react-redux'
+import checkExpToken from '../../utils/checkToken';
+import { signout } from '../../actions/userActions';
 
 class Actors extends Component {
   state = {
@@ -11,6 +13,10 @@ class Actors extends Component {
   };
   componentDidMount() {
     this.props.popularActors();
+    const token = localStorage.getItem("token");
+    if (token) {
+      checkExpToken(token, this.props.signout)
+    }
   }
   handleChange = e => {
     let searchTerm = e.target.value;
@@ -50,4 +56,4 @@ const mapStateToProps = ({ actors }) => ({
   actors: actors.actors
 })
 
-export default connect(mapStateToProps, { popularActors })(Actors);
+export default connect(mapStateToProps, { popularActors, signout })(Actors);
