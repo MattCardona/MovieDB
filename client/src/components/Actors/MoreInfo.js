@@ -4,6 +4,8 @@ import Navbar from '../Navbar';
 import { connect } from 'react-redux'
 import { actorInfo } from '../../actions/actorsActions';
 import { searchedMovieNav } from '../../actions/moviesActions';
+import checkExpToken from '../../utils/checkToken';
+import { signout } from '../../actions/userActions';
 
 
 
@@ -12,6 +14,10 @@ class MoreInfo extends Component {
     const { id } = this.props.match.params;
     this.props.actorInfo(id);
     this.props.searchedMovieNav();
+    const token = localStorage.getItem("token");
+    if (token) {
+      checkExpToken(token, this.props.signout)
+    }
   }
   render() {
     const { actor, cast } = this.props;
@@ -62,4 +68,4 @@ const mapStateToProps = ({ actors }) => ({
   cast: actors.cast
 })
 
-export default connect(mapStateToProps, { actorInfo, searchedMovieNav })(MoreInfo);
+export default connect(mapStateToProps, { actorInfo, searchedMovieNav, signout })(MoreInfo);
