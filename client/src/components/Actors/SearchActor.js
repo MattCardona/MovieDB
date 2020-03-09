@@ -6,6 +6,9 @@ import ActorCards from './ActorCards';
 import Navbar from '../Navbar';
 import ActorSearchBar from './ActorSearchBar';
 import { searchActor } from '../../actions/actorsActions';
+import checkExpToken from '../../utils/checkToken';
+import { signout } from '../../actions/userActions';
+
 
 
 class SearchActor extends Component {
@@ -21,6 +24,11 @@ class SearchActor extends Component {
       searchedName: actor
     }))
     this.props.searchActor(actor);
+
+    const token = localStorage.getItem("token");
+    if (token) {
+      checkExpToken(token, this.props.signout)
+    }
   }
   componentDidUpdate(ownProps) {
     if (this.props.match.params !== ownProps.match.params) {
@@ -86,4 +94,4 @@ const mapStateToProps = ({ actors }) => ({
   actors: actors.actors
 })
 
-export default connect(mapStateToProps, { searchActor })(SearchActor);
+export default connect(mapStateToProps, { searchActor, signout })(SearchActor);
