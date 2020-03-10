@@ -11,9 +11,13 @@ const signup = (req, res, next) => {
   const { username, password } = req.body;
   if (!username || !password) return res.status(400).json({ error: "Must provide username and password" });
 
+  if (username.length < 4 || username.length > 15) return res.status(400).json({ username: "Username must be 4 characters long and no longer than 15 characters" });
+
+  if (password.length < 4) return res.status(400).json({ password: "Password must be 4 characters or longer " });
+
   Users.findOne({ username })
     .then(found => {
-      if (found) return res.status(400).json({ error: "Username is already taken" });
+      if (found) return res.status(400).json({ username: "Username is already taken" });
 
       const user = new Users({ username });
       bcrypt.genSalt(10, (err, salt) => {
