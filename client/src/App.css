@@ -4,6 +4,9 @@ html {
 body {
   font-family: Cinzel serif;
 }
+.error {
+  color: #e00b1f
+}
 
 #not-found {
   margin-top: 250px;
