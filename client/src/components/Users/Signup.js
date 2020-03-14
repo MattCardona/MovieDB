@@ -7,20 +7,28 @@ import { signup } from '../../actions/userActions';
 class Signup extends Component {
   state = {
     username: "",
-    password: ""
+    password: "",
+    error: ""
   }
   onChange = (e) => {
     let prop = e.target.name;
     let val = e.target.value;
 
     this.setState(() => ({
-      [prop]: val
+      [prop]: val,
+      error: ""
     }))
   }
   onSubmit = (e) => {
     e.preventDefault();
-    this.props.signup(this.state, () => {
-      this.props.history.push("/");
+    this.props.signup(this.state, (e) => {
+      if (e) {
+        this.setState(() => ({
+          error: e
+        }))
+      } else {
+        this.props.history.push("/");
+      }
     });
   }
   render() {
@@ -35,7 +43,9 @@ class Signup extends Component {
           <form onSubmit={this.onSubmit}
             style={{ textAlign: "center" }}
           >
+            {this.state.error.error ? <p className="error">{this.state.error.error}</p> : null}
             <div className="form-group">
+              {this.state.error.username ? <p className="error" >{this.state.error.username}</p> : null}
               <label htmlFor="username"></label>
               <input
                 id="username"
@@ -48,6 +58,7 @@ class Signup extends Component {
               />
             </div>
             <div className="form-group">
+              {this.state.error.password ? <p className="error" >{this.state.error.password}</p> : null}
               <label htmlFor="password"></label>
               <input
                 style={{ textAlign: "center", width: "50%" }}
