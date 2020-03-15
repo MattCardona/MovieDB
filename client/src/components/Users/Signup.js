@@ -32,6 +32,7 @@ class Signup extends Component {
     });
   }
   render() {
+    const e = this.state.error;
     return (
       <div
         className="container-fluid"
@@ -43,9 +44,9 @@ class Signup extends Component {
           <form onSubmit={this.onSubmit}
             style={{ textAlign: "center" }}
           >
-            {this.state.error.error ? <p className="error">{this.state.error.error}</p> : null}
+            {e.error ? <p className="error">{e.error}</p> : null}
             <div className="form-group">
-              {this.state.error.username ? <p className="error" >{this.state.error.username}</p> : null}
+              {e.username ? <p className="error" >{e.username}</p> : null}
               <label htmlFor="username"></label>
               <input
                 id="username"
@@ -58,7 +59,7 @@ class Signup extends Component {
               />
             </div>
             <div className="form-group">
-              {this.state.error.password ? <p className="error" >{this.state.error.password}</p> : null}
+              {e.password ? <p className="error" >{e.password}</p> : null}
               <label htmlFor="password"></label>
               <input
                 style={{ textAlign: "center", width: "50%" }}
