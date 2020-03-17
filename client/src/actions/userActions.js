@@ -39,7 +39,8 @@ export const signin = (user, cb) => async dispatch => {
     });
     cb();
   } catch (error) {
-    console.log(error.response);
+    // console.log(error.response.data);
+    cb(error.response.data);
   }
 }
 
