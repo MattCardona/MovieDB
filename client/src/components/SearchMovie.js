@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Card from './Card';
-import axios from 'axios';
+// import axios from 'axios';
 import MovieSearchBar from './MovieSearchBar';
 import Navbar from './Navbar';
 import { connect } from 'react-redux'
