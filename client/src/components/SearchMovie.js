@@ -40,7 +40,10 @@ class SearchMovie extends Component {
   }
   componentDidUpdate(ownProps) {
     let { movie } = this.props.match.params;
-    if (ownProps.match.params !== this.props.match.params) {
+    if (!movie && ownProps.match.params !== this.props.match.params) {
+      this.props.searchedMovieNav();
+    }
+    else if (ownProps.match.params !== this.props.match.params) {
       // this.getNewResults()
       this.setState(() => ({
         searchTerm: movie,
