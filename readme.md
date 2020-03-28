@@ -1,7 +1,7 @@
 MovieDB
 =================
 
-MovieDB is a small project made with the MERN stack. Built without MongoDB, there is was need for a database at this point in time. Search and view information on new/old movies and Tv shows.
+MovieDB is a small project made with the MERN stack. Can create a user profile to save your favorite movies, tv-shows, and actor/actresses.  Search and view information on new/old movies and Tv shows.
 
 Motivation
 =================
