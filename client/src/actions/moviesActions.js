@@ -1,9 +1,9 @@
-import { NOW_PLAYING, POPULAR, TOP_RATED, SEARCHED_MOVIE, SEARCH_MOVIE, SEARCH_MOVIE_ERROR, SEARCHED_MOVIE_NAV } from './types';
+import { NOW_PLAYING, POPULAR, TOP_RATED, SEARCHED_MOVIE, SEARCH_MOVIE, SEARCH_MOVIE_ERROR, SEARCHED_MOVIE_NAV, APPEND_NOW_PLAYING } from './types';
 import Axios from 'axios';
 
 export const nowPlaying = () => async dispatch => {
   try {
-    const { data } = await Axios.get("/movies/homepage")
+    const { data } = await Axios.get("/movies/homepage/?page=1");
     dispatch({
       type: NOW_PLAYING,
       movies: data
@@ -12,6 +12,30 @@ export const nowPlaying = () => async dispatch => {
     console.log(error);
   }
 }
+
+export const appendMovies = (kind, page = 1, cb) => async dispatch => {
+  try {
+    switch (kind) {
+      case "nowPlaying":
+        // console.log("in nowplaying switch");
+        const { data } = await Axios.get(`/movies/homepage/?page=${page}`);
+        dispatch({
+          type: APPEND_NOW_PLAYING,
+          movies: data
+        });
+      case "popular":
+        return "popular";
+      case "topRated":
+        return "topRated";
+      default:
+        break;
+    }
+
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 
 export const popular = () => async dispatch => {
   try {
