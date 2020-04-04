@@ -6,11 +6,13 @@ import { connect } from 'react-redux'
 import { nowPlaying, popular, topRated } from '../actions/moviesActions';
 import { signout } from '../actions/userActions';
 import checkExpToken from '../utils/checkToken';
+import InfiniteScroll from './InfiniteScroll';
 
 
 class Home extends Component {
   state = {
-    search: ""
+    search: "",
+    path: ""
   }
   now_playing = React.createRef();
   get_popular = React.createRef();
@@ -37,18 +39,27 @@ class Home extends Component {
     this.now_playing.current.classList.add("active");
     this.get_popular.current.classList.remove("active");
     this.top_rated.current.classList.remove("active");
+    this.setState(() => ({
+      path: "nowPlaying"
+    }));
     this.props.nowPlaying();
   }
   handlePopular = () => {
     this.now_playing.current.classList.remove("active");
     this.get_popular.current.classList.add("active");
     this.top_rated.current.classList.remove("active");
+    this.setState(() => ({
+      path: "popular"
+    }));
     this.props.popular();
   }
   handleTopRated = () => {
     this.now_playing.current.classList.remove("active");
     this.get_popular.current.classList.remove("active");
     this.top_rated.current.classList.add("active");
+    this.setState(() => ({
+      path: "topRated"
+    }));
     this.props.topRated();
   }
   render() {
@@ -150,7 +161,9 @@ class Home extends Component {
               )
             })}
           </div>
+          <InfiniteScroll {...this.props} kind={this.state.path} />
         </div>
+
         <footer>
           <div className="container-fluid">
             <div className="row">
@@ -164,6 +177,7 @@ class Home extends Component {
             </div>
           </div>
         </footer>
+
       </div>
     )
   }
