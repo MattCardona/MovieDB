@@ -23,7 +23,8 @@ router.get("/homepage", (req, res) => {
 
 // will show popular movies
 router.get("/popular", (req, res) => {
-  axios.get(`https://api.themoviedb.org/3/movie/popular?api_key=${process.env.MOVIE_DB}&language=en-US&page=1`)
+  const { page } = req.query;
+  axios.get(`https://api.themoviedb.org/3/movie/popular?api_key=${process.env.MOVIE_DB}&language=en-US&page=${page}`)
     .then(res => {
       return res.data;
     })
