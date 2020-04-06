@@ -25,6 +25,7 @@ export const appendMovies = (kind, page = 1, cb) => async dispatch => {
             movies: data
           });
         }
+        break;
       case "popular":
         // console.log("in popular switch", `page ${page}`);
         {
@@ -34,7 +35,9 @@ export const appendMovies = (kind, page = 1, cb) => async dispatch => {
             movies: data
           });
         }
+        break;
       case "topRated":
+        // console.log("in toprated");
         return "topRated";
       default:
         break;
