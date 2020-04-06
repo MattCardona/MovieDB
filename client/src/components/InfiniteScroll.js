@@ -10,7 +10,7 @@ class InfiniteScroll extends Component {
   componentDidMount() {
     if (this.props.movies.length > 19) {
       let prevCount = this.props.movies.length / 20;
-      console.log(`prevcocunt ${prevCount}`);
+      // console.log(`prevcocunt ${prevCount}`);
       this.setState(prevState => ({
         count: prevCount
       }));
