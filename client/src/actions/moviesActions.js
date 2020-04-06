@@ -18,13 +18,22 @@ export const appendMovies = (kind, page = 1, cb) => async dispatch => {
     switch (kind) {
       case "nowPlaying":
         // console.log("in nowplaying switch");
-        const { data } = await Axios.get(`/movies/homepage/?page=${page}`);
-        dispatch({
-          type: APPEND_NOW_PLAYING,
-          movies: data
-        });
+        {
+          const { data } = await Axios.get(`/movies/homepage/?page=${page}`);
+          dispatch({
+            type: APPEND_NOW_PLAYING,
+            movies: data
+          });
+        }
       case "popular":
-        return "popular";
+        // console.log("in popular switch", `page ${page}`);
+        {
+          const { data } = await Axios.get(`/movies/popular/?page=${page}`);
+          dispatch({
+            type: APPEND_NOW_PLAYING,
+            movies: data
+          });
+        }
       case "topRated":
         return "topRated";
       default:
@@ -39,7 +48,7 @@ export const appendMovies = (kind, page = 1, cb) => async dispatch => {
 
 export const popular = () => async dispatch => {
   try {
-    const { data } = await Axios.get("/movies/popular");
+    const { data } = await Axios.get("/movies/popular/?page=1");
     dispatch({
       type: POPULAR,
       movies: data
