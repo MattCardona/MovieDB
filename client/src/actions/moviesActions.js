@@ -13,42 +13,6 @@ export const nowPlaying = () => async dispatch => {
   }
 }
 
-export const appendMovies = (kind, page = 1, cb) => async dispatch => {
-  try {
-    switch (kind) {
-      case "nowPlaying":
-        // console.log("in nowplaying switch");
-        {
-          const { data } = await Axios.get(`/movies/homepage/?page=${page}`);
-          dispatch({
-            type: APPEND_NOW_PLAYING,
-            movies: data
-          });
-        }
-        break;
-      case "popular":
-        // console.log("in popular switch", `page ${page}`);
-        {
-          const { data } = await Axios.get(`/movies/popular/?page=${page}`);
-          dispatch({
-            type: APPEND_NOW_PLAYING,
-            movies: data
-          });
-        }
-        break;
-      case "topRated":
-        // console.log("in toprated");
-        return "topRated";
-      default:
-        break;
-    }
-
-  } catch (error) {
-    console.log(error);
-  }
-}
-
-
 export const popular = () => async dispatch => {
   try {
     const { data } = await Axios.get("/movies/popular/?page=1");
@@ -102,3 +66,43 @@ export const searchedMovie = movie => async dispatch => {
 }
 
 export const searchedMovieNav = () => ({ type: SEARCHED_MOVIE_NAV });
+
+export const appendMovies = (kind, page = 1, cb) => async dispatch => {
+  try {
+    switch (kind) {
+      case "nowPlaying":
+        // console.log("in nowplaying switch");
+        {
+          const { data } = await Axios.get(`/movies/homepage/?page=${page}`);
+          dispatch({
+            type: APPEND_NOW_PLAYING,
+            movies: data
+          });
+        }
+        break;
+      case "popular":
+        // console.log("in popular switch", `page ${page}`);
+        {
+          const { data } = await Axios.get(`/movies/popular/?page=${page}`);
+          dispatch({
+            type: APPEND_NOW_PLAYING,
+            movies: data
+          });
+        }
+        break;
+      case "topRated":
+        // console.log("in toprated");
+        {
+          const { data } = await Axios.get(`/movies/toprated/?page=${page}`);
+          dispatch({
+            type: APPEND_NOW_PLAYING,
+            movies: data
+          });
+        }
+        break;
+    }
+
+  } catch (error) {
+    console.log(error);
+  }
+}
