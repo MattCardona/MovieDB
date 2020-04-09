@@ -63,7 +63,8 @@ router.get("/toprated", (req, res) => {
 // will search for a specific movie/show title
 router.post("/search", (req, res) => {
   const { movie } = req.body;
-  axios.get(`https://api.themoviedb.org/3/search/movie?api_key=${process.env.MOVIE_DB}&language=en-US&page=1&include_adult=true&query=${movie}`)
+  const { page } = req.query;
+  axios.get(`https://api.themoviedb.org/3/search/movie?api_key=${process.env.MOVIE_DB}&language=en-US&page=${page}&include_adult=true&query=${movie}`)
     .then(res => res.data)
     .then(data => {
       let { results } = data;
