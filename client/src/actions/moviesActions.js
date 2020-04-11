@@ -1,4 +1,4 @@
-import { NOW_PLAYING, POPULAR, TOP_RATED, SEARCHED_MOVIE, SEARCH_MOVIE, SEARCH_MOVIE_ERROR, SEARCHED_MOVIE_NAV, APPEND_NOW_PLAYING } from './types';
+import { NOW_PLAYING, POPULAR, TOP_RATED, SEARCHED_MOVIE, SEARCH_MOVIE, SEARCH_MOVIE_ERROR, SEARCHED_MOVIE_NAV, APPEND_NOW_PLAYING, APPEND_SEARCH_MOVIE } from './types';
 import Axios from 'axios';
 
 export const nowPlaying = () => async dispatch => {
@@ -27,7 +27,7 @@ export const popular = () => async dispatch => {
 
 export const topRated = () => async dispatch => {
   try {
-    const { data } = await Axios.get("/movies/toprated");
+    const { data } = await Axios.get("/movies/toprated/?page=1");
     dispatch({
       type: TOP_RATED,
       movies: data
@@ -40,7 +40,7 @@ export const topRated = () => async dispatch => {
 
 export const searchMovie = (searchMovie, cb) => async dispatch => {
   try {
-    const { data } = await Axios.post("/movies/search", { movie: searchMovie });
+    const { data } = await Axios.post("/movies/search/?page=1", { movie: searchMovie });
     dispatch({
       type: SEARCH_MOVIE,
       searchMovie: data
@@ -67,7 +67,7 @@ export const searchedMovie = movie => async dispatch => {
 
 export const searchedMovieNav = () => ({ type: SEARCHED_MOVIE_NAV });
 
-export const appendMovies = (kind, page = 1, cb) => async dispatch => {
+export const appendMovies = (kind, page = 1, searchMovie, cb) => async dispatch => {
   try {
     switch (kind) {
       case "nowPlaying":
@@ -100,9 +100,22 @@ export const appendMovies = (kind, page = 1, cb) => async dispatch => {
           });
         }
         break;
+      case "searchMovie":
+        // console.log("In search movie");
+        {
+          const { data } = await Axios.post(`/movies/search/?page=${page}`, { movie: searchMovie });
+          dispatch({
+            type: APPEND_SEARCH_MOVIE,
+            searchMovie: data
+          });
+        }
+        break;
+      default:
+        break;
     }
 
   } catch (error) {
-    console.log(error);
+    console.log(error.response);
   }
 }
+
