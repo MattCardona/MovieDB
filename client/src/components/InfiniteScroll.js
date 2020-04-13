@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import { appendMovies } from "../actions/moviesActions";
+import { appendMovies, searchMovie } from "../actions/moviesActions";
 
 class InfiniteScroll extends Component {
   state = {
@@ -32,6 +32,12 @@ class InfiniteScroll extends Component {
         count: 1
       }));
     }
+    if (this.props.searchMovie !== prevProps.searchMovie) {
+      this.setState(() => ({
+        count: 1
+      }))
+    }
+
   }
   handleScroll = () => {
     if (window.innerHeight + document.documentElement.scrollTop === document.documentElement.offsetHeight) {
@@ -52,7 +58,11 @@ class InfiniteScroll extends Component {
       count: prevState.count += 1
     }));
     // console.log("Appppendix");
-    this.props.appendMovies(this.state.path, this.state.count);
+    if (this.state.path === "searchMovie") {
+      this.props.appendMovies(this.state.path, this.state.count, this.props.searchMovie);
+    } else {
+      this.props.appendMovies(this.state.path, this.state.count);
+    }
   }
   render() {
     return (
