@@ -7,6 +7,7 @@ import { connect } from 'react-redux'
 import { searchMovie, searchedMovieNav } from '../actions/moviesActions';
 import { signout } from '../actions/userActions';
 import checkExpToken from '../utils/checkToken';
+import InfiniteScroll from './InfiniteScroll';
 
 
 class SearchMovie extends Component {
@@ -126,6 +127,13 @@ class SearchMovie extends Component {
           :
           null
         }
+        {/* if no found movies or search is nothing dont display Infinitscroll */}
+        {movies.length > 0 ?
+          <InfiniteScroll {...this.props} kind={"searchMovie"} searchMovie={movie} />
+          :
+          null
+        }
+        {/* <InfiniteScroll {...this.props} kind={"searchMovie"} searchMovie={movie} /> */}
       </div>
     )
   }
