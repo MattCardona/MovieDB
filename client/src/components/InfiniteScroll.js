@@ -59,7 +59,7 @@ class InfiniteScroll extends Component {
     }));
     // console.log("Appppendix");
     if (this.state.path === "searchMovie") {
-      this.props.appendMovies(this.state.path, this.state.count, this.props.searchMovie);
+      this.props.appendMovies(this.state.path, this.state.count, this.props.searchMovie, this.props.cb);
     } else {
       this.props.appendMovies(this.state.path, this.state.count);
     }
