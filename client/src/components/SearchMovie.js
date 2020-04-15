@@ -14,7 +14,8 @@ class SearchMovie extends Component {
   state = {
     error: "",
     search: "",
-    searchTerm: ""
+    searchTerm: "",
+    cbError: false
   }
   componentDidMount() {
     let { movie } = this.props.match.params;
@@ -48,7 +49,8 @@ class SearchMovie extends Component {
       // this.getNewResults()
       this.setState(() => ({
         searchTerm: movie,
-        error: ""
+        error: "",
+        cbError: false
       }));
 
       this.props.searchMovie(movie, (error) => {
@@ -87,8 +89,13 @@ class SearchMovie extends Component {
     });
 
   }
+  handleError = () => {
+    this.setState(() => ({
+      cbError: true
+    }));
+  }
   render() {
-    const { error, search, searchTerm } = this.state;
+    const { error, search, searchTerm, cbError } = this.state;
     let { movie } = this.props.match.params;
     const { movies } = this.props;
 
@@ -128,12 +135,11 @@ class SearchMovie extends Component {
           null
         }
         {/* if no found movies or search is nothing dont display Infinitscroll */}
-        {movies.length > 0 ?
-          <InfiniteScroll {...this.props} kind={"searchMovie"} searchMovie={movie} />
+        {movies.length > 0 && !cbError ?
+          <InfiniteScroll {...this.props} kind={"searchMovie"} searchMovie={movie} cb={this.handleError} />
           :
           null
         }
-        {/* <InfiniteScroll {...this.props} kind={"searchMovie"} searchMovie={movie} /> */}
       </div>
     )
   }
