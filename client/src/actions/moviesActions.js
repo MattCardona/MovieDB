@@ -115,7 +115,7 @@ export const appendMovies = (kind, page = 1, searchMovie, cb) => async dispatch 
     }
 
   } catch (error) {
-    return error
+    cb();
     // console.log(error.response);
   }
 }
