@@ -25,7 +25,8 @@ router.post("/search/person", (req, res) => {
 
 // get popular actor/actresses as of now
 router.get("/popularactors", (req, res) => {
-  axios.get(`https://api.themoviedb.org/3/person/popular?api_key=${process.env.MOVIE_DB}&language=en-US&page=1`)
+  const { page } = req.query;
+  axios.get(`https://api.themoviedb.org/3/person/popular?api_key=${process.env.MOVIE_DB}&language=en-US&page=${page}`)
     .then(res => res.data)
     .then(data => {
       let { results } = data;
