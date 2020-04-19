@@ -64,7 +64,7 @@ router.get("/toprated", (req, res) => {
 router.post("/search", (req, res) => {
   const { movie } = req.body;
   const { page } = req.query;
-  axios.get(`https://api.themoviedb.org/3/search/movie?api_key=${process.env.MOVIE_DB}&language=en-US&page=${page}&include_adult=true&query=${movie}`)
+  axios.get(`https://api.themoviedb.org/3/search/multi?api_key=${process.env.MOVIE_DB}&language=en-US&page=${page}&include_adult=true&query=${movie}`)
     .then(res => res.data)
     .then(data => {
       let { results } = data;
