@@ -1,4 +1,4 @@
-import { POPULAR_ACTORS, SEARCH_ACTOR, ACTOR_INFO } from "../actions/types";
+import { POPULAR_ACTORS, SEARCH_ACTOR, ACTOR_INFO, APPEND_ACTORS_ACTRESSES } from "../actions/types";
 
 const actorsInitialState = {
   actor: {},
@@ -25,6 +25,12 @@ const actorsReducer = (state = actorsInitialState, action) => {
         actors: [],
         actor: { ...action.actor },
         cast: [...action.cast]
+      }
+    case APPEND_ACTORS_ACTRESSES:
+      return {
+        actors: [...state.actors, ...action.actors],
+        actor: {},
+        cast: []
       }
     default:
       return state;
