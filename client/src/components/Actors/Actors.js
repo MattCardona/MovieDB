@@ -6,6 +6,7 @@ import { popularActors } from '../../actions/actorsActions';
 import { connect } from 'react-redux'
 import checkExpToken from '../../utils/checkToken';
 import { signout } from '../../actions/userActions';
+import ActorInfiniteScroll from './ActorInfiniteScroll';
 
 class Actors extends Component {
   state = {
@@ -47,6 +48,7 @@ class Actors extends Component {
           </div>
         </div>
 
+        <ActorInfiniteScroll actors={actors} />
       </div>
     )
   }
