@@ -82,11 +82,25 @@ router.post("/search", (req, res) => {
     });
 });
 
-// will get more info on specific movie/show
+// will get more info on specific movie
 router.get("/:id", (req, res) => {
   const { id } = req.params;
 
   axios.get(`https://api.themoviedb.org/3/movie/${id}?api_key=${process.env.MOVIE_DB}&language=en-US&external_source=imdb_id`)
+    .then(res => res.data)
+    .then(data => res.status(200).json(data))
+    .catch(e => {
+      // console.log(e);
+      res.status(404).redirect("/");
+    });
+
+});
+
+// will get more info on specific tv show
+router.get("/show/:id", (req, res) => {
+  const { id } = req.params;
+
+  axios.get(`https://api.themoviedb.org/3/tv/${id}?api_key=${process.env.MOVIE_DB}&language=en-US&external_source=imdb_id`)
     .then(res => res.data)
     .then(data => res.status(200).json(data))
     .catch(e => {
