@@ -2,20 +2,21 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const Card = props => {
-  let { title, id } = props.movie;
+  let { title, id, name, media_type } = props.movie;
   let { movieBackdrop, prev } = props;
+  let path = media_type === "movie" ? `/movie/${id}` : `/tv/${id}`;
   return (
     <div className="col-xs-12 col-sm-6 col-md-4">
       <Link
         to={{
-          pathname: `/movie/${id}`,
+          pathname: path,
           state: { prev: prev }
         }}
       >
         <div className="card">
           <img className="card-image" src={movieBackdrop} alt="" />
           <h4 className="card-title hover-effect">
-            {title}
+            {title || name}
           </h4>
         </div>
 
