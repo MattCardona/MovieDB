@@ -13,6 +13,7 @@ import MoreInfo from './components/Actors/MoreInfo';
 import SearchActor from './components/Actors/SearchActor';
 import Signup from './components/Users/Signup';
 import Signin from './components/Users/Signin';
+import ShowInfo from './components/ShowInfo';
 
 const AppRouter = (props) => {
   return (
@@ -23,6 +24,7 @@ const AppRouter = (props) => {
           <Route path="/search/" component={SearchMovie} exact />
           <Route path="/search/:movie" component={SearchMovie} exact />
           <Route path="/movie/:id" component={MovieInfo} />
+          <Route path="/tv/:id" component={ShowInfo} />
           <Route path="/actors" component={Actors} exact />
           <Route path="/actors/:id" component={MoreInfo} exact />
           <Route path="/actors/search/:name" component={SearchActor} exact />
