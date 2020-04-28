@@ -1,4 +1,4 @@
-import { NOW_PLAYING, POPULAR, TOP_RATED, SEARCHED_MOVIE, SEARCH_MOVIE, SEARCH_MOVIE_ERROR, SEARCHED_MOVIE_NAV, APPEND_NOW_PLAYING, APPEND_SEARCH_MOVIE } from './types';
+import { NOW_PLAYING, POPULAR, TOP_RATED, SEARCHED_MOVIE, SEARCH_MOVIE, SEARCH_MOVIE_ERROR, SEARCHED_MOVIE_NAV, APPEND_NOW_PLAYING, APPEND_SEARCH_MOVIE, SEARCHED_SHOW } from './types';
 import Axios from 'axios';
 
 export const nowPlaying = () => async dispatch => {
@@ -120,3 +120,14 @@ export const appendMovies = (kind, page = 1, searchMovie, cb) => async dispatch 
   }
 }
 
+export const searchShow = id => async dispatch => {
+  try {
+    const { data } = await Axios.get(`/movies/show/${id}`);
+    await dispatch({
+      type: SEARCHED_SHOW,
+      show: data
+    });
+  } catch (error) {
+    console.log(error);
+  }
+}
