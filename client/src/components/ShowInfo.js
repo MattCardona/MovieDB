@@ -1,24 +1,22 @@
 import React, { Component } from 'react';
 import Axios from 'axios';
+import { connect } from 'react-redux'
+import { searchShow } from '../actions/moviesActions'
 
 class ShowInfo extends Component {
   state = {
     height: "",
     prevLocation: "",
-    show: {}
   }
-  async componentDidMount() {
+  componentDidMount() {
     this.setState(() => ({
       height: window.innerHeight + 'px',
       prevLocation: this.props.location.state.prev
     }));
-    const { data } = await Axios.get(`/movies/show/${this.props.match.params.id}`);
-    this.setState(() => ({
-      show: data
-    }))
+    this.props.searchShow(this.props.match.params.id);
   }
   handleClick = () => {
-    this.props.history.goBack()
+    this.props.history.goBack();
   }
   prevLocation = location => {
     switch (location) {
@@ -32,7 +30,8 @@ class ShowInfo extends Component {
     }
   }
   render() {
-    const { prevLocation, show } = this.state;
+    const { prevLocation } = this.state;
+    const { show } = this.props;
     return (
       <div>
         <div className="container-fluid" style={{
@@ -53,4 +52,8 @@ class ShowInfo extends Component {
   }
 };
 
-export default ShowInfo;
+const mapStateToProps = ({ movies }) => ({
+  show: movies.movie
+});
+
+export default connect(mapStateToProps, { searchShow })(ShowInfo);
