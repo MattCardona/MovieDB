@@ -22,6 +22,22 @@ class ActorInfiniteScroll extends Component {
   componentWillUnmount() {
     window.removeEventListener('scroll', this.handleScroll)
   }
+  componentDidUpdate(prevProps) {
+    // this is if we update the path we where on had it for "popular" "nowPlaying" "topRated"
+    // if (this.props.kind !== prevProps.kind) {
+    //   this.setState(() => ({
+    //     path: this.props.kind,
+    //     count: 1
+    //   }));
+    // }
+    // will need this for when searching for actor/actesses
+    // if (this.props.searchMovie !== prevProps.searchMovie) {
+    //   this.setState(() => ({
+    //     count: 1
+    //   }))
+    // }
+
+  }
   handleScroll = () => {
     if (window.innerHeight + document.documentElement.scrollTop === document.documentElement.offsetHeight) {
       // Do awesome stuff like loading more content!

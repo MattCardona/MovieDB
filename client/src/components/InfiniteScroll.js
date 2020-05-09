@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import { appendMovies, searchMovie } from "../actions/moviesActions";
+import { appendMovies } from "../actions/moviesActions";
 
 class InfiniteScroll extends Component {
   state = {
