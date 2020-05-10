@@ -23,8 +23,8 @@ const AppRouter = (props) => {
           <Route path="/" component={Home} exact />
           <Route path="/search/" component={SearchMovie} exact />
           <Route path="/search/:movie" component={SearchMovie} exact />
-          <Route path="/movie/:id" component={MovieInfo} />
-          <Route path="/tv/:id" component={ShowInfo} />
+          <Route path="/movie/:id" component={MovieInfo} exact />
+          <Route path="/tv/:id" component={ShowInfo} exact />
           <Route path="/actors" component={Actors} exact />
           <Route path="/actors/:id" component={MoreInfo} exact />
           <Route path="/actors/search/:name" component={SearchActor} exact />
