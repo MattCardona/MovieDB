@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 const Card = props => {
   let { title, id, name, media_type } = props.movie;
   let { movieBackdrop, prev } = props;
-  let path = media_type === "movie" ? `/movie/${id}` : `/tv/${id}`;
+  let path = media_type === "tv" ? `/tv/${id}` : `/movie/${id}`;
   return (
     <div className="col-xs-12 col-sm-6 col-md-4">
       <Link
