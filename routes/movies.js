@@ -110,4 +110,17 @@ router.get("/show/:id", (req, res) => {
 
 });
 
+// get videos recomendations, similar
+router.get("/videos/:id", (req, res) => {
+  const { id } = req.params;
+  axios.get(`https://api.themoviedb.org/3/movie/${id}?api_key=${process.env.MOVIE_DB}&language=en-US&external_source=imdb_id&append_to_response=videos,recommendations,similar`)
+    .then(res => res.data)
+    .then(data => res.status(200).json(data))
+    .catch(e => {
+      // console.log(e);
+      res.status(404).redirect("/");
+    });
+
+})
+
 module.exports = router;
