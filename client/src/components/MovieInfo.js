@@ -1,19 +1,30 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { searchedMovie } from '../actions/moviesActions';
+import Trailer from './Trailer';
+import Axios from 'axios';
 
 
 class MovieInfo extends Component {
   state = {
     height: "",
-    prevLocation: ""
+    prevLocation: "",
+    trailerIds: []
   }
-  componentDidMount() {
+  async componentDidMount() {
     this.setState(() => ({
       height: window.innerHeight + 'px',
       prevLocation: this.props.location.state.prev
     }));
     this.props.searchedMovie(this.props.match.params.id);
+    const { data } = await Axios.get(`/movies/videos/${this.props.match.params.id}`);
+    const keys = [];
+    data.videos.results.forEach(element => {
+      keys.push(element.key);
+    });
+    this.setState(() => ({
+      trailerIds: [...keys]
+    }))
   }
   handleClick = () => {
     this.props.history.goBack()
@@ -30,7 +41,7 @@ class MovieInfo extends Component {
     }
   }
   render() {
-    const { prevLocation } = this.state;
+    const { prevLocation, trailerIds } = this.state;
     const { movie } = this.props;
     return (
       <div>
@@ -47,6 +58,7 @@ class MovieInfo extends Component {
             {this.prevLocation(prevLocation)}
           </div>
         </div>
+        <Trailer trailerIds={trailerIds} />
       </div>
     )
   }
