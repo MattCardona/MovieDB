@@ -131,3 +131,14 @@ export const searchShow = id => async dispatch => {
     console.log(error);
   }
 }
+
+export const moreInfo = id => async () => {
+  try {
+    const { data } = await Axios.get(`/movies/videos/${id}`);
+    // console.log(data);
+    return data;
+  } catch (error) {
+    console.log(error.response);
+  }
+
+}
