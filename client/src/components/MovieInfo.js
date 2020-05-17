@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom'
 import { connect } from 'react-redux'
-import { searchedMovie } from '../actions/moviesActions';
+import { searchedMovie, moreInfo } from '../actions/moviesActions';
 import Trailer from './Trailer';
 import Axios from 'axios';
 
 
 class MovieInfo extends Component {
+  trailer = React.createRef()
   state = {
     height: "",
     prevLocation: "",
@@ -17,7 +19,7 @@ class MovieInfo extends Component {
       prevLocation: this.props.location.state.prev
     }));
     this.props.searchedMovie(this.props.match.params.id);
-    const { data } = await Axios.get(`/movies/videos/${this.props.match.params.id}`);
+    const data = await this.props.moreInfo(this.props.match.params.id);
     const keys = [];
     data.videos.results.forEach(element => {
       keys.push(element.key);
@@ -57,8 +59,11 @@ class MovieInfo extends Component {
             <p>{movie.overview}</p>
             {this.prevLocation(prevLocation)}
           </div>
+
         </div>
-        <Trailer trailerIds={trailerIds} />
+        <div ref={this.trailer}>
+          <Trailer trailerIds={trailerIds} />
+        </div>
       </div>
     )
   }
@@ -68,4 +73,4 @@ const mapStateToProps = state => ({
   movie: state.movies.movie
 })
 
-export default connect(mapStateToProps, { searchedMovie })(MovieInfo);
+export default connect(mapStateToProps, { searchedMovie, moreInfo })(MovieInfo);
