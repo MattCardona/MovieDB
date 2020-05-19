@@ -19,14 +19,6 @@ class MovieInfo extends Component {
       prevLocation: this.props.location.state.prev
     }));
     this.props.searchedMovie(this.props.match.params.id);
-    const data = await this.props.moreInfo(this.props.match.params.id);
-    const keys = [];
-    data.videos.results.forEach(element => {
-      keys.push(element.key);
-    });
-    this.setState(() => ({
-      trailerIds: [...keys]
-    }))
   }
   handleClick = () => {
     this.props.history.goBack()
@@ -41,6 +33,17 @@ class MovieInfo extends Component {
         return <i onClick={this.handleClick} className="fas fa-home hover-effect"> Home</i>;
 
     }
+  }
+  handleSeeMore = async id => {
+    const data = await this.props.moreInfo(id);
+    const keys = [];
+    data.videos.results.forEach(element => {
+      keys.push(element.key);
+    });
+    this.setState(() => ({
+      trailerIds: [...keys]
+    }))
+    window.scrollTo(100, this.trailer.current.offsetTop)
   }
   render() {
     const { prevLocation, trailerIds } = this.state;
@@ -58,6 +61,11 @@ class MovieInfo extends Component {
             <h1 id="movie-title" >{movie.original_title}</h1>
             <p>{movie.overview}</p>
             {this.prevLocation(prevLocation)}
+            <div class="see-more-box" onClick={() => this.handleSeeMore(movie.id)}>
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
           </div>
 
         </div>
