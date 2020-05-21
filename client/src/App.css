@@ -217,7 +217,26 @@ footer img {
 	}
 }
 
+.trailer {
+  text-align: center;
+  padding-top: 40px;
+  padding-bottom: 50px;
+}
+
+.trailer h2{
+  font-weight: 500;
+  font-size: 50px;
+  letter-spacing: 4px;
+  font-family: 'Cinzel', serif;
+}
+
+.trailer hr {
+  border-bottom: 1px solid black;
+}
+
 .trailer .iframe {
+  /* padding-top: 50px; */
+  margin-top: 40px;
   width: 640px;
   height: 316px;
 }
