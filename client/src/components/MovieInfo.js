@@ -7,7 +7,8 @@ import Axios from 'axios';
 
 
 class MovieInfo extends Component {
-  trailer = React.createRef()
+  trailer = React.createRef();
+  seeMoreBtn = React.createRef();
   state = {
     height: "",
     prevLocation: "",
@@ -43,7 +44,8 @@ class MovieInfo extends Component {
     this.setState(() => ({
       trailerIds: [...keys]
     }))
-    window.scrollTo(100, this.trailer.current.offsetTop)
+    window.scrollTo(100, this.trailer.current.offsetTop);
+    this.seeMoreBtn.current.style.display = "none"
   }
   render() {
     const { prevLocation, trailerIds } = this.state;
@@ -61,7 +63,7 @@ class MovieInfo extends Component {
             <h1 id="movie-title" >{movie.original_title}</h1>
             <p>{movie.overview}</p>
             {this.prevLocation(prevLocation)}
-            <div class="see-more-box" onClick={() => this.handleSeeMore(movie.id)}>
+            <div ref={this.seeMoreBtn} className="see-more-box" onClick={() => this.handleSeeMore(movie.id)}>
               <span></span>
               <span></span>
               <span></span>
