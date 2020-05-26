@@ -1,18 +1,19 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom'
 import { connect } from 'react-redux'
 import { searchedMovie, moreInfo } from '../actions/moviesActions';
 import Trailer from './Trailer';
-import Axios from 'axios';
+import Similar from './Similar';
 
 
 class MovieInfo extends Component {
   trailer = React.createRef();
   seeMoreBtn = React.createRef();
+  similars = React.createRef();
   state = {
     height: "",
     prevLocation: "",
-    trailerIds: []
+    trailerIds: [],
+    similar: []
   }
   async componentDidMount() {
     this.setState(() => ({
@@ -20,6 +21,16 @@ class MovieInfo extends Component {
       prevLocation: this.props.location.state.prev
     }));
     this.props.searchedMovie(this.props.match.params.id);
+  }
+  componentDidUpdate(prevProp) {
+    if (this.props.match.params.id !== prevProp.match.params.id) {
+      this.setState(() => ({
+        trailerIds: [],
+        similar: []
+      }));
+      this.props.searchedMovie(this.props.match.params.id);
+      this.seeMoreBtn.current.style.display = "flex"
+    }
   }
   handleClick = () => {
     this.props.history.goBack()
@@ -37,18 +48,24 @@ class MovieInfo extends Component {
   }
   handleSeeMore = async id => {
     const data = await this.props.moreInfo(id);
+    // console.log(data);
     const keys = [];
+    const sim = [];
     data.videos.results.forEach(element => {
       keys.push(element.key);
     });
+    data.similar.results.forEach(simMovie => {
+      sim.push(simMovie);
+    });
     this.setState(() => ({
-      trailerIds: [...keys]
+      trailerIds: [...keys],
+      similar: [...sim]
     }))
     window.scrollTo(100, this.trailer.current.offsetTop);
     this.seeMoreBtn.current.style.display = "none"
   }
   render() {
-    const { prevLocation, trailerIds } = this.state;
+    const { prevLocation, trailerIds, similar } = this.state;
     const { movie } = this.props;
     return (
       <div>
@@ -73,6 +90,9 @@ class MovieInfo extends Component {
         </div>
         <div ref={this.trailer}>
           <Trailer trailerIds={trailerIds} />
+        </div>
+        <div ref={this.similars} >
+          <Similar similar={similar} />
         </div>
       </div>
     )
