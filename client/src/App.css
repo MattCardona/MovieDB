@@ -241,6 +241,27 @@ footer img {
   height: 316px;
 }
 
+.similar {
+  text-align: center;
+  padding-top: 40px;
+  padding-bottom: 50px;
+  background-color: black;
+}
+
+.similar h2 {
+  color: #fff;
+  font-weight: 500;
+  font-size: 50px;
+  letter-spacing: 4px;
+  font-family: 'Cinzel', serif;
+}
+
+.similar hr {
+  border-bottom: 1px solid #fff;
+}
+.similar a {
+  text-decoration: none;
+}
 
 /* 
 #overview i {
