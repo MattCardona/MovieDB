@@ -26,8 +26,10 @@ class MovieInfo extends Component {
     if (this.props.match.params.id !== prevProp.match.params.id) {
       this.setState(() => ({
         trailerIds: [],
-        similar: []
+        similar: [],
+        prevLocation: this.props.location.state.prev
       }));
+
       this.props.searchedMovie(this.props.match.params.id);
       this.seeMoreBtn.current.style.display = "flex"
     }
@@ -41,6 +43,8 @@ class MovieInfo extends Component {
         return <i onClick={this.handleClick} className="fas fa-search hover-effect"> Search</i>;
       case "actor":
         return <i onClick={this.handleClick} className="fas fa-user hover-effect"> Actor/Actress</i>;
+      case "similar":
+        return <i onClick={this.handleClick} className="fas fa-long-arrow-alt-left"> Previous</i>;
       default:
         return <i onClick={this.handleClick} className="fas fa-home hover-effect"> Home</i>;
 
