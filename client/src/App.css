@@ -179,6 +179,10 @@ footer img {
   color: #fff
 }
 
+.point {
+  cursor: pointer;
+}
+
 .see-more-box {
   display: flex;
   justify-content: center;

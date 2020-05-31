@@ -40,13 +40,13 @@ class MovieInfo extends Component {
   prevLocation = location => {
     switch (location) {
       case "search":
-        return <i onClick={this.handleClick} className="fas fa-search hover-effect"> Search</i>;
+        return <i onClick={this.handleClick} className="fas fa-search hover-effect point"> Search</i>;
       case "actor":
-        return <i onClick={this.handleClick} className="fas fa-user hover-effect"> Actor/Actress</i>;
+        return <i onClick={this.handleClick} className="fas fa-user hover-effect point"> Actor/Actress</i>;
       case "similar":
-        return <i onClick={this.handleClick} className="fas fa-long-arrow-alt-left"> Previous</i>;
+        return <i onClick={this.handleClick} className="fas fa-long-arrow-alt-left hover-effect point"> Previous</i>;
       default:
-        return <i onClick={this.handleClick} className="fas fa-home hover-effect"> Home</i>;
+        return <i onClick={this.handleClick} className="fas fa-home hover-effect point"> Home</i>;
 
     }
   }
@@ -84,7 +84,7 @@ class MovieInfo extends Component {
             <h1 id="movie-title" >{movie.original_title}</h1>
             <p>{movie.overview}</p>
             {this.prevLocation(prevLocation)}
-            <div ref={this.seeMoreBtn} className="see-more-box" onClick={() => this.handleSeeMore(movie.id)}>
+            <div ref={this.seeMoreBtn} className="see-more-box point" onClick={() => this.handleSeeMore(movie.id)}>
               <span></span>
               <span></span>
               <span></span>
