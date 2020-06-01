@@ -3,6 +3,8 @@ import { connect } from 'react-redux'
 import { searchedMovie, moreInfo } from '../actions/moviesActions';
 import Trailer from './Trailer';
 import Similar from './Similar';
+import Navbar from './Navbar';
+
 
 
 class MovieInfo extends Component {
@@ -79,7 +81,7 @@ class MovieInfo extends Component {
           backgroundPosition: "center center",
           height: `${this.state.height}`
         }}>
-
+          < Navbar />
           <div className="container" id="overview">
             <h1 id="movie-title" >{movie.original_title}</h1>
             <p>{movie.overview}</p>
