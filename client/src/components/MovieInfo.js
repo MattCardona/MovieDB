@@ -1,21 +1,23 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { searchedMovie, moreInfo } from '../actions/moviesActions';
-import Trailer from './Trailer';
-import Similar from './Similar';
+import Trailer from './MovieInfo/Trailer';
 import Navbar from './Navbar';
-
+import Recommend from './MovieInfo/Recommend';
+import Similar from './MovieInfo/Similar';
 
 
 class MovieInfo extends Component {
   trailer = React.createRef();
   seeMoreBtn = React.createRef();
   similars = React.createRef();
+  recommended = React.createRef();
   state = {
     height: "",
     prevLocation: "",
     trailerIds: [],
-    similar: []
+    similar: [],
+    recommend: []
   }
   async componentDidMount() {
     this.setState(() => ({
@@ -29,6 +31,7 @@ class MovieInfo extends Component {
       this.setState(() => ({
         trailerIds: [],
         similar: [],
+        recommend: [],
         prevLocation: this.props.location.state.prev
       }));
 
@@ -57,21 +60,26 @@ class MovieInfo extends Component {
     // console.log(data);
     const keys = [];
     const sim = [];
+    const recommended = [];
     data.videos.results.forEach(element => {
       keys.push(element.key);
     });
     data.similar.results.forEach(simMovie => {
       sim.push(simMovie);
     });
+    data.recommendations.results.forEach(recMovie => {
+      recommended.push(recMovie);
+    })
     this.setState(() => ({
       trailerIds: [...keys],
-      similar: [...sim]
+      similar: [...sim],
+      recommend: [...recommended]
     }))
     window.scrollTo(100, this.trailer.current.offsetTop);
     this.seeMoreBtn.current.style.display = "none"
   }
   render() {
-    const { prevLocation, trailerIds, similar } = this.state;
+    const { prevLocation, trailerIds, similar, recommend } = this.state;
     const { movie } = this.props;
     return (
       <div>
@@ -99,6 +107,9 @@ class MovieInfo extends Component {
         </div>
         <div ref={this.similars}>
           <Similar similar={similar} />
+        </div>
+        <div ref={this.recommended}>
+          <Recommend recommend={recommend} />
         </div>
       </div>
     )
