@@ -267,31 +267,41 @@ footer img {
   text-decoration: none;
 }
 
-/* 
-#overview i {
-  position: relative;
-  display: inline-block;
-  transition: .3s;
+
+.recommended {
+  text-align: center;
+  padding-top: 40px;
+  padding-bottom: 50px;
+}
+
+.recommended  h2 {
+  color: black;
+  font-weight: 500;
+  font-size: 50px;
+  letter-spacing: 4px;
+  font-family: 'Cinzel', serif;
+}
+
+.recommended hr {
+  border-bottom: 1px solid black;
+}
+
+.recommended a {
   text-decoration: none;
-  }
-  #overview i::after {
-  position: absolute;
-  bottom: .3em;
-  left: 0;
-  content: '';
-  width: 100%;
-  height: 1px;
-  background-color: #a9c1a7;
-  opacity: 0;
-  transition: .3s;
-  }
-  #overview   i:hover::after {
-  bottom: 0;
-  opacity: 1;
-  }
-  #overview   i:hover {
-  color: #a9c1a7;
-  } */
+}
+
+
+.recommended .card {
+  background-color: white;
+  border-color: black;
+}
+
+.recommended .card-title{
+  color: black;
+}
+
+
+
 
 /* ========================  */ 
 /*      Movie Search        */
@@ -309,39 +319,6 @@ footer img {
   font-size: 60px;
   font-family: 'Cinzel', serif;
 }
-
-
-/* #search-movie-container i {
-  color: #fff;
-  font-size: 25px
-  
-}
-
-#search-movie-container i {
-  position: relative;
-  display: inline-block;
-  transition: .3s;
-  text-decoration: none;
-  }
-
-#search-movie-container i::after {
-position: absolute;
-bottom: .3em;
-left: 0;
-content: '';
-width: 100%;
-height: 1px;
-background-color: #a9c1a7;
-opacity: 0;
-transition: .3s;
-}
-#search-movie-container   i:hover::after {
-bottom: 0;
-opacity: 1;
-}
-#search-movie-container   i:hover {
-color: #a9c1a7;
-}*/
 
 #search-movie-container a {
   text-decoration: none;
@@ -487,7 +464,11 @@ color: #a9c1a7;
 
 /* small phones to small tablets: from 481 to 767 pixels */
 @media only screen and (max-width: 767px) {
-  
+
+  .recommended  h2 {
+    font-size: 40px;
+  }
+
 #movie-title {
   font-size: 40px;
 }
@@ -527,6 +508,10 @@ color: #a9c1a7;
 
 /* small pnhones from 0 to 480px */
 @media only screen and (max-width: 480px) {
+  .recommended  h2 {
+    font-size: 26px;
+  }
+
   #overview {
     padding-top: 100px;
     font-size: 20px;
