@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import Axios from 'axios';
+import Navbar from './Navbar';
+
 import { connect } from 'react-redux'
 import { searchShow } from '../actions/moviesActions'
 
@@ -40,7 +41,7 @@ class ShowInfo extends Component {
           backgroundPosition: "center center",
           height: `${this.state.height}`
         }}>
-
+          <Navbar />
           <div className="container" id="overview">
             <h1 id="movie-title" >{show.original_title}</h1>
             <p>{show.overview}</p>
