@@ -123,6 +123,7 @@ export const appendMovies = (kind, page = 1, searchMovie, cb) => async dispatch 
 export const searchShow = id => async dispatch => {
   try {
     const { data } = await Axios.get(`/movies/show/${id}`);
+   // console.log(data);
     await dispatch({
       type: SEARCHED_SHOW,
       show: data
@@ -140,5 +141,14 @@ export const moreInfo = id => async () => {
   } catch (error) {
     console.log(error.response);
   }
+}
 
+export const moreTVInfo = id => async () => {
+  try {
+    const { data } = await Axios.get(`/movies/tv/videos/${id}`);
+   // console.log(data);
+    return data;
+  } catch (error) {
+    console.log(error.response);
+  }
 }
