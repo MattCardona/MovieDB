@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 import Navbar from './Navbar';
 
 import { connect } from 'react-redux'
-import { searchShow } from '../actions/moviesActions'
+import { searchShow, moreTVInfo } from '../actions/moviesActions'
 
 class ShowInfo extends Component {
+  seeMoreBtn = React.createRef();
   state = {
     height: "",
     prevLocation: "",
@@ -15,6 +16,7 @@ class ShowInfo extends Component {
       prevLocation: this.props.location.state.prev
     }));
     this.props.searchShow(this.props.match.params.id);
+    this.seeMoreBtn.current.style.display = "flex"
   }
   handleClick = () => {
     this.props.history.goBack();
@@ -29,6 +31,9 @@ class ShowInfo extends Component {
         return <i onClick={this.handleClick} className="fas fa-home hover-effect"> Home</i>;
 
     }
+  }
+  handleSeeMore = async id => {
+    this.props.moreTVInfo(id);
   }
   render() {
     const { prevLocation } = this.state;
@@ -46,6 +51,11 @@ class ShowInfo extends Component {
             <h1 id="movie-title" >{show.original_title}</h1>
             <p>{show.overview}</p>
             {this.prevLocation(prevLocation)}
+            <div ref={this.seeMoreBtn} className="see-more-box point" onClick={() => this.handleSeeMore(show.id)}>
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
           </div>
         </div>
       </div>
@@ -57,4 +67,4 @@ const mapStateToProps = ({ movies }) => ({
   show: movies.movie
 });
 
-export default connect(mapStateToProps, { searchShow })(ShowInfo);
+export default connect(mapStateToProps, { searchShow, moreTVInfo })(ShowInfo);
