@@ -3,12 +3,15 @@ import Navbar from './Navbar';
 
 import { connect } from 'react-redux'
 import { searchShow, moreTVInfo } from '../actions/moviesActions'
+import Trailer from './MovieInfo/Trailer';
 
 class ShowInfo extends Component {
   seeMoreBtn = React.createRef();
+  trailer = React.createRef();
   state = {
     height: "",
     prevLocation: "",
+    trailerIds: [],
   }
   componentDidMount() {
     this.setState(() => ({
@@ -33,10 +36,22 @@ class ShowInfo extends Component {
     }
   }
   handleSeeMore = async id => {
-    this.props.moreTVInfo(id);
+    const data = await this.props.moreTVInfo(id);
+    const keys = [];
+    // console.log(data);
+    data.videos.results.forEach(element => {
+      keys.push(element.key);
+    });
+
+    this.setState(() => ({
+      trailerIds: [...keys]
+    }));
+
+    window.scrollTo(100, this.trailer.current.offsetTop);
+    this.seeMoreBtn.current.style.display = "none"
   }
   render() {
-    const { prevLocation } = this.state;
+    const { prevLocation, trailerIds } = this.state;
     const { show } = this.props;
     return (
       <div>
@@ -58,6 +73,10 @@ class ShowInfo extends Component {
             </div>
           </div>
         </div>
+        <div ref={this.trailer} >
+          <Trailer trailerIds={trailerIds} />
+        </div>
+
       </div>
     )
   }
