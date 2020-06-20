@@ -126,7 +126,7 @@ router.get("/videos/:id", (req, res) => {
 router.get("/tv/videos/:id", (req, res) => {
   const { id } = req.params;
 
-  axios.get(`https://api.themoviedb.org/3/tv/${id}/videos?api_key=${process.env.MOVIE_DB}&language=en-US&external_source=imdb_id&append_to_response=videos,recommendations,similar`)
+  axios.get(`https://api.themoviedb.org/3/tv/${id}?api_key=${process.env.MOVIE_DB}&append_to_response=videos,recommendations,similar`)
     .then(res => res.data)
     .then(data => res.status(200).json(data))
     .catch(e => {
