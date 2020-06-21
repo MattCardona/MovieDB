@@ -4,14 +4,17 @@ import Navbar from './Navbar';
 import { connect } from 'react-redux'
 import { searchShow, moreTVInfo } from '../actions/moviesActions'
 import Trailer from './MovieInfo/Trailer';
+import Similar from './MovieInfo/Similar';
 
 class ShowInfo extends Component {
   seeMoreBtn = React.createRef();
   trailer = React.createRef();
+  similars = React.createRef();
   state = {
     height: "",
     prevLocation: "",
     trailerIds: [],
+    similar: [],
   }
   componentDidMount() {
     this.setState(() => ({
@@ -19,7 +22,6 @@ class ShowInfo extends Component {
       prevLocation: this.props.location.state.prev
     }));
     this.props.searchShow(this.props.match.params.id);
-    this.seeMoreBtn.current.style.display = "flex"
   }
   handleClick = () => {
     this.props.history.goBack();
@@ -38,20 +40,25 @@ class ShowInfo extends Component {
   handleSeeMore = async id => {
     const data = await this.props.moreTVInfo(id);
     const keys = [];
+    const sim = [];
+
     // console.log(data);
     data.videos.results.forEach(element => {
       keys.push(element.key);
     });
-
+    data.similar.results.forEach(simShow => {
+      sim.push(simShow);
+    });
     this.setState(() => ({
-      trailerIds: [...keys]
+      trailerIds: [...keys],
+      similar: [...sim]
     }));
 
     window.scrollTo(100, this.trailer.current.offsetTop);
     this.seeMoreBtn.current.style.display = "none"
   }
   render() {
-    const { prevLocation, trailerIds } = this.state;
+    const { prevLocation, trailerIds, similar } = this.state;
     const { show } = this.props;
     return (
       <div>
@@ -73,8 +80,13 @@ class ShowInfo extends Component {
             </div>
           </div>
         </div>
+
         <div ref={this.trailer} >
           <Trailer trailerIds={trailerIds} />
+        </div>
+
+        <div ref={this.similars}>
+          <Similar similar={similar} />
         </div>
 
       </div>
