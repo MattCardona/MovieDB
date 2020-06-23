@@ -2,6 +2,7 @@ import React from 'react';
 import Card from '../Card'
 
 const Similar = props => {
+  const { media_type } = props;
   return (
     <React.Fragment>
       {props.similar.length ?
@@ -13,6 +14,7 @@ const Similar = props => {
             <div className="row">
               {props.similar.map(simMovie => {
                 const movieBackdrop = `https://image.tmdb.org/t/p/w300${simMovie.poster_path}`;
+                simMovie.media_type = media_type;
                 return <Card movie={simMovie} movieBackdrop={movieBackdrop} key={simMovie.id} prev='similar' />
               })}
             </div>
