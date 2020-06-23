@@ -5,16 +5,20 @@ import { connect } from 'react-redux'
 import { searchShow, moreTVInfo } from '../actions/moviesActions'
 import Trailer from './MovieInfo/Trailer';
 import Similar from './MovieInfo/Similar';
+import Recommend from './MovieInfo/Recommend';
 
 class ShowInfo extends Component {
   seeMoreBtn = React.createRef();
   trailer = React.createRef();
   similars = React.createRef();
+  recommended = React.createRef();
+
   state = {
     height: "",
     prevLocation: "",
     trailerIds: [],
     similar: [],
+    recommend: []
   }
   componentDidMount() {
     this.setState(() => ({
@@ -41,7 +45,7 @@ class ShowInfo extends Component {
     const data = await this.props.moreTVInfo(id);
     const keys = [];
     const sim = [];
-
+    const recommended = [];
     // console.log(data);
     data.videos.results.forEach(element => {
       keys.push(element.key);
@@ -49,16 +53,20 @@ class ShowInfo extends Component {
     data.similar.results.forEach(simShow => {
       sim.push(simShow);
     });
+    data.recommendations.results.forEach(recShow => {
+      recommended.push(recShow);
+    })
     this.setState(() => ({
       trailerIds: [...keys],
-      similar: [...sim]
+      similar: [...sim],
+      recommend: [...recommended]
     }));
 
     window.scrollTo(100, this.trailer.current.offsetTop);
     this.seeMoreBtn.current.style.display = "none"
   }
   render() {
-    const { prevLocation, trailerIds, similar } = this.state;
+    const { prevLocation, trailerIds, similar, recommend } = this.state;
     const { show } = this.props;
     return (
       <div>
@@ -87,6 +95,10 @@ class ShowInfo extends Component {
 
         <div ref={this.similars}>
           <Similar similar={similar} />
+        </div>
+
+        <div ref={this.recommended}>
+          <Recommend recommend={recommend} />
         </div>
 
       </div>
