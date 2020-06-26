@@ -1,7 +1,7 @@
 import React from 'react';
 import Card from '../Card'
 
-const Recommend = ({ recommend }) => {
+const Recommend = ({ recommend, media_type }) => {
   return (
     <React.Fragment>
       {recommend.length ?
@@ -13,6 +13,7 @@ const Recommend = ({ recommend }) => {
             <div className="row">
               {recommend.map(recommended => {
                 const movieBackdrop = `https://image.tmdb.org/t/p/w300${recommended.poster_path}`;
+                recommended.media_type = media_type;
                 return <Card movie={recommended} movieBackdrop={movieBackdrop} key={recommended.id} prev='recommended' />
               })}
             </div>
