@@ -27,6 +27,19 @@ class ShowInfo extends Component {
     }));
     this.props.searchShow(this.props.match.params.id);
   }
+  componentDidUpdate(prevProp) {
+    if (this.props.match.params.id !== prevProp.match.params.id) {
+      this.setState(() => ({
+        trailerIds: [],
+        similar: [],
+        recommend: [],
+        prevLocation: this.props.location.state.prev
+      }));
+
+      this.props.searchShow(this.props.match.params.id);
+      this.seeMoreBtn.current.style.display = "flex"
+    }
+  }
   handleClick = () => {
     this.props.history.goBack();
   }
@@ -36,6 +49,8 @@ class ShowInfo extends Component {
         return <i onClick={this.handleClick} className="fas fa-search hover-effect"> Search</i>;
       case "actor":
         return <i onClick={this.handleClick} className="fas fa-user hover-effect"> Actor/Actress</i>;
+      case "similar":
+        return <i onClick={this.handleClick} className="fas fa-long-arrow-alt-left hover-effect point"> Previous</i>;
       default:
         return <i onClick={this.handleClick} className="fas fa-home hover-effect"> Home</i>;
 
@@ -94,7 +109,7 @@ class ShowInfo extends Component {
         </div>
 
         <div ref={this.similars}>
-          <Similar similar={similar} />
+          <Similar similar={similar} media_type={"tv"} />
         </div>
 
         <div ref={this.recommended}>
