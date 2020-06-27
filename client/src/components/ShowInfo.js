@@ -113,7 +113,7 @@ class ShowInfo extends Component {
         </div>
 
         <div ref={this.recommended}>
-          <Recommend recommend={recommend} />
+          <Recommend recommend={recommend} media_type={"tv"} />
         </div>
 
       </div>
