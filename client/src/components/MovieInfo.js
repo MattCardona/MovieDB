@@ -50,6 +50,8 @@ class MovieInfo extends Component {
         return <i onClick={this.handleClick} className="fas fa-user hover-effect point"> Actor/Actress</i>;
       case "similar":
         return <i onClick={this.handleClick} className="fas fa-long-arrow-alt-left hover-effect point"> Previous</i>;
+      case "recommended":
+        return <i onClick={this.handleClick} className="fas fa-long-arrow-alt-left hover-effect point"> Previous</i>;
       default:
         return <i onClick={this.handleClick} className="fas fa-home hover-effect point"> Home</i>;
 
