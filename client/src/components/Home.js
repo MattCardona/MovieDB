@@ -73,6 +73,7 @@ class Home extends Component {
     }
     return (
       <div id="home">
+        <h1>MovieDB.</h1>
         <Slider {...settings} >
           {sliderMovies.map(movie => {
             return (
@@ -85,7 +86,7 @@ class Home extends Component {
                     height: "100vh"
                   }}
                 >
-                  <h1>MovieDB.</h1>
+
                 </div>
               </div>
             )

@@ -8,6 +8,13 @@ body {
   color: #e00b1f
 }
 
+#home h1 {
+  position: absolute;
+  top: 1%;
+  left: 1%;
+  z-index: 380;
+}
+
 #not-found {
   margin-top: 250px;
   text-align: center;
