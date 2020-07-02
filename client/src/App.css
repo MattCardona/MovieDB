@@ -38,6 +38,10 @@ body {
   font-family: 'Cinzel', serif;
   font-weight: 900;
 }
+
+.sort:hover{
+  cursor: pointer;
+}
 .sort p {
   padding-top: 9px;
 }
@@ -61,6 +65,7 @@ body {
 }
 
 .sort:hover > ul,
+.sort:focus-within > ul,
 .dropdown:hover
  {
   visibility: visible;
