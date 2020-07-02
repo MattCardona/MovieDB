@@ -38,6 +38,36 @@ body {
   font-family: 'Cinzel', serif;
   font-weight: 900;
 }
+.sort p {
+  padding-top: 9px;
+}
+
+.dropdown {
+  padding-left: 0px;
+  visibility: hidden;
+  opacity: 0;
+  transition: all 0.5s ease;
+  display: none;
+}
+
+.dropdown li {
+  display: block !important;
+  list-style: none;
+  margin: 0px auto;
+}
+
+.dropdown p {
+  padding-top: 9px;
+}
+
+.sort:hover > ul,
+.dropdown:hover
+ {
+  visibility: visible;
+  opacity: 1;
+  display: block;
+}
+
 
 /* footer home */
 footer {

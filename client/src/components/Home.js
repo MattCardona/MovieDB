@@ -116,7 +116,7 @@ class Home extends Component {
               <span className="navbar-toggler-icon"></span>
             </button>
 
-            <div className="collapse navbar-collapse" id="navbar-burger">
+            <div className="" id="navbar-burger">
               <ul className="navbar-nav mr-auto">
                 <li className="nav-item">
                   <p ref={this.now_playing} className="nav-link hover-effect" id="now-playing" onClick={this.handleNowPlaying}>Now Playing<span className="sr-only">(current)</span></p>
@@ -129,6 +129,17 @@ class Home extends Component {
                 </li>
                 <li className="nav-item">
                   <Link to="/actors" className="nav-link hover-effect" >Actors/Actresses</Link>
+                </li>
+                <li className="nav-item sort">
+                  <p className="nav-link hover-effect">Sort</p>
+                  <ul className="dropdown">
+                    <li className="nav-item">
+                      <p className="nav-link hover-effect">Popularity</p>
+                    </li>
+                    <li className="nav-item">
+                      <p className="nav-link hover-effect">Rating</p>
+                    </li>
+                  </ul>
                 </li>
                 {/* auth routes */}
                 {!this.props.auth.isAuthenticated ?
