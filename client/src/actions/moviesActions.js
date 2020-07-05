@@ -1,4 +1,4 @@
-import { NOW_PLAYING, POPULAR, TOP_RATED, SEARCHED_MOVIE, SEARCH_MOVIE, SEARCH_MOVIE_ERROR, SEARCHED_MOVIE_NAV, APPEND_NOW_PLAYING, APPEND_SEARCH_MOVIE, SEARCHED_SHOW } from './types';
+import { NOW_PLAYING, POPULAR, TOP_RATED, SEARCHED_MOVIE, SEARCH_MOVIE, SEARCH_MOVIE_ERROR, SEARCHED_MOVIE_NAV, APPEND_NOW_PLAYING, APPEND_SEARCH_MOVIE, SEARCHED_SHOW, FILTER_BY_POPULARITY } from './types';
 import Axios from 'axios';
 
 export const nowPlaying = () => async dispatch => {
@@ -123,7 +123,7 @@ export const appendMovies = (kind, page = 1, searchMovie, cb) => async dispatch 
 export const searchShow = id => async dispatch => {
   try {
     const { data } = await Axios.get(`/movies/show/${id}`);
-   // console.log(data);
+    // console.log(data);
     await dispatch({
       type: SEARCHED_SHOW,
       show: data
@@ -146,9 +146,12 @@ export const moreInfo = id => async () => {
 export const moreTVInfo = id => async () => {
   try {
     const { data } = await Axios.get(`/movies/tv/videos/${id}`);
-   // console.log(data);
+    // console.log(data);
     return data;
   } catch (error) {
     console.log(error.response);
   }
 }
+
+
+export const filterByPopularity = () => ({ type: FILTER_BY_POPULARITY });
