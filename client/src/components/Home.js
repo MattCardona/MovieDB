@@ -3,7 +3,7 @@ import Slider from 'react-slick';
 import Card from './Card';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux'
-import { nowPlaying, popular, topRated } from '../actions/moviesActions';
+import { nowPlaying, popular, topRated, filterByPopularity } from '../actions/moviesActions';
 import { signout } from '../actions/userActions';
 import checkExpToken from '../utils/checkToken';
 import InfiniteScroll from './InfiniteScroll';
@@ -64,7 +64,7 @@ class Home extends Component {
   }
   render() {
     const { search } = this.state;
-    const { sliderMovies, movies } = this.props;
+    const { sliderMovies, movies, filterByPopularity } = this.props;
     const settings = {
       dots: false,
       infinite: true,
@@ -134,7 +134,7 @@ class Home extends Component {
                   <p className="nav-link hover-effect">Sort</p>
                   <ul className="dropdown">
                     <li className="nav-item">
-                      <p className="nav-link hover-effect">Popularity</p>
+                      <p className="nav-link hover-effect" onClick={filterByPopularity}>Popularity</p>
                     </li>
                     <li className="nav-item">
                       <p className="nav-link hover-effect">Rating</p>
@@ -201,4 +201,4 @@ const mapStateToProps = ({ movies, auth }) => ({
   auth
 })
 
-export default connect(mapStateToProps, { nowPlaying, popular, topRated, signout })(Home);
+export default connect(mapStateToProps, { nowPlaying, popular, topRated, signout, filterByPopularity })(Home);
