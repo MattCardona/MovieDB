@@ -1,4 +1,4 @@
-import { NOW_PLAYING, POPULAR, TOP_RATED, SEARCHED_MOVIE, SEARCH_MOVIE, SEARCH_MOVIE_ERROR, SEARCHED_MOVIE_NAV, APPEND_NOW_PLAYING, APPEND_SEARCH_MOVIE, SEARCHED_SHOW } from "../actions/types";
+import { NOW_PLAYING, POPULAR, TOP_RATED, SEARCHED_MOVIE, SEARCH_MOVIE, SEARCH_MOVIE_ERROR, SEARCHED_MOVIE_NAV, APPEND_NOW_PLAYING, APPEND_SEARCH_MOVIE, SEARCHED_SHOW, FILTER_BY_POPULARITY } from "../actions/types";
 
 let moviesInitialState = {
   movies: [],
@@ -73,6 +73,16 @@ export default (state = moviesInitialState, action) => {
         sliderMovies: [],
         movie: {}
       };
+    case FILTER_BY_POPULARITY:
+      {
+        let filter = state.movies.sort((a, b) => b.popularity - a.popularity);
+        // console.log("after", filter);
+        return {
+          movies: [...filter],
+          movie: {},
+          sliderMovies: filter.slice(0, 6)
+        }
+      }
     default:
       return state;
   }
