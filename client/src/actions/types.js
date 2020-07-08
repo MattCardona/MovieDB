@@ -10,6 +10,7 @@ export const SEARCHED_MOVIE_NAV = "SEARCHED_MOVIE_NAV";
 export const SEARCHED_SHOW = "SEARCHED_SHOW";
 
 export const FILTER_BY_POPULARITY = "FILTER_BY_POPULARITY";
+export const FILTER_BY_RATING = "FILTER_BY_RATING";
 
 // actor types
 export const POPULAR_ACTORS = "POPULAR_ACTORS";
