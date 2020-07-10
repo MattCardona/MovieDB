@@ -1,4 +1,4 @@
-import { NOW_PLAYING, POPULAR, TOP_RATED, SEARCHED_MOVIE, SEARCH_MOVIE, SEARCH_MOVIE_ERROR, SEARCHED_MOVIE_NAV, APPEND_NOW_PLAYING, APPEND_SEARCH_MOVIE, SEARCHED_SHOW, FILTER_BY_POPULARITY } from './types';
+import { NOW_PLAYING, POPULAR, TOP_RATED, SEARCHED_MOVIE, SEARCH_MOVIE, SEARCH_MOVIE_ERROR, SEARCHED_MOVIE_NAV, APPEND_NOW_PLAYING, APPEND_SEARCH_MOVIE, SEARCHED_SHOW, FILTER_BY_POPULARITY, FILTER_BY_RATING } from './types';
 import Axios from 'axios';
 
 export const nowPlaying = () => async dispatch => {
@@ -155,3 +155,5 @@ export const moreTVInfo = id => async () => {
 
 
 export const filterByPopularity = () => ({ type: FILTER_BY_POPULARITY });
+
+export const filterByRating = () => ({ type: FILTER_BY_RATING });
