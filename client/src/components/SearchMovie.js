@@ -111,6 +111,9 @@ class SearchMovie extends Component {
             <div className="row">
               {movies.map(movie => {
                 const movieBackdrop = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
+                if (!movie.poster_path) {
+                  return null;
+                }
                 return (
                   <Card movie={movie} prev="search" movieBackdrop={movieBackdrop} key={movie.id} />
                 )
