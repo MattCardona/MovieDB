@@ -14,6 +14,9 @@ const Recommend = ({ recommend, media_type }) => {
               {recommend.map(recommended => {
                 const movieBackdrop = `https://image.tmdb.org/t/p/w300${recommended.poster_path}`;
                 recommended.media_type = media_type;
+                if (!recommended.poster_path) {
+                  return null;
+                }
                 return <Card movie={recommended} movieBackdrop={movieBackdrop} key={recommended.id} prev='recommended' />
               })}
             </div>
