@@ -15,6 +15,9 @@ const Similar = props => {
               {props.similar.map(simMovie => {
                 const movieBackdrop = `https://image.tmdb.org/t/p/w300${simMovie.poster_path}`;
                 simMovie.media_type = media_type;
+                if (!simMovie.poster_path) {
+                  return null;
+                }
                 return <Card movie={simMovie} movieBackdrop={movieBackdrop} key={simMovie.id} prev='similar' />
               })}
             </div>
