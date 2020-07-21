@@ -15,6 +15,7 @@ mongoose.connect(process.env.DB_URI, { useNewUrlParser: true, useUnifiedTopology
 const { signup, signin } = require("./middleware/authroutesMiddleware");
 const movies = require("./routes/movies");
 const actors = require("./routes/actors");
+const users = require("./routes/users");
 
 let port = process.env.PORT || process.env.DEV_PORT;
 
@@ -23,6 +24,7 @@ app.use(bodyParser.json());
 
 app.use("/movies", movies);
 app.use("/actors", actors);
+app.use("/users", users);
 
 app.post("/signup", signup, (req, res) => {
   res.json({ msg: "hello" })
