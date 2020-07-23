@@ -107,7 +107,7 @@ class ShowInfo extends Component {
         </div>
 
         <div ref={this.trailer} >
-          <Trailer trailerIds={trailerIds} />
+          <Trailer trailerIds={trailerIds} title={show.original_title} />
         </div>
 
         <div ref={this.similars}>

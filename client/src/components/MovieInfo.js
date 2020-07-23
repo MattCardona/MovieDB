@@ -105,7 +105,7 @@ class MovieInfo extends Component {
 
         </div>
         <div ref={this.trailer}>
-          <Trailer trailerIds={trailerIds} />
+          <Trailer trailerIds={trailerIds} title={movie.original_title} />
         </div>
         <div ref={this.similars}>
           <Similar similar={similar} />
