@@ -14,6 +14,7 @@ import SearchActor from './components/Actors/SearchActor';
 import Signup from './components/Users/Signup';
 import Signin from './components/Users/Signin';
 import ShowInfo from './components/ShowInfo';
+import UsersProfile from './components/Users/UsersProfile';
 
 const AppRouter = (props) => {
   return (
@@ -29,8 +30,11 @@ const AppRouter = (props) => {
           <Route path="/actors/:id" component={MoreInfo} exact />
           <Route path="/actors/search/:name" component={SearchActor} exact />
           {/* auth routes make HOC for secure routes*/}
+          <Route path="/actors/:id" component={MoreInfo} exact />
           <Route path="/signup" component={Signup} exact />
           <Route path="/signin" component={Signin} exact />
+          {/* Users routes */}
+          <Route path="/userprofile" component={UsersProfile} exact />
           <Route component={NotFound} />
         </Switch>
       </BrowserRouter>
