@@ -28,7 +28,7 @@ class Signin extends Component {
           error: e
         }));
       } else {
-        this.props.history.push("/");
+        this.props.history.push("/userprofile");
       }
     });
   }
