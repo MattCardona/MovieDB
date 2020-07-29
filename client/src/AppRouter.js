@@ -15,6 +15,7 @@ import Signup from './components/Users/Signup';
 import Signin from './components/Users/Signin';
 import ShowInfo from './components/ShowInfo';
 import UsersProfile from './components/Users/UsersProfile';
+import PrivateRoute from './components/HOC/PrivateRoute';
 
 const AppRouter = (props) => {
   return (
@@ -34,7 +35,7 @@ const AppRouter = (props) => {
           <Route path="/signup" component={Signup} exact />
           <Route path="/signin" component={Signin} exact />
           {/* Users routes */}
-          <Route path="/userprofile" component={UsersProfile} exact />
+          <PrivateRoute path="/userprofile" component={UsersProfile} exact />
           <Route component={NotFound} />
         </Switch>
       </BrowserRouter>
