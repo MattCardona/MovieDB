@@ -21,7 +21,11 @@ const userSchema = new mongoose.Schema({
     required: true,
     trim: true,
     minlength: 4
-  }
+  },
+  movies: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Movies"
+  }]
 });
 
 const Users = mongoose.model("Users", userSchema);
