@@ -51,3 +51,14 @@ export const signout = () => dispatch => {
     type: SIGNOUT_USER
   });
 }
+
+export const getUserInfo = () => async dispatch => {
+  try {
+    const { data } = await Axios.get("/users");
+    // console.log("data", data);
+    return data;
+  } catch (error) {
+    // console.log(error);
+    return undefined;
+  }
+}
