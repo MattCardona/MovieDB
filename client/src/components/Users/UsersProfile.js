@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
-import Axios from 'axios';
+// import Axios from 'axios';
+import { getUserInfo } from '../../actions/userActions';
+import { connect } from 'react-redux'
 
 class UsersProfile extends Component {
   state = {
@@ -7,16 +9,11 @@ class UsersProfile extends Component {
     movies: []
   }
   async componentDidMount() {
-    try {
-      const { data } = await Axios.get("/users");
-      console.log("userData", data);
-      this.setState(() => ({
-        username: data.username,
-        movies: [...data.movies]
-      }))
-    } catch (error) {
-      console.log(error.response);
-    }
+    const { username, movies } = await this.props.getUserInfo();
+    this.setState(() => ({
+      username,
+      movies
+    }))
   }
   render() {
     const { username, movies } = this.state;
@@ -43,5 +40,4 @@ class UsersProfile extends Component {
   }
 }
 
-
-export default UsersProfile;
+export default connect(undefined, { getUserInfo })(UsersProfile);
