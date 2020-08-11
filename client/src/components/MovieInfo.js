@@ -20,10 +20,17 @@ class MovieInfo extends Component {
     recommend: []
   }
   async componentDidMount() {
-    this.setState(() => ({
-      height: window.innerHeight + 'px',
-      prevLocation: this.props.location.state.prev
-    }));
+    if (!this.props.location.state) {
+      this.setState(() => ({
+        height: window.innerHeight + 'px',
+        prevLocation: "/"
+      }));
+    } else {
+      this.setState(() => ({
+        height: window.innerHeight + 'px',
+        prevLocation: this.props.location.state.prev
+      }));
+    }
     this.props.searchedMovie(this.props.match.params.id);
   }
   componentDidUpdate(prevProp) {
