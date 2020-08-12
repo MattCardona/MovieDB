@@ -21,10 +21,18 @@ class ShowInfo extends Component {
     recommend: []
   }
   componentDidMount() {
-    this.setState(() => ({
-      height: window.innerHeight + 'px',
-      prevLocation: this.props.location.state.prev
-    }));
+    if (!this.props.location.state) {
+      this.setState(() => ({
+        height: window.innerHeight + 'px',
+        prevLocation: "/"
+      }));
+    } else {
+      this.setState(() => ({
+        height: window.innerHeight + 'px',
+        prevLocation: this.props.location.state.prev
+      }));
+    }
+
     this.props.searchShow(this.props.match.params.id);
   }
   componentDidUpdate(prevProp) {
