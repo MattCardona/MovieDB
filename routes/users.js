@@ -27,6 +27,12 @@ router.get("/", requireAuth, (req, res) => {
     })
 });
 
+router.post("/movies", (req, res) => {
+  const { movie } = req.body;
+
+  res.status(200).json({ "msg": "Got the movie info", movie })
+});
+
 
 
 module.exports = router;
