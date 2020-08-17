@@ -59,6 +59,16 @@ export const getUserInfo = () => async dispatch => {
     return data;
   } catch (error) {
     // console.log(error);
+    // need to do something here if error from backend
     return undefined;
+  }
+}
+
+export const saveUserLikedMovie = movie => async dispatch => {
+  try {
+    const { data } = await Axios.post("/users/movies", movie);
+    console.log("data from the backend saveUsersLikedMovie", data);
+  } catch (error) {
+    console.log(error.response.data);
   }
 }
