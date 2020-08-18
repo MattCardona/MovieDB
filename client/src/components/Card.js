@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux'
 
 const Card = props => {
   let { title, id, name, media_type } = props.movie;
@@ -21,8 +22,20 @@ const Card = props => {
         </div>
 
       </Link>
+      {props.authenticated ?
+        <i
+          style={{
+            color: "#fff"
+          }}
+          className="fas fa-plus-circle"></i>
+        :
+        null
+      }
     </div>
   )
 }
+const mapStateToProps = ({ auth }) => ({
+  authenticated: auth.isAuthenticated,
+})
 
-export default Card;
+export default connect(mapStateToProps)(Card);
