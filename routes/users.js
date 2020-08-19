@@ -27,10 +27,25 @@ router.get("/", requireAuth, (req, res) => {
     })
 });
 
-router.post("/movies", (req, res) => {
+router.post("/movies", requireAuth, (req, res) => {
   const { movie } = req.body;
-
-  res.status(200).json({ "msg": "Got the movie info", movie })
+  const { _id } = req.user
+  // console.log({ movie, _id });
+  Users.findById(_id)
+    .then(foundUser => {
+      if (!foundUser) return res.status(400).json({ "error": "Something went wrong" });
+      new Movies({ movie }).save()
+        .then(newmovie => {
+          foundUser.movies.push(newmovie);
+          foundUser.save()
+            .then(updatedUser => {
+              return res.status(200).json({ "success": "Saved liked movie" });
+            })
+            .catch(error => res.status(400).json({ "error": "Can not save movie at this time." }))
+        })
+        .catch(error => res.status(400).json({ "error": "Can not save movie at this time" }))
+    })
+    .catch(error => res.status(400).json({ "error": "Something went wrong" }));
 });
 
 
