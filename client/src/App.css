@@ -194,6 +194,17 @@ footer img {
   font-family: 'Cinzel', serif;
 }
 
+.plus-button {
+  font-size: 32px;
+  color: #07f186;
+  float: right;
+  transition: all .2s ease-in-out;
+}
+
+.plus-button:hover {
+  color: rgb(255 249 0) !important;
+  transform: scale(1.1); 
+}
 
 /* ========================== */
   /* Movie Info Component */

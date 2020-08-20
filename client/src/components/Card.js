@@ -8,6 +8,15 @@ const Card = props => {
   let path = media_type === "tv" ? `/tv/${id}` : `/movie/${id}`;
   return (
     <div className="col-xs-12 col-sm-6 col-md-4">
+      {props.authenticated ?
+        <span
+          className="plus-button"
+        >
+          <i className="fas fa-plus-circle"></i>
+        </span>
+        :
+        null
+      }
       <Link
         to={{
           pathname: path,
@@ -22,15 +31,6 @@ const Card = props => {
         </div>
 
       </Link>
-      {props.authenticated ?
-        <i
-          style={{
-            color: "#fff"
-          }}
-          className="fas fa-plus-circle"></i>
-        :
-        null
-      }
     </div>
   )
 }
