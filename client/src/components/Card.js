@@ -1,15 +1,29 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux'
+import { saveUserLikedMovie } from '../actions/userActions';
+
 
 const Card = props => {
   let { title, id, name, media_type } = props.movie;
   let { movieBackdrop, prev } = props;
   let path = media_type === "tv" ? `/tv/${id}` : `/movie/${id}`;
+  const saveMovie = async () => {
+    let movie = {
+      title,
+      movieId: id,
+      posterPath: path,
+      backdropPath: movieBackdrop
+    }
+    const data = await props.saveUserLikedMovie(movie);
+    // console.log(data);
+    // do something if success or error
+  }
   return (
     <div className="col-xs-12 col-sm-6 col-md-4">
       {props.authenticated ?
         <span
+          onClick={saveMovie}
           className="plus-button"
         >
           <i className="fas fa-plus-circle"></i>
@@ -38,4 +52,4 @@ const mapStateToProps = ({ auth }) => ({
   authenticated: auth.isAuthenticated,
 })
 
-export default connect(mapStateToProps)(Card);
+export default connect(mapStateToProps, { saveUserLikedMovie })(Card);
