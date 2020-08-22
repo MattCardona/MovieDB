@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 // import Axios from 'axios';
 import { getUserInfo } from '../../actions/userActions';
 import { connect } from 'react-redux'
+import Navbar from '../Navbar';
 
 class UsersProfile extends Component {
   state = {
@@ -18,7 +19,8 @@ class UsersProfile extends Component {
   render() {
     const { username, movies } = this.state;
     return (
-      <div>
+      <div style={{ backgroundColor: "black" }}>
+        <Navbar />
         UsersProfile Component
         {username ?
           <div className="user-profile-about">
