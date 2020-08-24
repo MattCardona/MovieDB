@@ -152,11 +152,16 @@ class Home extends Component {
                     </li>
                   </React.Fragment>
                   :
-                  <li className="nav-item">
-                    <p onClick={() => this.props.signout()}
-                      className="nav-link hover-effect"
-                    >Signout</p>
-                  </li>
+                  <React.Fragment>
+                    <li className="nav-item">
+                      <Link to="/userprofile" className="nav-link hover-effect" >Profile</Link>
+                    </li>
+                    <li className="nav-item">
+                      <p onClick={() => this.props.signout()}
+                        className="nav-link hover-effect"
+                      >Signout</p>
+                    </li>
+                  </React.Fragment>
                 }
 
 
