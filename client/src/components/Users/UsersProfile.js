@@ -19,24 +19,25 @@ class UsersProfile extends Component {
   render() {
     const { username, movies } = this.state;
     return (
-      <div style={{ backgroundColor: "black" }}>
+      <div id="user-profile">
         <Navbar />
-        UsersProfile Component
-        {username ?
-          <div className="user-profile-about">
-            <h1>{username}</h1>
-          </div>
-          :
-          null
-        }
-        {movies.length ?
-          <div className="user-favMovies">
-            <h1>Favorite / Watch later list</h1>
+        <div>
+          {username ?
+            <div className="user-profile-about">
+              <h1>{username}</h1>
+            </div>
+            :
+            null
+          }
+          {movies.length ?
+            <div className="user-favMovies">
+              <h1>Favorite / Watch later list</h1>
 
-          </div>
-          :
-          null
-        }
+            </div>
+            :
+            null
+          }
+        </div>
       </div>
     )
   }

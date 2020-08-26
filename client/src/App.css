@@ -500,6 +500,15 @@ footer img {
   text-decoration: none;
 }
 
+/* ==================== */
+/*    UserProfile     */
+/* =================== */
+
+#user-profile {
+  background: linear-gradient(to bottom, rgb(0, 0, 0) 0%, rgba(0,0,0,0.15) 130%), radial-gradient(at top center, rgba(255,255,255,0.40) 0%, rgba(0,0,0,0.40) 120%) #989898;
+ background-blend-mode: multiply,multiply;
+ height: 100vh;
+}
 
 /* big tablets to 1200px: widths smaller than the 1140px row */
 @media only screen and (max-width: 1200px) {
