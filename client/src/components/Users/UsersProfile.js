@@ -24,14 +24,15 @@ class UsersProfile extends Component {
         <div>
           {username ?
             <div className="user-profile-about">
-              <h1>{username}</h1>
+              <h1>{username}s Profile</h1>
             </div>
             :
             null
           }
           {movies.length ?
-            <div className="user-favMovies">
-              <h1>Favorite / Watch later list</h1>
+            <div className="user-favMovies container">
+              <h2>Favorite / Watch later list</h2>
+              <hr />
 
             </div>
             :
