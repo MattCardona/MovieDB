@@ -10,14 +10,13 @@ const Movies = require("../models/Movies");
 router.get("/", requireAuth, (req, res) => {
   const { _id } = req.user;
 
-  Users.findById(_id)
-    .populate("movies")
-    .exec()
+  Users.findById(_id).populate("movies").exec()
     .then(foundUser => {
       if (!foundUser) {
         // some type of error users was not found
         res.status(400).json({ "error": "Something went wrong" });
       }
+
       const { username, movies } = foundUser;
       const user = { username, movies };
       res.status(200).json(user)
@@ -34,7 +33,7 @@ router.post("/movies", requireAuth, (req, res) => {
   Users.findById(_id)
     .then(foundUser => {
       if (!foundUser) return res.status(400).json({ "error": "Something went wrong" });
-      new Movies({ movie }).save()
+      new Movies(movie).save()
         .then(newmovie => {
           foundUser.movies.push(newmovie);
           foundUser.save()
