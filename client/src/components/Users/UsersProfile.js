@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import { getUserInfo } from '../../actions/userActions';
 import { connect } from 'react-redux'
 import Navbar from '../Navbar';
+import FavMovies from './FavMovies';
 
 class UsersProfile extends Component {
   state = {
@@ -33,7 +34,7 @@ class UsersProfile extends Component {
             <div className="user-favMovies container">
               <h2>Favorite / Watch later list</h2>
               <hr />
-
+              <FavMovies movies={movies} />
             </div>
             :
             null
