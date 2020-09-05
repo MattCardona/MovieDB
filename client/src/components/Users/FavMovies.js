@@ -1,9 +1,17 @@
 import React from 'react'
+import Card from '../Card';
 
-const FavMovies = () => {
+const FavMovies = ({ movies }) => {
   return (
-    <div>
-      This is the Fav mvie comp
+    <div id="user-fav-movies" className="row">
+      {movies.map(movie => {
+        if (!movie.posterPath) {
+          return null;
+        }
+        return (
+          <Card movie={movie} movieBackdrop={movie.backdropPath} prev="userprofile" key={movie.id} />
+        )
+      })}
     </div>
   )
 }
