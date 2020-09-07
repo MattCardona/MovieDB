@@ -507,8 +507,9 @@ footer img {
 #user-profile {
   background: linear-gradient(to bottom, rgb(0, 0, 0) 0%, rgba(0,0,0,0.15) 130%), radial-gradient(at top center, rgba(255,255,255,0.40) 0%, rgba(0,0,0,0.40) 120%) #989898;
  background-blend-mode: multiply,multiply;
- height: 100vh;
+ height: 100%;
  text-align: center;
+ padding-bottom: 60px;
 }
 
 
@@ -599,6 +600,14 @@ footer img {
   #overview {
     padding-top: 100px;
     font-size: 20px;
+  }
+
+  #user-profile h1 {
+    font-size: 33px;
+  }
+
+  #user-profile h2 {
+    font-size: 30px;
   }
 
   footer .box p {
