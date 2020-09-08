@@ -9,7 +9,7 @@ const FavMovies = ({ movies }) => {
           return null;
         }
         return (
-          <Card movie={movie} movieBackdrop={movie.backdropPath} prev="userprofile" key={movie.id} />
+          <Card movie={movie} movieBackdrop={movie.backdropPath} prev="userprofile" key={movie.movieId} />
         )
       })}
     </div>
