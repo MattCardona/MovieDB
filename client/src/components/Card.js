@@ -5,6 +5,7 @@ import { saveUserLikedMovie } from '../actions/userActions';
 
 
 const Card = props => {
+  const addRef = React.createRef();
   let { title, id, name, media_type } = props.movie;
   let { movieBackdrop, prev } = props;
   let path = media_type === "tv" ? `/tv/${id}` : `/movie/${id}`;
@@ -18,11 +19,13 @@ const Card = props => {
     const data = await props.saveUserLikedMovie(movie);
     // console.log(data);
     // do something if success or error
+    addRef.current.style.display = "none"
   }
   return (
     <div className="col-6 col-sm-6 col-md-4">
       {props.authenticated ?
         <span
+          ref={addRef}
           onClick={saveMovie}
           className="plus-button"
         >
