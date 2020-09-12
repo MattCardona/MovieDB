@@ -26,6 +26,24 @@ router.get("/", requireAuth, (req, res) => {
     })
 });
 
+// here we can movies and tv shows ids for later use cases
+router.get("/movies", requireAuth, (req, res) => {
+  const { _id } = req.user;
+
+  Users.findById(_id).populate("movies").exec()
+    .then(user => {
+      if (!user) {
+        // some type of error users was not found
+        return res.status(400).json({ "error": "Something went wrong" });
+      }
+      const moviesIds = user.movies.map(movie => movie.movieId);
+      return res.status(200).json({ movies: moviesIds });
+    })
+    .catch(error => {
+      res.status(400).json(error);
+    });
+});
+
 router.post("/movies", requireAuth, (req, res) => {
   const { movie } = req.body;
   const { _id } = req.user
