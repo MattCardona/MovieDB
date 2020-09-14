@@ -32,10 +32,13 @@ export const signin = (user, cb) => async dispatch => {
     localStorage.setItem("token", data.token);
     setAuthToken(data.token);
     let { _id } = decode(data.token);
+    const { data: dataTwo } = await Axios.get("/users/movies");
+    // console.log(dataTwo, "User movies auth act");
     dispatch({
       type: SIGNIN_USER,
       token: data.token,
-      userId: _id
+      userId: _id,
+      movies: dataTwo.movies
     });
     cb();
   } catch (error) {
