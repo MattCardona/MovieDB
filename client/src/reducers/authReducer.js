@@ -47,13 +47,16 @@ const authReducer = (state = initialState, action) => {
   switch (action.type) {
     case SIGNUP_USER:
       return {
+        ...state,
         isAuthenticated: action.token,
         userId: action.userId
       }
     case SIGNIN_USER:
       return {
+        ...state,
         isAuthenticated: action.token,
-        userId: action.userId
+        userId: action.userId,
+        movies: [...action.movies]
       }
     case SIGNOUT_USER:
       return {
