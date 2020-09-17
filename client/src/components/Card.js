@@ -7,7 +7,7 @@ import { saveUserLikedMovie } from '../actions/userActions';
 const Card = props => {
   const addRef = React.createRef();
   let { title, id, name, media_type } = props.movie;
-  let { movieBackdrop, prev } = props;
+  let { movieBackdrop, prev, savedMovies } = props;
   let path = media_type === "tv" ? `/tv/${id}` : `/movie/${id}`;
   const saveMovie = async () => {
     let movie = {
@@ -23,7 +23,7 @@ const Card = props => {
   }
   return (
     <div className="col-6 col-sm-6 col-md-4">
-      {props.authenticated ?
+      {props.authenticated && !savedMovies.includes(id.toString()) ?
         <span
           ref={addRef}
           onClick={saveMovie}
@@ -53,6 +53,7 @@ const Card = props => {
 }
 const mapStateToProps = ({ auth }) => ({
   authenticated: auth.isAuthenticated,
+  savedMovies: auth.movies
 })
 
 export default connect(mapStateToProps, { saveUserLikedMovie })(Card);
