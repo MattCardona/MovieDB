@@ -6,7 +6,8 @@ import { saveUserLikedMovie } from '../actions/userActions';
 
 const Card = props => {
   const addRef = React.createRef();
-  let { title, id, name, media_type } = props.movie;
+  let { title, id, name, media_type, movieId } = props.movie;
+  id = id || movieId;
   let { movieBackdrop, prev, savedMovies } = props;
   let path = media_type === "tv" ? `/tv/${id}` : `/movie/${id}`;
   const saveMovie = async () => {
