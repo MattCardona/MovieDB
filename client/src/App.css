@@ -112,6 +112,7 @@ footer img {
 }
 
 .hover-effect {
+  cursor: pointer;
   position: relative;
   display: inline-block;
   transition: .3s;
