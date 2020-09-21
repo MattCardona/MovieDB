@@ -203,6 +203,7 @@ footer img {
 }
 
 .plus-button:hover {
+  cursor: pointer;
   color: rgb(255 249 0) !important;
   transform: scale(1.1); 
 }
