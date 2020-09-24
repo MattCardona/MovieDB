@@ -56,7 +56,10 @@ router.post("/movies", requireAuth, (req, res) => {
           foundUser.movies.push(newmovie);
           foundUser.save()
             .then(updatedUser => {
-              return res.status(200).json({ "success": "Saved liked movie" });
+              return res.status(200).json({
+                "success": "Saved liked movie",
+                savedMovieId: newmovie.movieId
+              });
             })
             .catch(error => res.status(400).json({ "error": "Can not save movie at this time." }))
         })
