@@ -23,3 +23,4 @@ export const SIGNUP_USER = "SIGNUP_USER";
 export const SIGNIN_USER = "SIGNIN_USER";
 export const SIGNOUT_USER = "SIGNOUT_USER";
 export const GET_USER_INFO = "GET_USER_INFO";
+export const SAVE_MOVIE = "SAVE_MOVIE";
