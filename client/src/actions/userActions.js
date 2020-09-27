@@ -1,5 +1,5 @@
 import Axios from "axios";
-import { SIGNUP_USER, SIGNIN_USER, SIGNOUT_USER } from "./types";
+import { SIGNUP_USER, SIGNIN_USER, SIGNOUT_USER, SAVE_MOVIE } from "./types";
 import setAuthToken from "../utils/setAuthToken";
 import decode from 'jwt-decode'
 
@@ -67,12 +67,18 @@ export const getUserInfo = () => async dispatch => {
   }
 }
 
-export const saveUserLikedMovie = movie => async dispatch => {
-
+export const saveUserLikedMovie = movie => async (dispatch, getState) => {
   try {
     const { data } = await Axios.post("/users/movies", { movie });
-    // console.log("data from the backend saveUsersLikedMovie", data);
+    let { movies } = getState().auth;
+    let updatedMovies = [...movies, data.savedMovieId];
+
+    dispatch({
+      type: SAVE_MOVIE,
+      updatedMovies
+    })
     return data;
+
   } catch (error) {
     console.log("error", error.response.data);
   }
