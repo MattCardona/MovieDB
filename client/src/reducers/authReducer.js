@@ -1,4 +1,4 @@
-import { SIGNUP_USER, SIGNIN_USER, SIGNOUT_USER } from "../actions/types";
+import { SIGNUP_USER, SIGNIN_USER, SIGNOUT_USER, SAVE_MOVIE } from "../actions/types";
 import setAuthToken from "../utils/setAuthToken";
 import decode from 'jwt-decode';
 import Axios from "axios";
@@ -37,9 +37,13 @@ const initialState = {
 };
 
 (async (state = initialState) => {
-  const { data } = await Axios.get("/users/movies");
-  // console.log(data, 'this is the "/users/movies');
-  state.movies = await data.movies
+  try {
+    const { data } = await Axios.get("/users/movies");
+    // console.log(data, 'this is the "/users/movies');
+    state.movies = await data.movies
+  } catch (error) {
+    return;
+  }
 })(initialState)
 
 
@@ -62,6 +66,11 @@ const authReducer = (state = initialState, action) => {
       return {
         isAuthenticated: null,
         userId: ""
+      }
+    case SAVE_MOVIE:
+      return {
+        ...state,
+        movies: [...action.updatedMovies]
       }
     default:
       return state;
