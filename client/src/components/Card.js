@@ -17,10 +17,14 @@ const Card = props => {
       posterPath: path,
       backdropPath: movieBackdrop
     }
-    const data = await props.saveUserLikedMovie(movie);
-    // console.log(data);
-    // do something if success or error
-    addRef.current.style.display = "none"
+    try {
+      const data = await props.saveUserLikedMovie(movie);
+      // do something if success or error
+      addRef.current.style.display = "none"
+    } catch (error) {
+      // console.log(error);
+      return undefined;
+    }
   }
   return (
     <div className="col-6 col-sm-6 col-md-4">
