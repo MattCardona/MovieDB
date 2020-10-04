@@ -1,5 +1,5 @@
 import Axios from "axios";
-import { SIGNUP_USER, SIGNIN_USER, SIGNOUT_USER, SAVE_MOVIE } from "./types";
+import { SIGNUP_USER, SIGNIN_USER, SIGNOUT_USER, SAVE_MOVIE, GET_USERS_SAVED } from "./types";
 import setAuthToken from "../utils/setAuthToken";
 import decode from 'jwt-decode'
 
@@ -81,5 +81,18 @@ export const saveUserLikedMovie = movie => async (dispatch, getState) => {
 
   } catch (error) {
     console.log("error", error.response.data);
+  }
+}
+
+export const getUsersSavedMovies = () => async dispatch => {
+  try {
+    const { data } = await Axios.get("/users/movies");
+    // console.log(data);
+    dispatch({
+      type: GET_USERS_SAVED,
+      movies: data.movies
+    })
+  } catch (error) {
+    console.log(error);
   }
 }
