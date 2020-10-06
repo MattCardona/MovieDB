@@ -1,4 +1,4 @@
-import { SIGNUP_USER, SIGNIN_USER, SIGNOUT_USER, SAVE_MOVIE } from "../actions/types";
+import { SIGNUP_USER, SIGNIN_USER, SIGNOUT_USER, SAVE_MOVIE, GET_USERS_SAVED } from "../actions/types";
 import setAuthToken from "../utils/setAuthToken";
 import decode from 'jwt-decode';
 import Axios from "axios";
@@ -71,6 +71,11 @@ const authReducer = (state = initialState, action) => {
       return {
         ...state,
         movies: [...action.updatedMovies]
+      }
+    case GET_USERS_SAVED:
+      return {
+        ...state,
+        movies: [...action.movies]
       }
     default:
       return state;
