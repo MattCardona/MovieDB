@@ -4,7 +4,7 @@ import Card from './Card';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux'
 import { nowPlaying, popular, topRated, filterByPopularity, filterByRating } from '../actions/moviesActions';
-import { signout } from '../actions/userActions';
+import { signout, getUsersSavedMovies } from '../actions/userActions';
 import checkExpToken from '../utils/checkToken';
 import InfiniteScroll from './InfiniteScroll';
 
@@ -22,7 +22,9 @@ class Home extends Component {
     const token = localStorage.getItem("token");
     if (token) {
       checkExpToken(token, this.props.signout)
+      this.props.getUsersSavedMovies()
     }
+
   }
   handleChange = (e) => {
     let val = e.target.value;
@@ -209,4 +211,4 @@ const mapStateToProps = ({ movies, auth }) => ({
   auth
 })
 
-export default connect(mapStateToProps, { nowPlaying, popular, topRated, signout, filterByPopularity, filterByRating })(Home);
+export default connect(mapStateToProps, { nowPlaying, popular, topRated, signout, filterByPopularity, filterByRating, getUsersSavedMovies })(Home);
