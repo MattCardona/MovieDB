@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 // import Axios from 'axios';
-import { getUserInfo, signout } from '../../actions/userActions';
+import { getUserInfo, signout, getUsersSavedMovies } from '../../actions/userActions';
 import { connect } from 'react-redux'
 import Navbar from '../Navbar';
 import FavMovies from './FavMovies';
@@ -15,11 +15,14 @@ class UsersProfile extends Component {
   async componentDidMount() {
     const token = localStorage.getItem("token");
     if (token) {
-      checkExpToken(token, this.props.signout)
+      checkExpToken(token, this.props.signout);
     }
     const { username, movies } = await this.props.getUserInfo();
     this.setState(() => ({
-      username,
+      username
+    }))
+    await this.props.getUsersSavedMovies();
+    this.setState(() => ({
       movies
     }))
   }
@@ -51,4 +54,4 @@ class UsersProfile extends Component {
   }
 }
 
-export default connect(undefined, { getUserInfo, signout })(UsersProfile);
+export default connect(undefined, { getUserInfo, signout, getUsersSavedMovies })(UsersProfile);
