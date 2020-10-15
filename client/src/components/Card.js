@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux'
 import { saveUserLikedMovie } from '../actions/userActions';
@@ -6,10 +6,12 @@ import { saveUserLikedMovie } from '../actions/userActions';
 
 const Card = props => {
   const addRef = React.createRef();
+  const [success, setSuccess] = useState("");
   let { title, id, name, media_type, movieId } = props.movie;
   id = id || movieId;
   let { movieBackdrop, prev, savedMovies } = props;
   let path = media_type === "tv" ? `/tv/${id}` : `/movie/${id}`;
+
   const saveMovie = async () => {
     let movie = {
       title,
@@ -20,6 +22,7 @@ const Card = props => {
     try {
       const data = await props.saveUserLikedMovie(movie);
       // do something if success or error
+      setSuccess(true);
       addRef.current.style.display = "none"
     } catch (error) {
       // console.log(error);
@@ -39,12 +42,26 @@ const Card = props => {
         :
         null
       }
+      <React.Fragment>
+        {success ? <h1
+          style={{
+            backgroundColor: "#00de96",
+            color: "#fff",
+            borderRadius: "10px",
+            textAlign: "center",
+            fontSize: "25px",
+            margin: "10px",
+            position: "inherit"
+          }}
+        >Saved</h1> : null}
+      </React.Fragment>
       <Link
         to={{
           pathname: path,
           state: { prev: prev }
         }}
       >
+
         <div className="card">
           <img className="card-image" src={movieBackdrop} alt="" />
           <h4 className="card-title hover-effect">
