@@ -44,15 +44,7 @@ const Card = props => {
       }
       <React.Fragment>
         {success ? <h1
-          style={{
-            backgroundColor: "#00de96",
-            color: "#fff",
-            borderRadius: "10px",
-            textAlign: "center",
-            fontSize: "25px",
-            margin: "10px",
-            position: "inherit"
-          }}
+          className="success-saved"
         >Saved</h1> : null}
       </React.Fragment>
       <Link
