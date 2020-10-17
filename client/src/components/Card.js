@@ -22,8 +22,14 @@ const Card = props => {
     try {
       const data = await props.saveUserLikedMovie(movie);
       // do something if success or error
-      setSuccess(true);
-      addRef.current.style.display = "none"
+      if (data) {
+        setSuccess(true);
+        setTimeout(() => {
+          setSuccess(false);
+        }, 4000);
+        addRef.current.style.display = "none"
+      }
+
     } catch (error) {
       // console.log(error);
       return undefined;
