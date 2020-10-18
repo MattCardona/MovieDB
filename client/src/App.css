@@ -216,7 +216,18 @@ footer img {
   font-size: 25px;
   margin: 10px;
   position: inherit;
+  animation: fade 2s linear;
 }
+
+@keyframes fade {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
 
 /* ========================== */
   /* Movie Info Component */
