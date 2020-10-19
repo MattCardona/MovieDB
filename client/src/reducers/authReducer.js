@@ -53,7 +53,8 @@ const authReducer = (state = initialState, action) => {
       return {
         ...state,
         isAuthenticated: action.token,
-        userId: action.userId
+        userId: action.userId,
+        movies: []
       }
     case SIGNIN_USER:
       return {
