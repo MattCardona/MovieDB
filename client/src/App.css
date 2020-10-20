@@ -216,7 +216,7 @@ footer img {
   font-size: 25px;
   margin: 10px;
   position: inherit;
-  animation: fade 2s linear;
+  animation: fade 2s, 2s fadeOut 2s;
 }
 
 @keyframes fade {
@@ -225,6 +225,14 @@ footer img {
   }
   100% {
     opacity: 1;
+  }
+}
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
   }
 }
 
