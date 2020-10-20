@@ -24,9 +24,10 @@ const Card = props => {
       // do something if success or error
       if (data) {
         setSuccess(true);
-        setTimeout(() => {
+        let remove = () => {
           setSuccess(false);
-        }, 4000);
+        }
+        setTimeout(remove, 3500);
         addRef.current.style.display = "none"
       }
 
@@ -50,7 +51,7 @@ const Card = props => {
       }
       <React.Fragment>
         {success ? <h1
-          className="success-saved"
+          className="success-saved "
         >Saved</h1> : null}
       </React.Fragment>
       <Link
