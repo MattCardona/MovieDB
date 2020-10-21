@@ -68,6 +68,9 @@ router.post("/movies", requireAuth, (req, res) => {
     .catch(error => res.status(400).json({ "error": "Something went wrong" }));
 });
 
+router.delete("/movies/:id", requireAuth, (req, res) => {
+  return res.status(200).json({ msg: "Delete route works" });
+})
 
 
 module.exports = router;
