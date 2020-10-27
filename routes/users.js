@@ -69,7 +69,24 @@ router.post("/movies", requireAuth, (req, res) => {
 });
 
 router.delete("/movies/:id", requireAuth, (req, res) => {
-  return res.status(200).json({ msg: "Delete route works" });
+  const { _id } = req.user;
+  const { id } = req.params;
+
+  Users.findById(_id)
+    .then(foundUser => {
+      if (!foundUser) return res.status(400).json({ "error": "User was not found" });
+
+      Movies.findByIdAndDelete(id)
+        .then(removedMovie => {
+          if (!removedMovie) return res.status(400).json({ "error": "Movie was not found" });
+
+          return res.status(200).json({ "msg": "Success", removedMovie });
+        })
+        .catch(e => res.status(400).json({ "error": e }));
+
+    })
+    .catch(e => res.status(400).json({ "error": e }));
+
 })
 
 
