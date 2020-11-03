@@ -18,7 +18,8 @@ router.get("/", requireAuth, (req, res) => {
       }
 
       const { username, movies } = foundUser;
-      const user = { username, movies };
+      const movieIds = movies.map(movie => movie.movieId);
+      const user = { username, movies, movieIds, _id };
       res.status(200).json(user)
     })
     .catch(error => {
