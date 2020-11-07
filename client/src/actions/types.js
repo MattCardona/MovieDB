@@ -26,3 +26,4 @@ export const GET_USER_INFO = "GET_USER_INFO";
 export const SAVE_MOVIE = "SAVE_MOVIE";
 export const DELETE_SAVED_MOVIE = "DELETE_SAVED_MOVIE";
 export const GET_USERS_SAVED = "GET_USERS_SAVED";
+export const GET_USERS = "GET_USERS";
