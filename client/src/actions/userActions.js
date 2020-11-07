@@ -60,9 +60,15 @@ export const getUserInfo = () => async dispatch => {
   try {
     const { data } = await Axios.get("/users");
     // console.log("data", data);
-    return data;
+    dispatch({
+      type: GET_USERS,
+      userId: data._id,
+      movieIds: data.movieIds,
+      movies: data.movies
+    })
+    return data.username;
   } catch (error) {
-    // console.log(error);
+    // console.log(error.response);
     // need to do something here if error from backend
     return undefined;
   }
