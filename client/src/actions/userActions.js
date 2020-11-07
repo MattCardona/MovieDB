@@ -38,6 +38,7 @@ export const signin = (user, cb) => async dispatch => {
       type: SIGNIN_USER,
       token: data.token,
       userId: _id,
+      movieIds: dataTwo.movieIds,
       movies: dataTwo.movies
     });
     cb();
