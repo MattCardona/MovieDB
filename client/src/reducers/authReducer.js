@@ -6,6 +6,7 @@ import Axios from "axios";
 let token = localStorage.getItem("token");
 let userId = "";
 let movies = [];
+let movieIds = [];
 
 const checkTokenExp = token => {
   const user = decode(token);
@@ -33,14 +34,16 @@ if (token) {
 const initialState = {
   isAuthenticated: token,
   userId,
-  movies: movies
+  movies: movies,
+  movieIds: movieIds
 };
 
 (async (state = initialState) => {
   try {
     const { data } = await Axios.get("/users/movies");
     // console.log(data, 'this is the "/users/movies');
-    state.movies = await data.movies
+    state.movies = await data.movies;
+    state.movieIds = await data.movieIds;
   } catch (error) {
     return;
   }
@@ -54,7 +57,8 @@ const authReducer = (state = initialState, action) => {
         ...state,
         isAuthenticated: action.token,
         userId: action.userId,
-        movies: []
+        movies: [],
+        movieIds: []
       }
     case SIGNIN_USER:
       return {
