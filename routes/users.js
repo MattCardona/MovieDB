@@ -49,7 +49,7 @@ router.post("/movies", requireAuth, (req, res) => {
   const { movie } = req.body;
   const { _id } = req.user
   // console.log({ movie, _id });
-  Users.findById(_id)
+  Users.findById(_id).populate("movies").exec()
     .then(foundUser => {
       if (!foundUser) return res.status(400).json({ "error": "Something went wrong" });
       new Movies(movie).save()
@@ -57,9 +57,11 @@ router.post("/movies", requireAuth, (req, res) => {
           foundUser.movies.push(newmovie);
           foundUser.save()
             .then(updatedUser => {
+
               return res.status(200).json({
                 "success": "Saved liked movie",
-                savedMovieId: newmovie.movieId
+                savedMovieId: newmovie.movieId,
+                movies: updatedUser.movies
               });
             })
             .catch(error => res.status(400).json({ "error": "Can not save movie at this time." }))
