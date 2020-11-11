@@ -77,12 +77,13 @@ export const getUserInfo = () => async dispatch => {
 export const saveUserLikedMovie = movie => async (dispatch, getState) => {
   try {
     const { data } = await Axios.post("/users/movies", { movie });
-    let { movies } = getState().auth;
-    let updatedMovies = [...movies, data.savedMovieId];
+    let { movieIds } = getState().auth;
+    let updatedMovies = [...movieIds, data.savedMovieId];
 
     dispatch({
       type: SAVE_MOVIE,
-      updatedMovies
+      updatedMovies,
+      movies: data.movies
     })
     return data;
 
