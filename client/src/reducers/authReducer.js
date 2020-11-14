@@ -76,7 +76,9 @@ const authReducer = (state = initialState, action) => {
     case SAVE_MOVIE:
       return {
         ...state,
-        movies: [...action.updatedMovies]
+        movieIds: [...action.updatedMovies],
+        movies: [...action.movies]
+      }
       }
     case GET_USERS:
       return {
