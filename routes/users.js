@@ -9,7 +9,6 @@ const Movies = require("../models/Movies");
 
 router.get("/", requireAuth, (req, res) => {
   const { _id } = req.user;
-
   Users.findById(_id).populate("movies").exec()
     .then(foundUser => {
       if (!foundUser) {
@@ -37,8 +36,8 @@ router.get("/movies", requireAuth, (req, res) => {
         // some type of error users was not found
         return res.status(400).json({ "error": "Something went wrong" });
       }
-      const moviesIds = user.movies.map(movie => movie.movieId);
-      return res.status(200).json({ movies: moviesIds });
+      const movieIds = user.movies.map(movie => movie.movieId);
+      return res.status(200).json({ movieIds, movies: user.movies });
     })
     .catch(error => {
       res.status(400).json(error);
@@ -78,12 +77,20 @@ router.delete("/movies/:id", requireAuth, (req, res) => {
   Users.findById(_id)
     .then(foundUser => {
       if (!foundUser) return res.status(400).json({ "error": "User was not found" });
-
       Movies.findByIdAndDelete(id)
         .then(removedMovie => {
           if (!removedMovie) return res.status(400).json({ "error": "Movie was not found" });
 
-          return res.status(200).json({ "msg": "Success", removedMovie });
+          Users.findById(_id).populate("movies").exec()
+            .then(updatedUser => {
+              if (!updatedUser) return res.status(400).json({ "error": "User was not found" });
+              const { movies } = updatedUser;
+              return res.status(200).json({ "msg": "Success", removedMovie, movies });
+            })
+            .catch(error => {
+              res.status(400).json(error);
+            })
+          // return res.status(200).json({ "msg": "Success", removedMovie, user: foundUser });
         })
         .catch(e => res.status(400).json({ "error": e }));
 
