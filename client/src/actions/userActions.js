@@ -1,5 +1,5 @@
 import Axios from "axios";
-import { SIGNUP_USER, SIGNIN_USER, SIGNOUT_USER, SAVE_MOVIE, GET_USERS_SAVED } from "./types";
+import { SIGNUP_USER, SIGNIN_USER, SIGNOUT_USER, SAVE_MOVIE, GET_USERS_SAVED, DELETE_SAVED_MOVIE, GET_USERS } from "./types";
 import setAuthToken from "../utils/setAuthToken";
 import decode from 'jwt-decode'
 
@@ -100,6 +100,25 @@ export const getUsersSavedMovies = () => async dispatch => {
       type: GET_USERS_SAVED,
       movies: data.movies
     })
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export const deleteUsersSavedMovie = id => async (dispatch, getState) => {
+  try {
+    const { data } = await Axios.delete(`/users/movies/${id}`);
+    let { movies } = data;
+    let removedMovieId = data.removedMovie.movieId;
+    let { movieIds } = getState().auth;
+    let indexOfRemovedMovie = movieIds.indexOf(removedMovieId);
+    let updatedMovies = [...movieIds.slice(0, indexOfRemovedMovie), ...movieIds.slice(indexOfRemovedMovie + 1)];
+    dispatch({
+      type: DELETE_SAVED_MOVIE,
+      updatedMovies,
+      movies
+    });
+
   } catch (error) {
     console.log(error);
   }
