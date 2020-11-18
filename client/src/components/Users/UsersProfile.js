@@ -10,6 +10,7 @@ import checkExpToken from '../../utils/checkToken';
 class UsersProfile extends Component {
   state = {
     username: "",
+    movieIds: [],
     movies: []
   }
   async componentDidMount() {
@@ -17,13 +18,9 @@ class UsersProfile extends Component {
     if (token) {
       checkExpToken(token, this.props.signout);
     }
-    const { username, movies } = await this.props.getUserInfo();
+    const username = await this.props.getUserInfo();
     this.setState(() => ({
-      username
-    }))
-    await this.props.getUsersSavedMovies();
-    this.setState(() => ({
-      movies
+      username,
     }))
   }
   render() {
@@ -39,11 +36,11 @@ class UsersProfile extends Component {
             :
             null
           }
-          {movies.length ?
+          {this.props.usersSavedMovies.length ?
             <div className="user-favMovies container">
               <h2>Favorite / Watch later list</h2>
               <hr />
-              <FavMovies movies={movies} />
+              <FavMovies movies={this.props.usersSavedMovies} />
             </div>
             :
             null
@@ -53,5 +50,8 @@ class UsersProfile extends Component {
     )
   }
 }
+const mapStateToProps = ({ auth }) => ({
+  usersSavedMovies: auth.movies
+})
 
-export default connect(undefined, { getUserInfo, signout, getUsersSavedMovies })(UsersProfile);
+export default connect(mapStateToProps, { getUserInfo, signout, getUsersSavedMovies })(UsersProfile);
