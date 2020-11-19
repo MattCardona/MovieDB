@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux'
-import { saveUserLikedMovie } from '../actions/userActions';
+import { saveUserLikedMovie, deleteUsersSavedMovie } from '../actions/userActions';
 
 
 const Card = props => {
   const addRef = React.createRef();
+  const removeRef = React.createRef();
   const [success, setSuccess] = useState("");
   let { title, id, name, media_type, movieId } = props.movie;
   id = id || movieId;
@@ -36,6 +37,10 @@ const Card = props => {
       return undefined;
     }
   }
+  const removeMovie = () => {
+    // console.log(props.movie);
+    props.deleteUsersSavedMovie(props.movie._id)
+  }
   return (
     <div className="col-6 col-sm-6 col-md-4">
       {props.authenticated && !savedMovies.includes(id.toString()) ?
@@ -45,6 +50,17 @@ const Card = props => {
           className="plus-button"
         >
           <i className="fas fa-plus-circle"></i>
+        </span>
+        :
+        null
+      }
+      {props.authenticated && savedMovies.includes(id.toString()) && prev === "userprofile" ?
+        <span
+          ref={removeRef}
+          onClick={removeMovie}
+          className="minus-button"
+        >
+          <i className="fas fa-minus-circle"></i>
         </span>
         :
         null
@@ -74,7 +90,8 @@ const Card = props => {
 }
 const mapStateToProps = ({ auth }) => ({
   authenticated: auth.isAuthenticated,
-  savedMovies: auth.movies
+  savedMovies: auth.movieIds,
+  userSavedMovies: auth.movies
 })
 
-export default connect(mapStateToProps, { saveUserLikedMovie })(Card);
+export default connect(mapStateToProps, { saveUserLikedMovie, deleteUsersSavedMovie })(Card);
