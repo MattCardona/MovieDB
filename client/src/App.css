@@ -199,12 +199,27 @@ footer img {
   font-size: 32px;
   color: #07f186;
   float: right;
+  margin-left: 4px;
   transition: all .2s ease-in-out;
 }
 
 .plus-button:hover {
   cursor: pointer;
   color: rgb(255 249 0) !important;
+  transform: scale(1.1); 
+}
+
+.minus-button {
+  font-size: 32px;
+  color: #f17407;
+  float: right;
+  margin-left: 4px;
+  transition: all .2s ease-in-out;
+}
+
+.minus-button:hover {
+  cursor: pointer;
+  color: red !important;
   transform: scale(1.1); 
 }
 
