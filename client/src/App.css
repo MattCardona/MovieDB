@@ -635,6 +635,15 @@ footer img {
   #actor-bio {
     font-size: 20px;
   }
+
+  .plus-button {
+    font-size: 28px;
+  }
+
+  .minus-button {
+    font-size: 28px;
+  }
+
 }
 
 /* small pnhones from 0 to 480px */
