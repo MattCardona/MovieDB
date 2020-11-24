@@ -234,6 +234,10 @@ footer img {
   animation: fade 2s, 2s fadeOut 2s;
 }
 
+.success-removed {
+  animation: fadeOut 2s;
+}
+
 @keyframes fade {
   0% {
     opacity: 0;
@@ -250,6 +254,8 @@ footer img {
     opacity: 0;
   }
 }
+
+
 
 
 /* ========================== */
