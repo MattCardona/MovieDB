@@ -8,6 +8,7 @@ const Card = props => {
   const addRef = React.createRef();
   const removeRef = React.createRef();
   const [success, setSuccess] = useState("");
+  const [removed, setRemoved] = useState("")
   let { title, id, name, media_type, movieId } = props.movie;
   id = id || movieId;
   let { movieBackdrop, prev, savedMovies } = props;
@@ -39,10 +40,14 @@ const Card = props => {
   }
   const removeMovie = () => {
     // console.log(props.movie);
-    props.deleteUsersSavedMovie(props.movie._id)
+    setRemoved(true);
+    setTimeout(() => {
+      props.deleteUsersSavedMovie(props.movie._id);
+    }, 1200);
   }
   return (
-    <div className="col-6 col-sm-6 col-md-4">
+    <div className={removed ? "col-6 col-sm-6 col-md-4 success-removed" : "col-6 col-sm-6 col-md-4"}
+    >
       {props.authenticated && !savedMovies.includes(id.toString()) ?
         <span
           ref={addRef}
