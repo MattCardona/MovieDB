@@ -10,6 +10,11 @@ class Signup extends Component {
     password: "",
     error: ""
   }
+  componentDidMount() {
+    if (this.props.isUserSignedIn) {
+      this.props.history.goBack();
+    }
+  }
   onChange = (e) => {
     let prop = e.target.name;
     let val = e.target.value;
@@ -79,4 +84,8 @@ class Signup extends Component {
   }
 }
 
-export default connect(undefined, { signup })(Signup);
+const mapStateToProps = ({ auth }) => ({
+  isUserSignedIn: auth.isAuthenticated ? true : false
+});
+
+export default connect(mapStateToProps, { signup })(Signup);
