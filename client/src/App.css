@@ -234,6 +234,17 @@ footer img {
   animation: fade 2s, 2s fadeOut 2s;
 }
 
+#search-movie-container .success-saved {
+  background-color: rgb(0, 222, 150);
+  color: rgb(255, 255, 255);
+  border-radius: 10px;
+  text-align: center;
+  font-size: 25px;
+  margin: 10px;
+  position: inherit;
+  animation: fade 2s, 2s fadeOut 2s;
+}
+
 .success-removed {
   animation: fadeOut 2s;
 }
@@ -418,7 +429,7 @@ footer img {
 }
 
 #search-movie-container h1 {
-  padding-top: 30px;
+  padding: 10px;
   color: #fff;
   text-align: center;
   font-size: 60px;
