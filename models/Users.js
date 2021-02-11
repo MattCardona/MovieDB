@@ -1,11 +1,5 @@
 const mongoose = require("mongoose");
 
-// need to add a movies array to ref movies they have saved 
-// need to add a movies array to ref movies they have favorited
-
-// need to add a shows array to ref shows they have saved
-// need to add a shows array to ref shows they have favorited
-
 // need to add a actor/actresses array to ref actor/actresses they have favorited
 
 const userSchema = new mongoose.Schema({
@@ -25,6 +19,10 @@ const userSchema = new mongoose.Schema({
   movies: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: "Movies"
+  }],
+  shows: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Shows"
   }]
 });
 
