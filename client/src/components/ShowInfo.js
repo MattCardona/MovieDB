@@ -61,6 +61,8 @@ class ShowInfo extends Component {
         return <i onClick={this.handleClick} className="fas fa-long-arrow-alt-left hover-effect point"> Previous</i>;
       case "recommended":
         return <i onClick={this.handleClick} className="fas fa-long-arrow-alt-left hover-effect point"> Previous</i>;
+      case "userprofile":
+        return <i onClick={this.handleClick} className="far fa-user-circle hover-effect point"> Profile</i>;
       default:
         return <i onClick={this.handleClick} className="fas fa-home hover-effect"> Home</i>;
 
