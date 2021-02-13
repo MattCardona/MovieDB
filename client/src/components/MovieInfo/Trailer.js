@@ -7,12 +7,12 @@ const Trailer = ({ trailerIds, title }) => {
         <div className="trailer">
           <h2>Trailer</h2>
           <hr />
-          <iframe className="iframe" src={`https://www.youtube.com/embed/${trailerIds[0]}`} title={title} frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+          <iframe className="iframe" src={`https://www.youtube-nocookie.com/embed/${trailerIds[0]}`} title={title} frameBorder="0" samesite="Lax" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
         </div>
         :
         null
       }
-    </div>
+    </div >
   )
 };
 
