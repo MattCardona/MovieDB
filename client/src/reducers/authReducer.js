@@ -7,6 +7,8 @@ let token = localStorage.getItem("token");
 let userId = "";
 let movies = [];
 let movieIds = [];
+let shows = [];
+let showIds = [];
 
 const checkTokenExp = token => {
   const user = decode(token);
@@ -35,7 +37,9 @@ const initialState = {
   isAuthenticated: token,
   userId,
   movies: movies,
-  movieIds: movieIds
+  movieIds: movieIds,
+  shows: shows,
+  showIds: showIds
 };
 
 (async (state = initialState) => {
@@ -44,6 +48,8 @@ const initialState = {
     // console.log(data, 'this is the "/users/movies');
     state.movies = await data.movies;
     state.movieIds = await data.movieIds;
+    state.shows = await data.shows;
+    state.showIds = await data.showIds;
   } catch (error) {
     return;
   }
