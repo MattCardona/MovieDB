@@ -6,19 +6,21 @@ const requireAuth = passport.authenticate("jwt", { session: false });
 
 const Users = require("../models/Users");
 const Movies = require("../models/Movies");
+const Shows = require("../models/Shows");
 
 router.get("/", requireAuth, (req, res) => {
   const { _id } = req.user;
-  Users.findById(_id).populate("movies").exec()
+  Users.findById(_id).populate("movies").populate("shows").exec()
     .then(foundUser => {
       if (!foundUser) {
         // some type of error users was not found
         res.status(400).json({ "error": "Something went wrong" });
       }
 
-      const { username, movies } = foundUser;
+      const { username, movies, shows } = foundUser;
       const movieIds = movies.map(movie => movie.movieId);
-      const user = { username, movies, movieIds, _id };
+      const showIds = shows.map(show => show.showId);
+      const user = { username, movies, movieIds, shows, showIds, _id };
       res.status(200).json(user)
     })
     .catch(error => {
@@ -30,14 +32,16 @@ router.get("/", requireAuth, (req, res) => {
 router.get("/movies", requireAuth, (req, res) => {
   const { _id } = req.user;
 
-  Users.findById(_id).populate("movies").exec()
+  Users.findById(_id).populate("movies").populate("shows").exec()
     .then(user => {
       if (!user) {
         // some type of error users was not found
         return res.status(400).json({ "error": "Something went wrong" });
       }
-      const movieIds = user.movies.map(movie => movie.movieId);
-      return res.status(200).json({ movieIds, movies: user.movies });
+      const { movies, shows } = user;
+      const movieIds = movies.map(movie => movie.movieId);
+      const showIds = shows.map(show => show.showId);
+      return res.status(200).json({ movieIds, movies, shows, showIds });
     })
     .catch(error => {
       res.status(400).json(error);
