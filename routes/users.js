@@ -74,6 +74,31 @@ router.post("/movies", requireAuth, (req, res) => {
     .catch(error => res.status(400).json({ "error": "Something went wrong" }));
 });
 
+router.post("/shows", requireAuth, (req, res) => {
+  const { show } = req.body;
+  const { _id } = req.user
+  // console.log({ movie, _id });
+  Users.findById(_id).populate("shows").exec()
+    .then(foundUser => {
+      if (!foundUser) return res.status(400).json({ "error": "Something went wrong" });
+      new Shows(show).save()
+        .then(newShow => {
+          foundUser.shows.push(newShow);
+          foundUser.save()
+            .then(updatedUser => {
+              return res.status(200).json({
+                "success": "Saved liked show",
+                savedShowId: newShow.showId,
+                shows: updatedUser.shows
+              });
+            })
+            .catch(error => res.status(400).json({ "error": "Can not save show at this time." }))
+        })
+        .catch(error => res.status(400).json({ "error": "Can not save show at this time" }))
+    })
+    .catch(error => res.status(400).json({ "error": "Something went wrong" }));
+});
+
 router.delete("/movies/:id", requireAuth, (req, res) => {
   const { _id } = req.user;
   const { id } = req.params;
