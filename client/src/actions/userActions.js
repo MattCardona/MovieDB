@@ -39,7 +39,9 @@ export const signin = (user, cb) => async dispatch => {
       token: data.token,
       userId: _id,
       movieIds: dataTwo.movieIds,
-      movies: dataTwo.movies
+      movies: dataTwo.movies,
+      shows: dataTwo.shows,
+      showIds: dataTwo.showIds
     });
     cb();
   } catch (error) {
@@ -64,7 +66,9 @@ export const getUserInfo = () => async dispatch => {
       type: GET_USERS,
       userId: data._id,
       movieIds: data.movieIds,
-      movies: data.movies
+      movies: data.movies,
+      shows: data.shows,
+      showIds: data.showIds
     })
     return data.username;
   } catch (error) {
