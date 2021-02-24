@@ -102,7 +102,8 @@ export const getUsersSavedMovies = () => async dispatch => {
     // console.log(data);
     dispatch({
       type: GET_USERS_SAVED,
-      movies: data.movies
+      movies: data.movies,
+      shows: data.shows
     })
   } catch (error) {
     console.log(error);
