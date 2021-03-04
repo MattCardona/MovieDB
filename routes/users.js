@@ -126,6 +126,35 @@ router.delete("/movies/:id", requireAuth, (req, res) => {
     })
     .catch(e => res.status(400).json({ "error": e }));
 
+});
+
+router.delete("/shows/:id", requireAuth, (req, res) => {
+  const { _id } = req.user;
+  const { id } = req.params;
+
+  Users.findById(_id)
+    .then(foundUser => {
+      if (!foundUser) return res.status(400).json({ "error": "User was not found" });
+      Shows.findByIdAndDelete(id)
+        .then(removedShow => {
+          if (!removedShow) return res.status(400).json({ "error": "Show was not found" });
+
+          Users.findById(_id).populate("shows").exec()
+            .then(updatedUser => {
+              if (!updatedUser) return res.status(400).json({ "error": "User was not found" });
+              const { shows } = updatedUser;
+              return res.status(200).json({ "msg": "Success", removedShow, shows });
+            })
+            .catch(error => {
+              res.status(400).json(error);
+            })
+          // return res.status(200).json({ "msg": "Success", removedMovie, user: foundUser });
+        })
+        .catch(e => res.status(400).json({ "error": e }));
+
+    })
+    .catch(e => res.status(400).json({ "error": e }));
+
 })
 
 
