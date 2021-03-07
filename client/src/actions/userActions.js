@@ -79,6 +79,7 @@ export const getUserInfo = () => async dispatch => {
 }
 
 export const saveUserLikedMovie = movie => async (dispatch, getState) => {
+  // console.log("movie trying to save", movie);
   try {
     const { data } = await Axios.post("/users/movies", { movie });
     let { movieIds } = getState().auth;
@@ -114,6 +115,8 @@ export const saveUserLikedShow = show => async (dispatch, getState) => {
   }
 }
 
+
+
 export const getUsersSavedMovies = () => async dispatch => {
   try {
     const { data } = await Axios.get("/users/movies");
@@ -140,6 +143,24 @@ export const deleteUsersSavedMovie = id => async (dispatch, getState) => {
       type: DELETE_SAVED_MOVIE,
       updatedMovies,
       movies
+    });
+
+  } catch (error) {
+    console.log(error);
+  }
+}
+export const deleteUsersSavedShow = id => async (dispatch, getState) => {
+  try {
+    const { data } = await Axios.delete(`/users/shows/${id}`);
+    let { shows, removedShow } = data;
+    let removedShowId = removedShow.showId;
+    let { showIds } = getState().auth;
+    let indexOfRemovedShow = showIds.indexOf(removedShowId);
+    let updatedShows = [...showIds.slice(0, indexOfRemovedShow), ...showIds.slice(indexOfRemovedShow + 1)];
+    dispatch({
+      type: DELETE_SAVED_SHOW,
+      updatedShows,
+      shows
     });
 
   } catch (error) {
