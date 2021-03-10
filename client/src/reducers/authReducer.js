@@ -101,6 +101,12 @@ const authReducer = (state = initialState, action) => {
         movies: [...action.movies],
         movieIds: [...action.updatedMovies],
       }
+    case DELETE_SAVED_SHOW:
+      return {
+        ...state,
+        shows: [...action.shows],
+        showIds: [...action.updatedShows],
+      }
     case GET_USERS:
       return {
         ...state,
