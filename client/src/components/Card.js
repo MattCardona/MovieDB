@@ -77,6 +77,13 @@ const Card = props => {
       props.deleteUsersSavedMovie(props.movie._id);
     }, 1200);
   }
+  const removeShow = () => {
+    // console.log("remove this show");
+    setRemoved(true);
+    setTimeout(() => {
+      props.deleteUsersSavedShow(props.movie._id);
+    }, 1200);
+  }
   return (
     <div className={removed ? "col-6 col-sm-6 col-md-4 success-removed" : "col-6 col-sm-6 col-md-4"}
     >
@@ -95,6 +102,18 @@ const Card = props => {
         <span
           ref={removeRef}
           onClick={removeMovie}
+          className="minus-button"
+        >
+          <i className="fas fa-minus-circle"></i>
+        </span>
+        :
+        null
+      }
+      {props.authenticated && savedShows.includes(id.toString()) && prev === "userprofile" ?
+        <span
+          ref={removeRef}
+          // make a remove show action
+          onClick={removeShow}
           className="minus-button"
         >
           <i className="fas fa-minus-circle"></i>
