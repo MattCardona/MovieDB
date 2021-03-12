@@ -4,6 +4,7 @@ import { getUserInfo, signout, getUsersSavedMovies } from '../../actions/userAct
 import { connect } from 'react-redux'
 import Navbar from '../Navbar';
 import FavMovies from './FavMovies';
+import FavShows from "./FavShows";
 import checkExpToken from '../../utils/checkToken';
 
 
@@ -38,9 +39,18 @@ class UsersProfile extends Component {
           }
           {this.props.usersSavedMovies.length ?
             <div className="user-favMovies container">
-              <h2>Favorite / Watch later list</h2>
+              <h2>Movie Favorite / Watch later list</h2>
               <hr />
               <FavMovies movies={this.props.usersSavedMovies} />
+            </div>
+            :
+            null
+          }
+          {this.props.usersSavedShows.length ?
+            <div className="user-favMovies container">
+              <h2>Show Favorite / Watch later list</h2>
+              <hr />
+              <FavShows shows={this.props.usersSavedShows} />
             </div>
             :
             null
@@ -51,7 +61,8 @@ class UsersProfile extends Component {
   }
 }
 const mapStateToProps = ({ auth }) => ({
-  usersSavedMovies: auth.movies
+  usersSavedMovies: auth.movies,
+  usersSavedShows: auth.shows
 })
 
 export default connect(mapStateToProps, { getUserInfo, signout, getUsersSavedMovies })(UsersProfile);
