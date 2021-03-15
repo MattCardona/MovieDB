@@ -67,7 +67,7 @@ export const searchedMovie = movie => async dispatch => {
 
 export const searchedMovieNav = () => ({ type: SEARCHED_MOVIE_NAV });
 
-export const appendMovies = (kind, page = 1, searchMovie, cb) => async dispatch => {
+export const appendMovies = (kind, page = 1, searchMovie, cb) => async (dispatch, getState) => {
   try {
     switch (kind) {
       case "nowPlaying":
@@ -101,9 +101,16 @@ export const appendMovies = (kind, page = 1, searchMovie, cb) => async dispatch 
         }
         break;
       case "searchMovie":
-        // console.log("In search movie");
+        // console.log("In search movie", getState().movies.movies);
+        let movies = getState().movies.movies;
+        let ids = movies.map(({ id }) => id);
         {
           const { data } = await Axios.post(`/movies/search/?page=${page}`, { movie: searchMovie });
+          // filter out data to make sure that there is no duplicates trying to be appended to the state
+          // with the same key = show.id || movie.id
+          data = data.filter(movie => {
+            return !ids.includes(movie.id)
+          })
           dispatch({
             type: APPEND_SEARCH_MOVIE,
             searchMovie: data
