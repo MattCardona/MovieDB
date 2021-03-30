@@ -623,6 +623,11 @@ footer img {
   padding: 20px 0px;
 }
 
+.user-favMovies h4 {
+  color: white;
+  margin: 20px;
+}
+
 /* big tablets to 1200px: widths smaller than the 1140px row */
 @media only screen and (max-width: 1200px) {
 }
