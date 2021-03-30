@@ -12,9 +12,12 @@ class UsersProfile extends Component {
   state = {
     username: "",
     movieIds: [],
-    movies: []
+    movies: [],
+    screenWidth: window.innerWidth,
+    restOfMovies: false
   }
   async componentDidMount() {
+    window.addEventListener('resize', this.updateWindowDimensions);
     const token = localStorage.getItem("token");
     if (token) {
       checkExpToken(token, this.props.signout);
@@ -24,8 +27,20 @@ class UsersProfile extends Component {
       username,
     }))
   }
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.updateWindowDimensions);
+  }
+  updateWindowDimensions = () => {
+    this.setState(() => ({
+      screenWidth: window.innerWidth
+    }))
+  }
+  toggleMovies = () => {
+    this.setState(() => ({ restOfMovies: true }))
+  }
+
   render() {
-    const { username, movies } = this.state;
+    const { username, movies, screenWidth, restOfMovies } = this.state;
     return (
       <div id="user-profile">
         <Navbar />
@@ -41,7 +56,35 @@ class UsersProfile extends Component {
             <div className="user-favMovies container">
               <h2>Movie Favorite / Watch later list</h2>
               <hr />
-              <FavMovies movies={this.props.usersSavedMovies} />
+              {
+                screenWidth > "767"
+                  ?
+                  (<React.Fragment>
+                    <FavMovies movies={this.props.usersSavedMovies.slice(0, 3)} />
+                    {
+                      this.props.usersSavedMovies.length > 3 ?
+                        restOfMovies ?
+                          <FavMovies movies={this.props.usersSavedMovies.slice(3)} />
+                          :
+                          <h4 className="card-title hover-effect"
+                            onClick={this.toggleMovies}
+                          >see rest of the {this.props.usersSavedMovies.length - 3} other favorite movies saved... </h4>
+                        :
+                        null
+                    }
+
+                  </React.Fragment>)
+                  :
+                  (<React.Fragment>
+                    <FavMovies movies={this.props.usersSavedMovies.slice(0, 4)} />
+                    {restOfMovies ? <FavMovies movies={this.props.usersSavedMovies.slice(4)} /> :
+                      <h4 className="card-title hover-effect"
+                        onClick={this.toggleMovies}
+                      >see rest of the {this.props.usersSavedMovies.length - 4} other favorite movies saved... </h4>
+                    }
+
+                  </React.Fragment>)
+              }
             </div>
             :
             null
