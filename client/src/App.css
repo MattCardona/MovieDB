@@ -693,6 +693,19 @@ footer img {
     font-size: 28px;
   }
 
+
+  #user-profile h2 {
+    font-size: 38px;
+  }
+
+  .user-favMovies hr {
+    width: 90%;
+  }
+
+  .user-favMovies .favmovie {
+    font-size: 20px;
+  }
+
 }
 
 /* small pnhones from 0 to 480px */

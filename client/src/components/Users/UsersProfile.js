@@ -54,7 +54,7 @@ class UsersProfile extends Component {
           }
           {this.props.usersSavedMovies.length ?
             <div className="user-favMovies container">
-              <h2>Movie Favorite / Watch later list</h2>
+              <h2>Movie Favorites / Watch later list</h2>
               <hr />
               {
                 screenWidth > "767"
@@ -66,7 +66,7 @@ class UsersProfile extends Component {
                         restOfMovies ?
                           <FavMovies movies={this.props.usersSavedMovies.slice(3)} />
                           :
-                          <h4 className="card-title hover-effect"
+                          <h4 className="card-title hover-effect favmovie"
                             onClick={this.toggleMovies}
                           >see rest of the {this.props.usersSavedMovies.length - 3} other favorite movies saved... </h4>
                         :
@@ -78,7 +78,7 @@ class UsersProfile extends Component {
                   (<React.Fragment>
                     <FavMovies movies={this.props.usersSavedMovies.slice(0, 4)} />
                     {restOfMovies ? <FavMovies movies={this.props.usersSavedMovies.slice(4)} /> :
-                      <h4 className="card-title hover-effect"
+                      <h4 className="card-title hover-effect favmovie"
                         onClick={this.toggleMovies}
                       >see rest of the {this.props.usersSavedMovies.length - 4} other favorite movies saved... </h4>
                     }
@@ -91,7 +91,7 @@ class UsersProfile extends Component {
           }
           {this.props.usersSavedShows.length ?
             <div className="user-favMovies container">
-              <h2>Show Favorite / Watch later list</h2>
+              <h2>Show Favorites / Watch later list</h2>
               <hr />
               <FavShows shows={this.props.usersSavedShows} />
             </div>
