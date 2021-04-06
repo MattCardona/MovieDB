@@ -14,7 +14,8 @@ class UsersProfile extends Component {
     movieIds: [],
     movies: [],
     screenWidth: window.innerWidth,
-    restOfMovies: false
+    restOfMovies: false,
+    restOfShows: false
   }
   async componentDidMount() {
     window.addEventListener('resize', this.updateWindowDimensions);
@@ -35,8 +36,12 @@ class UsersProfile extends Component {
       screenWidth: window.innerWidth
     }))
   }
-  toggleMovies = () => {
-    this.setState(() => ({ restOfMovies: true }))
+  toggleRest = type => {
+    if (type === "movie") {
+      this.setState(() => ({ restOfMovies: true }))
+    } else {
+      this.setState(() => ({ restOfShows: true }))
+    }
   }
 
   render() {
@@ -67,7 +72,7 @@ class UsersProfile extends Component {
                           <FavMovies movies={this.props.usersSavedMovies.slice(3)} />
                           :
                           <h4 className="card-title hover-effect favmovie"
-                            onClick={this.toggleMovies}
+                            onClick={() => this.toggleRest("movie")}
                           >see rest of the {this.props.usersSavedMovies.length - 3} other favorite movies saved... </h4>
                         :
                         null
@@ -79,7 +84,7 @@ class UsersProfile extends Component {
                     <FavMovies movies={this.props.usersSavedMovies.slice(0, 4)} />
                     {restOfMovies ? <FavMovies movies={this.props.usersSavedMovies.slice(4)} /> :
                       <h4 className="card-title hover-effect favmovie"
-                        onClick={this.toggleMovies}
+                        onClick={() => this.toggleRest("movie")}
                       >see rest of the {this.props.usersSavedMovies.length - 4} other favorite movies saved... </h4>
                     }
 
@@ -89,15 +94,55 @@ class UsersProfile extends Component {
             :
             null
           }
+
           {this.props.usersSavedShows.length ?
             <div className="user-favMovies container">
               <h2>Show Favorites / Watch later list</h2>
               <hr />
-              <FavShows shows={this.props.usersSavedShows} />
+              {screenWidth > "767"
+                ?
+                (<React.Fragment>
+                  <FavShows shows={this.props.usersSavedShows.slice(0, 3)} />
+                  {this.props.usersSavedShows.length > 3 ?
+
+                    this.state.restOfShows
+                      ?
+                      <FavShows shows={this.props.usersSavedShows.slice(3)} />
+                      :
+                      <h4 className="card-title hover-effect favmovie"
+                        onClick={() => this.toggleRest("show")}
+                      >see rest of the {this.props.usersSavedShows.length - 3} other favorite shows saved... </h4>
+
+                    :
+                    null
+                  }
+
+                </React.Fragment>)
+                :
+                (<React.Fragment>
+                  <FavShows shows={this.props.usersSavedShows.slice(0, 4)} />
+                  {this.props.usersSavedShows.length > 4 ?
+
+                    this.state.restOfShows
+                      ?
+                      <FavShows shows={this.props.usersSavedShows.slice(4)} />
+                      :
+                      <h4 className="card-title hover-effect favmovie"
+                        onClick={() => this.toggleRest("show")}
+                      >see rest of the {this.props.usersSavedShows.length - 4} other favorite shows saved... </h4>
+
+                    :
+                    null
+                  }
+
+                </React.Fragment>)
+              }
+
             </div>
             :
             null
           }
+
         </div>
       </div>
     )
