@@ -1,5 +1,5 @@
 import Axios from "axios";
-import { SIGNUP_USER, SIGNIN_USER, SIGNOUT_USER, SAVE_MOVIE, GET_USERS_SAVED, DELETE_SAVED_MOVIE, GET_USERS, SAVE_SHOW, DELETE_SAVED_SHOW } from "./types";
+import { SIGNUP_USER, SIGNIN_USER, SIGNOUT_USER, SAVE_MOVIE, GET_USERS_SAVED, DELETE_SAVED_MOVIE, GET_USERS, SAVE_SHOW, DELETE_SAVED_SHOW, FILTER_MOVIES_BY_DATE_ASCENDING } from "./types";
 import setAuthToken from "../utils/setAuthToken";
 import decode from 'jwt-decode'
 
@@ -165,5 +165,13 @@ export const deleteUsersSavedShow = id => async (dispatch, getState) => {
 
   } catch (error) {
     console.log(error);
+  }
+}
+
+export const filterMoviesByDateAscending = filteredMovies => {
+  // console.log(filteredMovies, "filtered movies")
+  return {
+    type: FILTER_MOVIES_BY_DATE_ASCENDING,
+    movies: filteredMovies
   }
 }
