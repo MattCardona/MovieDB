@@ -615,17 +615,48 @@ footer img {
   font-family: 'Cinzel', serif;
 }
 
+#user-profile a:hover {
+  text-decoration: none;
+}
+
+#user-profile .filters-btn {
+  text-decoration: none;
+    opacity: 1;
+    background: none;
+    border: none;
+}
+
 .user-favMovies hr {
   border-bottom: 1px solid #fff;
 }
 
 .user-favMovies {
   padding: 20px 0px;
+
 }
 
 .user-favMovies h4 {
   color: white;
   margin: 20px;
+}
+
+#user-profile .sort{
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 10px;
+}
+
+#user-profile .nav-link {
+  color: #fff;
+}
+
+#user-fav-movies {
+  padding: 10px;
+}
+#user-fav-shows {
+  padding: 10px;
 }
 
 /* big tablets to 1200px: widths smaller than the 1140px row */
