@@ -4,7 +4,11 @@ const showsSchema = new mongoose.Schema({
   name: String,
   posterPath: String,
   backdropPath: String,
-  showId: String
+  showId: String,
+  createdAt: {
+    type: Date,
+    default: Date.now
+  }
 });
 
 const Shows = mongoose.model("Shows", showsSchema);
