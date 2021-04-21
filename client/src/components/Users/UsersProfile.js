@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 // import Axios from 'axios';
-import { getUserInfo, signout, getUsersSavedMovies, filterMoviesByDateAscending } from '../../actions/userActions';
+import { getUserInfo, signout, getUsersSavedMovies, filterByDateAscending } from '../../actions/userActions';
 import { connect } from 'react-redux'
 import Navbar from '../Navbar';
 import FavMovies from './FavMovies';
@@ -43,10 +43,17 @@ class UsersProfile extends Component {
       this.setState(() => ({ restOfShows: true }))
     }
   }
-  filterMoviesByDate = async () => {
-    let result = await this.props.usersSavedMovies.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+  filterByDateAscending = async type => {
+    if (type === "movie") {
+      let filteredMovies = await this.props.usersSavedMovies.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
 
-    await this.props.filterMoviesByDateAscending(result);
+      await this.props.filterByDateAscending(filteredMovies, undefined);
+    } else {
+      let filteredShows = await this.props.usersSavedShows.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+
+      await this.props.filterByDateAscending(undefined, filteredShows);
+    }
+
   }
   render() {
     const { username, movies, screenWidth, restOfMovies } = this.state;
@@ -72,8 +79,8 @@ class UsersProfile extends Component {
                 >Sort</p>
                 <ul className="dropdown">
                   <li className="nav-item">
-                    <p className="nav-link hover-effect" onClick={this.filterMoviesByDate}
-                    >Ascending</p>
+                    <p className="nav-link hover-effect" onClick={() => this.filterByDateAscending("movie")}
+                    >Newly added</p>
                   </li>
                 </ul>
               </li>
@@ -116,6 +123,19 @@ class UsersProfile extends Component {
             <div className="user-favMovies container">
               <h2>Show Favorites / Watch later list</h2>
               <hr />
+
+              <li className="nav-item sort">
+                <p className="nav-link "
+                  style={{ color: "white" }}
+                >Sort</p>
+                <ul className="dropdown">
+                  <li className="nav-item">
+                    <p className="nav-link hover-effect" onClick={() => this.filterByDateAscending("show")}
+                    >Newly added</p>
+                  </li>
+                </ul>
+              </li>
+
               {screenWidth > "767"
                 ?
                 (<React.Fragment>
@@ -170,4 +190,4 @@ const mapStateToProps = ({ auth }) => ({
   usersSavedShows: auth.shows
 })
 
-export default connect(mapStateToProps, { getUserInfo, signout, getUsersSavedMovies, filterMoviesByDateAscending })(UsersProfile);
+export default connect(mapStateToProps, { getUserInfo, signout, getUsersSavedMovies, filterByDateAscending })(UsersProfile);
