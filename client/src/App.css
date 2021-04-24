@@ -688,10 +688,17 @@ footer img {
   padding-top: 90px;
   font-size: 20px;
 }
+.trailer hr {
+  width: 80%;
+}
+
 /* 560 X 315 */
-  
+.trailer-container {
+  padding: 0px !important
+}
+
 .trailer .iframe {
-  width: 90%;
+  width: 100%;
 }
 
   footer .box {
@@ -724,9 +731,15 @@ footer img {
     font-size: 28px;
   }
 
+  .card-title {
+    font-size: 16px;
+  }
 
   #user-profile h2 {
     font-size: 38px;
+  }
+  .user-favMovies h4  {
+    font-size: 16px;
   }
 
   .user-favMovies hr {

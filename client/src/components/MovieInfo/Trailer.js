@@ -2,7 +2,7 @@ import React from 'react';
 
 const Trailer = ({ trailerIds, title }) => {
   return (
-    <div className="container">
+    <div className="trailer-container container">
       {trailerIds.length > 0 ?
         <div className="trailer">
           <h2>Trailer</h2>
