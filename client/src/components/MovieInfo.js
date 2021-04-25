@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux'
 import { searchedMovie, moreInfo } from '../actions/moviesActions';
 import Trailer from './MovieInfo/Trailer';
@@ -17,7 +17,8 @@ class MovieInfo extends Component {
     prevLocation: "",
     trailerIds: [],
     similar: [],
-    recommend: []
+    recommend: [],
+    restOfSimilar: false,
   }
   async componentDidMount() {
     if (!this.props.location.state) {
@@ -89,8 +90,16 @@ class MovieInfo extends Component {
     window.scrollTo(100, this.trailer.current.offsetTop);
     this.seeMoreBtn.current.style.display = "none"
   }
+  handleShowMore = type => {
+    if (type === "similar") {
+      console.log("in this icth");
+      this.setState(() => ({
+        restOfSimilar: true
+      }))
+    }
+  }
   render() {
-    const { prevLocation, trailerIds, similar, recommend } = this.state;
+    const { prevLocation, trailerIds, similar, recommend, restOfSimilar } = this.state;
     const { movie } = this.props;
     return (
       <div>
@@ -117,7 +126,11 @@ class MovieInfo extends Component {
           <Trailer trailerIds={trailerIds} title={movie.original_title} />
         </div>
         <div ref={this.similars}>
-          <Similar similar={similar} />
+          {!restOfSimilar ?
+            <Similar similar={similar.slice(0, 6)} btn={true} handleShowMore={this.handleShowMore} />
+            :
+            <Similar similar={similar} />
+          }
         </div>
         <div ref={this.recommended}>
           <Recommend recommend={recommend} />
