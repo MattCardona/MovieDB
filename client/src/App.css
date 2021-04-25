@@ -406,6 +406,9 @@ footer img {
   text-decoration: none;
 }
 
+.similar-btn {
+  padding-top: 40px;
+}
 
 .recommended {
   text-align: center;

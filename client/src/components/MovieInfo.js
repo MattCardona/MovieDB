@@ -92,7 +92,6 @@ class MovieInfo extends Component {
   }
   handleShowMore = type => {
     if (type === "similar") {
-      console.log("in this icth");
       this.setState(() => ({
         restOfSimilar: true
       }))
