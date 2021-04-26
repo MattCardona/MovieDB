@@ -19,6 +19,7 @@ class MovieInfo extends Component {
     similar: [],
     recommend: [],
     restOfSimilar: false,
+    restOfRecommended: false,
   }
   async componentDidMount() {
     if (!this.props.location.state) {
@@ -95,10 +96,14 @@ class MovieInfo extends Component {
       this.setState(() => ({
         restOfSimilar: true
       }))
+    } else {
+      this.setState(() => ({
+        restOfRecommended: true
+      }))
     }
   }
   render() {
-    const { prevLocation, trailerIds, similar, recommend, restOfSimilar } = this.state;
+    const { prevLocation, trailerIds, similar, recommend, restOfSimilar, restOfRecommended } = this.state;
     const { movie } = this.props;
     return (
       <div>
@@ -132,7 +137,11 @@ class MovieInfo extends Component {
           }
         </div>
         <div ref={this.recommended}>
-          <Recommend recommend={recommend} />
+          {!restOfRecommended ?
+            <Recommend recommend={recommend.slice(0, 6)} btn={true} handleShowMore={this.handleShowMore} />
+            :
+            <Recommend recommend={recommend} />
+          }
         </div>
       </div>
     )
