@@ -1,7 +1,7 @@
 import React from 'react';
 import Card from '../Card'
 
-const Recommend = ({ recommend, media_type }) => {
+const Recommend = ({ recommend, media_type, btn, handleShowMore }) => {
   return (
     <React.Fragment>
       {recommend.length ?
@@ -20,6 +20,14 @@ const Recommend = ({ recommend, media_type }) => {
                 return <Card movie={recommended} movieBackdrop={movieBackdrop} key={recommended.id} prev='recommended' />
               })}
             </div>
+            {btn ?
+              <h4
+                className="card-title hover-effect similar-btn"
+                onClick={() => handleShowMore("recommended")}
+              >See more Recommended Movies.</h4>
+              :
+              null
+            }
           </div>
         </div >
         : null}
