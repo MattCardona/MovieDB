@@ -41,7 +41,9 @@ class MovieInfo extends Component {
         trailerIds: [],
         similar: [],
         recommend: [],
-        prevLocation: this.props.location.state.prev
+        prevLocation: this.props.location.state.prev,
+        restOfSimilar: false,
+        restOfRecommended: false
       }));
 
       this.props.searchedMovie(this.props.match.params.id);
