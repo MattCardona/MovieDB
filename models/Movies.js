@@ -5,6 +5,7 @@ const moviesSchema = new mongoose.Schema({
 	posterPath: String,
 	backdropPath: String,
 	movieId: String,
+	voteAverage: Number,
 	createdAt: {
 		type: Date,
 		default: Date.now
