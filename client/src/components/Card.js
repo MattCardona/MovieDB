@@ -9,7 +9,7 @@ const Card = props => {
   const removeRef = React.createRef();
   const [success, setSuccess] = useState("");
   const [removed, setRemoved] = useState("")
-  let { title, id, name, media_type, movieId, showId, posterPath } = props.movie;
+  let { title, id, name, media_type, movieId, showId, posterPath, vote_average } = props.movie;
   id = id || movieId || showId;
   let { movieBackdrop, prev, savedMovies, savedShows } = props;
   let path = posterPath ? posterPath : media_type === "tv" ? `/tv/${id}` : `/movie/${id}`;
@@ -24,6 +24,7 @@ const Card = props => {
         movieId: id,
         posterPath: path,
         backdropPath: movieBackdrop,
+        voteAverage: vote_average
       }
       try {
         const data = await props.saveUserLikedMovie(movie);
