@@ -1,5 +1,5 @@
 import Axios from "axios";
-import { SIGNUP_USER, SIGNIN_USER, SIGNOUT_USER, SAVE_MOVIE, GET_USERS_SAVED, DELETE_SAVED_MOVIE, GET_USERS, SAVE_SHOW, DELETE_SAVED_SHOW, FILTER_MOVIES_BY_DATE_ASCENDING, FILTER_SHOWS_BY_DATE_ASCENDING } from "./types";
+import { SIGNUP_USER, SIGNIN_USER, SIGNOUT_USER, SAVE_MOVIE, GET_USERS_SAVED, DELETE_SAVED_MOVIE, GET_USERS, SAVE_SHOW, DELETE_SAVED_SHOW, FILTER_MOVIES_BY_DATE_ASCENDING, FILTER_SHOWS_BY_DATE_ASCENDING, FILTER_MOVIES_BY_RATING } from "./types";
 import setAuthToken from "../utils/setAuthToken";
 import decode from 'jwt-decode'
 
@@ -169,8 +169,8 @@ export const deleteUsersSavedShow = id => async (dispatch, getState) => {
 }
 
 export const filterByDateAscending = (filteredMovies, filteredShows) => dispatch => {
-  console.log(filteredMovies, "filtered movies")
-  console.log(filteredShows, "filtered shows")
+  // console.log(filteredMovies, "filtered movies")
+  // console.log(filteredShows, "filtered shows")
   if (filteredMovies) {
     dispatch({
       type: FILTER_MOVIES_BY_DATE_ASCENDING,
@@ -183,5 +183,14 @@ export const filterByDateAscending = (filteredMovies, filteredShows) => dispatch
       shows: filteredShows
     });
   }
+}
 
+export const filterByRating = (filteredMovies, filteredShows) => dispatch => {
+  if (filteredMovies) {
+    // console.log("filtered movies", filteredMovies);
+    dispatch({
+      type: FILTER_MOVIES_BY_RATING,
+      filteredMovies
+    })
+  }
 }
