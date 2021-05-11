@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 // import Axios from 'axios';
-import { getUserInfo, signout, getUsersSavedMovies, filterByDateAscending } from '../../actions/userActions';
+import { getUserInfo, signout, getUsersSavedMovies, filterByDateAscending, filterByRating } from '../../actions/userActions';
 import { connect } from 'react-redux'
 import Navbar from '../Navbar';
 import FavMovies from './FavMovies';
@@ -55,6 +55,12 @@ class UsersProfile extends Component {
     }
 
   }
+  filterByRating = async type => {
+    if (type === "movie") {
+      let filteredMovies = this.props.usersSavedMovies.sort((a, b) => b.voteAverage - a.voteAverage);
+      this.props.filterByRating(filteredMovies, undefined);
+    }
+  }
   render() {
     const { username, movies, screenWidth, restOfMovies } = this.state;
     return (
@@ -81,6 +87,10 @@ class UsersProfile extends Component {
                   <li className="nav-item">
                     <p className="nav-link hover-effect" onClick={() => this.filterByDateAscending("movie")}
                     >Newly added</p>
+                  </li>
+                  <li className="nav-item">
+                    <p className="nav-link hover-effect" onClick={() => this.filterByRating("movie")}
+                    >Rating</p>
                   </li>
                 </ul>
               </li>
@@ -190,4 +200,4 @@ const mapStateToProps = ({ auth }) => ({
   usersSavedShows: auth.shows
 })
 
-export default connect(mapStateToProps, { getUserInfo, signout, getUsersSavedMovies, filterByDateAscending })(UsersProfile);
+export default connect(mapStateToProps, { getUserInfo, signout, getUsersSavedMovies, filterByDateAscending, filterByRating })(UsersProfile);
