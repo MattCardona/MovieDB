@@ -18,7 +18,8 @@ class ShowInfo extends Component {
     prevLocation: "",
     trailerIds: [],
     similar: [],
-    recommend: []
+    recommend: [],
+    restOfSimilar: false,
   }
   componentDidMount() {
     if (!this.props.location.state) {
@@ -41,6 +42,7 @@ class ShowInfo extends Component {
         trailerIds: [],
         similar: [],
         recommend: [],
+        restOfSimilar: false,
         prevLocation: this.props.location.state.prev
       }));
 
@@ -92,8 +94,15 @@ class ShowInfo extends Component {
     window.scrollTo(100, this.trailer.current.offsetTop);
     this.seeMoreBtn.current.style.display = "none"
   }
+  handleShowMore = type => {
+    if (type === "similar") {
+      this.setState(() => ({
+        restOfSimilar: true
+      }))
+    }
+  }
   render() {
-    const { prevLocation, trailerIds, similar, recommend } = this.state;
+    const { prevLocation, trailerIds, similar, recommend, restOfSimilar } = this.state;
     const { show } = this.props;
     return (
       <div>
@@ -121,7 +130,11 @@ class ShowInfo extends Component {
         </div>
 
         <div ref={this.similars}>
-          <Similar similar={similar} media_type={"tv"} />
+          {!restOfSimilar ?
+            <Similar similar={similar.slice(0, 6)} btn={true} handleShowMore={this.handleShowMore} isShow={true} />
+            :
+            <Similar similar={similar} />
+          }
         </div>
 
         <div ref={this.recommended}>
