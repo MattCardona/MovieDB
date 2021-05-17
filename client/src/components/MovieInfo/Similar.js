@@ -2,7 +2,8 @@ import React from 'react';
 import Card from '../Card'
 
 const Similar = props => {
-  const { media_type, btn } = props;
+  const { media_type, btn, isShow } = props;
+
   return (
     <React.Fragment>
       {props.similar.length ?
@@ -27,7 +28,7 @@ const Similar = props => {
               <h4 className="card-title hover-effect similar-btn"
                 onClick={() => props.handleShowMore("similar")}
               >
-                See More Similar Movies. </h4>
+                See More Similar {isShow ? "Shows" : "Movies"}. </h4>
             }
 
           </div>
