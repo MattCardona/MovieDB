@@ -20,6 +20,7 @@ class ShowInfo extends Component {
     similar: [],
     recommend: [],
     restOfSimilar: false,
+    restOfRecommended: false
   }
   componentDidMount() {
     if (!this.props.location.state) {
@@ -43,6 +44,7 @@ class ShowInfo extends Component {
         similar: [],
         recommend: [],
         restOfSimilar: false,
+        restOfRecommended: false,
         prevLocation: this.props.location.state.prev
       }));
 
@@ -99,10 +101,14 @@ class ShowInfo extends Component {
       this.setState(() => ({
         restOfSimilar: true
       }))
+    } else {
+      this.setState(() => ({
+        restOfRecommended: true
+      }))
     }
   }
   render() {
-    const { prevLocation, trailerIds, similar, recommend, restOfSimilar } = this.state;
+    const { prevLocation, trailerIds, similar, recommend, restOfSimilar, restOfRecommended } = this.state;
     const { show } = this.props;
     return (
       <div>
@@ -138,7 +144,11 @@ class ShowInfo extends Component {
         </div>
 
         <div ref={this.recommended}>
-          <Recommend recommend={recommend} media_type={"tv"} />
+          {!restOfRecommended ?
+            <Recommend recommend={recommend.slice(0, 6)} btn={true} handleShowMore={this.handleShowMore} isShow={true} />
+            :
+            <Recommend recommend={recommend} />
+          }
         </div>
 
       </div>
