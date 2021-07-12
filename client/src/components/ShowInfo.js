@@ -82,9 +82,12 @@ class ShowInfo extends Component {
       keys.push(element.key);
     });
     data.similar.results.forEach(simShow => {
-      sim.push(simShow);
+      let updatedSimShow = simShow;
+      updatedSimShow.media_type = updatedSimShow.media_type === undefined ? "tv" : "movie";
+      sim.push(updatedSimShow);
     });
     data.recommendations.results.forEach(recShow => {
+      recShow = { ...recShow, media_type: "tv" }
       recommended.push(recShow);
     })
     this.setState(() => ({
@@ -134,12 +137,11 @@ class ShowInfo extends Component {
         <div ref={this.trailer} >
           <Trailer trailerIds={trailerIds} title={show.original_title} />
         </div>
-
         <div ref={this.similars}>
           {!restOfSimilar ?
             <Similar similar={similar.slice(0, 6)} btn={true} handleShowMore={this.handleShowMore} isShow={true} />
             :
-            <Similar similar={similar} />
+            <Similar similar={similar} isShow={true} />
           }
         </div>
 
@@ -147,7 +149,7 @@ class ShowInfo extends Component {
           {!restOfRecommended ?
             <Recommend recommend={recommend.slice(0, 6)} btn={true} handleShowMore={this.handleShowMore} isShow={true} />
             :
-            <Recommend recommend={recommend} />
+            <Recommend recommend={recommend} isShow={true} />
           }
         </div>
 

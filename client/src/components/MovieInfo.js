@@ -133,16 +133,16 @@ class MovieInfo extends Component {
         </div>
         <div ref={this.similars}>
           {!restOfSimilar ?
-            <Similar similar={similar.slice(0, 6)} btn={true} handleShowMore={this.handleShowMore} />
+            <Similar similar={similar.slice(0, 6)} btn={true} handleShowMore={this.handleShowMore} isShow={false} />
             :
-            <Similar similar={similar} />
+            <Similar similar={similar} isShow={false} />
           }
         </div>
         <div ref={this.recommended}>
           {!restOfRecommended ?
-            <Recommend recommend={recommend.slice(0, 6)} btn={true} handleShowMore={this.handleShowMore} />
+            <Recommend recommend={recommend.slice(0, 6)} btn={true} handleShowMore={this.handleShowMore} isShow={false} />
             :
-            <Recommend recommend={recommend} />
+            <Recommend recommend={recommend} isShow={false} />
           }
         </div>
       </div>
