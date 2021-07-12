@@ -17,7 +17,7 @@ const Recommend = ({ recommend, media_type, btn, handleShowMore, isShow }) => {
                 if (!recommended.poster_path) {
                   return null;
                 }
-                return <Card movie={recommended} movieBackdrop={movieBackdrop} key={recommended.id} prev='recommended' />
+                return <Card movie={recommended} movieBackdrop={movieBackdrop} key={recommended.id} prev='recommended' isShow={isShow} />
               })}
             </div>
             {btn ?

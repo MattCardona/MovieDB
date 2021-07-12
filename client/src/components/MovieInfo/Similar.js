@@ -19,7 +19,7 @@ const Similar = props => {
                 if (!simMovie.poster_path) {
                   return null;
                 }
-                return <Card movie={simMovie} movieBackdrop={movieBackdrop} key={simMovie.id} prev='similar' />
+                return <Card movie={simMovie} movieBackdrop={movieBackdrop} key={simMovie.id} prev='similar' isShow={isShow} />
               })}
             </div>
             {!btn ?
