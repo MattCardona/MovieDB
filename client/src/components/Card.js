@@ -10,10 +10,15 @@ const Card = props => {
   const [success, setSuccess] = useState("");
   const [removed, setRemoved] = useState("")
   let { title, id, name, media_type, movieId, showId, posterPath, vote_average } = props.movie;
+  let { isShow } = props
   id = id || movieId || showId;
   let { movieBackdrop, prev, savedMovies, savedShows } = props;
   let path = posterPath ? posterPath : media_type === "tv" ? `/tv/${id}` : `/movie/${id}`;
   let typeMedia = media_type === "tv" ? "tv" : `movie`;
+  if (isShow) {
+    path = `/tv/${id}`;
+    typeMedia = "tv";
+  }
 
   const saveMovie = async () => {
     // console.log(props.movie);
