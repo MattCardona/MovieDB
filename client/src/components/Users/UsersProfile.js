@@ -43,16 +43,29 @@ class UsersProfile extends Component {
       this.setState(() => ({ restOfShows: true }))
     }
   }
-  filterByDateAscending = async type => {
-    if (type === "movie") {
-      let filteredMovies = await this.props.usersSavedMovies.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+  filterByDateAscending = async (type, old) => {
 
-      await this.props.filterByDateAscending(filteredMovies, undefined);
+    if (!old) {
+      if (type === "movie") {
+        let filteredMovies = await this.props.usersSavedMovies.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+
+        await this.props.filterByDateAscending(filteredMovies, undefined);
+      } else {
+        let filteredShows = await this.props.usersSavedShows.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+
+        await this.props.filterByDateAscending(undefined, filteredShows);
+      }
     } else {
-      let filteredShows = await this.props.usersSavedShows.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+      if (type === "movie") {
+        let filteredMovies = await this.props.usersSavedMovies.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
+        await this.props.filterByDateAscending(filteredMovies, undefined);
+      } else {
+        let filteredShows = await this.props.usersSavedShows.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
 
-      await this.props.filterByDateAscending(undefined, filteredShows);
+        await this.props.filterByDateAscending(undefined, filteredShows);
+      }
     }
+
 
   }
   filterByRating = async type => {
@@ -89,11 +102,13 @@ class UsersProfile extends Component {
                 <ul className="dropdown">
                   <li className="nav-item">
                     <p className="nav-link hover-effect" onClick={() => this.filterByDateAscending("movie")}
-                    >Newly added</p>
+                    >Recently Added</p>
+                    <p className="nav-link hover-effect" onClick={() => this.filterByDateAscending("movie", "old")}
+                    >Oldest Added</p>
                   </li>
                   <li className="nav-item">
                     <p className="nav-link hover-effect" onClick={() => this.filterByRating("movie")}
-                    >Rating</p>
+                    >Highest Rated</p>
                   </li>
                 </ul>
               </li>
@@ -144,11 +159,13 @@ class UsersProfile extends Component {
                 <ul className="dropdown">
                   <li className="nav-item">
                     <p className="nav-link hover-effect" onClick={() => this.filterByDateAscending("show")}
-                    >Newly added</p>
+                    >Recently Added</p>
+                    <p className="nav-link hover-effect" onClick={() => this.filterByDateAscending("show", "old")}
+                    >Oldest Added</p>
                   </li>
                   <li className="nav-item">
                     <p className="nav-link hover-effect" onClick={() => this.filterByRating("show")}
-                    >Rating</p>
+                    >Highest Rated</p>
                   </li>
                 </ul>
               </li>
