@@ -5,6 +5,7 @@ const showsSchema = new mongoose.Schema({
   posterPath: String,
   backdropPath: String,
   showId: String,
+  voteAverage: Number,
   createdAt: {
     type: Date,
     default: Date.now
