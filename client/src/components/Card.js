@@ -55,6 +55,7 @@ const Card = props => {
         showId: id,
         posterPath: path,
         backdropPath: movieBackdrop,
+        voteAverage: vote_average
       }
       try {
         const data = await props.saveUserLikedShow(show);
