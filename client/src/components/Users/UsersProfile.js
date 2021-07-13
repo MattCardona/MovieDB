@@ -59,6 +59,9 @@ class UsersProfile extends Component {
     if (type === "movie") {
       let filteredMovies = this.props.usersSavedMovies.sort((a, b) => b.voteAverage - a.voteAverage);
       this.props.filterByRating(filteredMovies, undefined);
+    } else {
+      let filteredShows = this.props.usersSavedShows.sort((a, b) => b.voteAverage - a.voteAverage);
+      this.props.filterByRating(undefined, filteredShows);
     }
   }
   render() {
@@ -142,6 +145,10 @@ class UsersProfile extends Component {
                   <li className="nav-item">
                     <p className="nav-link hover-effect" onClick={() => this.filterByDateAscending("show")}
                     >Newly added</p>
+                  </li>
+                  <li className="nav-item">
+                    <p className="nav-link hover-effect" onClick={() => this.filterByRating("show")}
+                    >Rating</p>
                   </li>
                 </ul>
               </li>
