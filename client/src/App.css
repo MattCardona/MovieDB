@@ -651,8 +651,13 @@ footer img {
   padding: 10px;
 }
 
+#user-profile .sort p{
+padding: 9px 0px 9px 7px;
+}
+
 #user-profile .nav-link {
   color: #fff;
+  float: left;
 }
 
 #user-fav-movies {
