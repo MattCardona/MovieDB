@@ -1,4 +1,4 @@
-import { SIGNUP_USER, SIGNIN_USER, SIGNOUT_USER, SAVE_MOVIE, GET_USERS, DELETE_SAVED_MOVIE, GET_USERS_SAVED, SAVE_SHOW, DELETE_SAVED_SHOW, FILTER_MOVIES_BY_DATE_ASCENDING, FILTER_SHOWS_BY_DATE_ASCENDING, FILTER_MOVIES_BY_RATING } from "../actions/types";
+import { SIGNUP_USER, SIGNIN_USER, SIGNOUT_USER, SAVE_MOVIE, GET_USERS, DELETE_SAVED_MOVIE, GET_USERS_SAVED, SAVE_SHOW, DELETE_SAVED_SHOW, FILTER_MOVIES_BY_DATE_ASCENDING, FILTER_SHOWS_BY_DATE_ASCENDING, FILTER_MOVIES_BY_RATING, FILTER_SHOWS_BY_RATING } from "../actions/types";
 import setAuthToken from "../utils/setAuthToken";
 import decode from 'jwt-decode';
 import Axios from "axios";
@@ -136,6 +136,11 @@ const authReducer = (state = initialState, action) => {
       return {
         ...state,
         shows: [...action.shows]
+      }
+    case FILTER_SHOWS_BY_RATING:
+      return {
+        ...state,
+        shows: [...action.filteredShows]
       }
     default:
       return state;
