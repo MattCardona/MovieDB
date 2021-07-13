@@ -1,5 +1,5 @@
 import Axios from "axios";
-import { SIGNUP_USER, SIGNIN_USER, SIGNOUT_USER, SAVE_MOVIE, GET_USERS_SAVED, DELETE_SAVED_MOVIE, GET_USERS, SAVE_SHOW, DELETE_SAVED_SHOW, FILTER_MOVIES_BY_DATE_ASCENDING, FILTER_SHOWS_BY_DATE_ASCENDING, FILTER_MOVIES_BY_RATING } from "./types";
+import { SIGNUP_USER, SIGNIN_USER, SIGNOUT_USER, SAVE_MOVIE, GET_USERS_SAVED, DELETE_SAVED_MOVIE, GET_USERS, SAVE_SHOW, DELETE_SAVED_SHOW, FILTER_MOVIES_BY_DATE_ASCENDING, FILTER_SHOWS_BY_DATE_ASCENDING, FILTER_MOVIES_BY_RATING, FILTER_SHOWS_BY_RATING } from "./types";
 import setAuthToken from "../utils/setAuthToken";
 import decode from 'jwt-decode'
 
@@ -191,6 +191,12 @@ export const filterByRating = (filteredMovies, filteredShows) => dispatch => {
     dispatch({
       type: FILTER_MOVIES_BY_RATING,
       filteredMovies
+    })
+  } else {
+    // create a new type filter shows by rating
+    dispatch({
+      type: FILTER_SHOWS_BY_RATING,
+      filteredShows
     })
   }
 }
