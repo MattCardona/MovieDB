@@ -68,13 +68,23 @@ class UsersProfile extends Component {
 
 
   }
-  filterByRating = async type => {
-    if (type === "movie") {
-      let filteredMovies = this.props.usersSavedMovies.sort((a, b) => b.voteAverage - a.voteAverage);
-      this.props.filterByRating(filteredMovies, undefined);
+  filterByRating = async (type, old) => {
+    if (!old) {
+      if (type === "movie") {
+        let filteredMovies = this.props.usersSavedMovies.sort((a, b) => b.voteAverage - a.voteAverage);
+        this.props.filterByRating(filteredMovies, undefined);
+      } else {
+        let filteredShows = this.props.usersSavedShows.sort((a, b) => b.voteAverage - a.voteAverage);
+        this.props.filterByRating(undefined, filteredShows);
+      }
     } else {
-      let filteredShows = this.props.usersSavedShows.sort((a, b) => b.voteAverage - a.voteAverage);
-      this.props.filterByRating(undefined, filteredShows);
+      if (type === "movie") {
+        let filteredMovies = this.props.usersSavedMovies.sort((a, b) => a.voteAverage - b.voteAverage);
+        this.props.filterByRating(filteredMovies, undefined);
+      } else {
+        let filteredShows = this.props.usersSavedShows.sort((a, b) => a.voteAverage - b.voteAverage);
+        this.props.filterByRating(undefined, filteredShows);
+      }
     }
   }
   render() {
@@ -109,6 +119,8 @@ class UsersProfile extends Component {
                   <li className="nav-item">
                     <p className="nav-link hover-effect" onClick={() => this.filterByRating("movie")}
                     >Highest Rated</p>
+                    <p className="nav-link hover-effect" onClick={() => this.filterByRating("movie", "old")}
+                    >Lowest Rated</p>
                   </li>
                 </ul>
               </li>
@@ -166,6 +178,8 @@ class UsersProfile extends Component {
                   <li className="nav-item">
                     <p className="nav-link hover-effect" onClick={() => this.filterByRating("show")}
                     >Highest Rated</p>
+                    <p className="nav-link hover-effect" onClick={() => this.filterByRating("show", "old")}
+                    >Lowest Rated</p>
                   </li>
                 </ul>
               </li>
